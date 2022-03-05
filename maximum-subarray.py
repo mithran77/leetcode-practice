@@ -99,7 +99,7 @@ class Solution:
         max_sum, sum = nums[0], 0
 
         for i in range(len(nums)):
-            if sum < 0: # Move slow pointer if net is negative
+            if sum < 0: # Move slow pointer if sum is negative
                 sum = 0
             sum += nums[i]
             max_sum = max(max_sum, sum)

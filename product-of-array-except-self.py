@@ -29,31 +29,66 @@
 from typing import List
 
 
+# class Solution:
+#     def productExceptSelf(self, nums: List[int]) -> List[int]:
+
+#         # Base case
+#         if len(nums) < 2:
+#             return []
+
+#         answer, running_product = [1], 1
+
+#         # Prefix Loop
+#         for i in range(1, len(nums)):
+#             running_product *= nums[i-1]
+#             answer.append(running_product)
+
+#         running_product = 1
+
+#         # Postfix Loop
+#         for i in range(len(nums) - 2, -1, -1):
+#             running_product *= nums[i+1]
+#             answer[i] *= running_product
+
+#         return answer
+
+
+# # n2
+# class Solution:
+#     def productExceptSelf(self, nums: List[int]) -> List[int]:
+#         output = [1] * len(nums)
+
+#         for i in range(len(nums)):
+#             tmp = nums[i]
+#             nums[i] = 1
+#             for j in range(len(nums)):
+#                 output[i] *= nums[j]
+#             nums[i] = tmp
+
+#         return output
+
+# n solution
 class Solution:
     def productExceptSelf(self, nums: List[int]) -> List[int]:
+        output = [1] * len(nums)
+        ln = len(nums)
+        prod = 1
 
-        # Base case
-        if len(nums) < 2:
-            return []
+        # Left side prod
+        for i in range(1, ln):
+            prod *= nums[i-1]
+            output[i] *= prod
 
-        answer, running_product = [1], 1
+        prod = 1
+        # Right side
+        for i in range(ln - 2, -1, -1):
+            prod *= nums[i+1]
+            output[i] *= prod
 
-        # Prefix Loop
-        for i in range(1, len(nums)):
-            running_product *= nums[i-1]
-            answer.append(running_product)
-
-        running_product = 1
-
-        # Postfix Loop
-        for i in range(len(nums) - 2, -1, -1):
-            running_product *= nums[i+1]
-            answer[i] *= running_product
-
-        return answer
+        return output
 
 
 
 if __name__ == '__main__':
     res = Solution()
-    print(res.maxArea([1,1]))
+    print(res.productExceptSelf([1,2,3,4]))

@@ -25,71 +25,88 @@
 #
 from typing import List
 
-# n2
-class Solution:
-    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+# # n2
+# class Solution:
+#     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
 
-        # Base case
-        if len(strs) < 2:
-            return [strs]
+#         # Base case
+#         if len(strs) < 2:
+#             return [strs]
 
-        result = []
+#         result = []
 
-        for str in strs:
-            if len(result) == 0: # First iteration
-                result.append([str])
-            else:
-                for res in result:
-                    if Solution.isAnagram(res[0], str):
-                        res.append(str)
-                        break
-                else:
-                    result.append([str])
+#         for str in strs:
+#             if len(result) == 0: # First iteration
+#                 result.append([str])
+#             else:
+#                 for res in result:
+#                     if Solution.isAnagram(res[0], str):
+#                         res.append(str)
+#                         break
+#                 else:
+#                     result.append([str])
 
-        return result
+#         return result
 
-    @staticmethod
-    def isAnagram(str1: List[str], str2: List[str]) -> bool: # O(n) time and space
+#     @staticmethod
+#     def isAnagram(str1: List[str], str2: List[str]) -> bool: # O(n) time and space
 
-        char_count = {}
+#         char_count = {}
 
-        if len(str1) != len(str2): return False
+#         if len(str1) != len(str2): return False
 
-        for c in str1:
-            if c in char_count:
-                char_count[c] += 1
-            else:
-                char_count[c] = 1
+#         for c in str1:
+#             if c in char_count:
+#                 char_count[c] += 1
+#             else:
+#                 char_count[c] = 1
 
-        for c in str2:
-            if c in char_count:
-                if char_count[c] == 0:
-                    return False
-                else:
-                    char_count[c] -= 1
-            else:
-                return False
+#         for c in str2:
+#             if c in char_count:
+#                 if char_count[c] == 0:
+#                     return False
+#                 else:
+#                     char_count[c] -= 1
+#             else:
+#                 return False
 
-        return True
+#         return True
 
-res = Solution()
-# res.groupAnagrams(["eat","tea","tan","ate","nat","bat"])
-res.groupAnagrams(["ac","c"])
+# res = Solution()
+# # res.groupAnagrams(["eat","tea","tan","ate","nat","bat"])
+# res.groupAnagrams(["ac","c"])
 
-# Optimized
+# # Optimized
+
+# import collections
+
+# class Solution:
+#     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+#         output = collections.defaultdict(list)
+
+#         for str in strs:
+#             output[tuple(sorted(str))].append(str)
+
+#         return output.values()
+
 
 import collections
-
+import array as arr
+# array solution
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
-        output = collections.defaultdict(list)
 
-        for str in strs:
-            output[tuple(sorted(str))].append(str)
+        word_map = collections.defaultdict(lambda:[])
 
-        return output.values()
+        for w in strs:
+            k = arr.array('i',[0] * 26)
+            for c in w:
+                k[ord(c.lower()) - ord('a')] += 1
+            word_map[str(k)].append(w)
+        
+        return word_map.values()
 
 
 if __name__ == '__main__':
     res = Solution()
-    print(res.maxArea([1,1]))
+    print(res.groupAnagrams(["eat","tea","tan","ate","nat","bat"]))
