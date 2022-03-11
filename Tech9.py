@@ -48,7 +48,6 @@ class Solution:
             else:
                 i += 1
 
-
         return ans
 
 if '__main__' == __name__:
