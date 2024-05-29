@@ -15,16 +15,39 @@ type ListNode struct {
 	Next *ListNode
 }
 
-// func reverseList(head *ListNode) *ListNode {
+func reverseList(head *ListNode) *ListNode {
+	var prev *ListNode = nil
+	curr := head
+	for curr != nil {
+		next := curr.Next
+		curr.Next = prev
+		prev = curr
+		curr = next
+	}
+	return prev
+}
 
-// }
+func createLinkedList(nums []int) *ListNode {
+	head := &ListNode{nums[0], nil}
+	curr := head
+	for _, v := range nums[1:] {
+		curr.Next = &ListNode{v, nil}
+		curr = curr.Next
+	}
+	return head
+}
+
+func printList(head *ListNode) {
+	curr := head
+	for curr != nil {
+		fmt.Printf("%d -> ", curr.Val)
+		curr = curr.Next
+	}
+	fmt.Println("nil")
+}
 
 func main() {
-	var prev ListNode
-	head := ListNode{1, nil}
-	for _, v := range []int{2, 3, 4, 5} {
-		prev.Next = &ListNode{v, nil}
-	}
-
-	fmt.Println(reverseList())
+	head := createLinkedList([]int{1, 2, 3, 4, 5})
+	// printList(head)
+	printList(reverseList(head))
 }
