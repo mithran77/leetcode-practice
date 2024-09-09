@@ -1,9 +1,9 @@
 {
     "version": "0.2.0",
    "configurations": [
-       // go build -gcflags=all="-N -l" -o ./a.go ./golang/contains-duplicate.go
+       // go build -gcflags=all="-N -l" -o ./a.go ./golang/ArraysHashing/contains-duplicate.go
        // ./a.go
-       // go run ./golang/singly-linked-list.go
+       // go run ./golang/LinkedList/singly-linked-list.go
        {
            "name": "Golang",
             "type": "go",
