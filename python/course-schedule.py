@@ -32,36 +32,68 @@ from typing import List
 import collections
 
 
+# class Solution:
+
+#     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+
+#         dependentCourses = [[] for _ in range(numCourses)] # Directed graph- adjacency list
+#         prereqCnt = [0 for  _ in range(numCourses)] # InDegree
+#         for course,itsPrereq in prerequisites:
+#             dependentCourses[itsPrereq].append(course)
+#             prereqCnt[course]+=1
+
+#         prereqCompletedCnt = 0 # Cnt of courses whose prerequisite_courses are completed
+#         # Cnt of vertices with inDegree zero
+
+#         prereqCompletedOf = collections.deque()
+#         for course in range(numCourses): # Loop to add courses as completed if they have no dependents
+#             if prereqCnt[course] == 0:
+#                 prereqCompletedOf.append(course)
+#                 prereqCompletedCnt += 1
+
+#         while prereqCompletedOf:
+#             prereqCourse = prereqCompletedOf.popleft()
+#             # Now decrement count-of-Incomplete-prerequisites for all those courses 
+#             #          for which curr_course was one of the prerequisite
+#             for course in dependentCourses[prereqCourse]:
+#                 prereqCnt[course] -= 1
+#                 if prereqCnt[course] == 0:
+#                     prereqCompletedCnt += 1
+#                     prereqCompletedOf.append(course)
+
+#         return prereqCompletedCnt == numCourses
+
+
 class Solution:
-
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        crsReq = { i : [] for i in range(numCourses) }
+        visited = set()
 
-        dependentCourses = [[] for _ in range(numCourses)] # Directed graph- adjacency list
-        prereqCnt = [0 for  _ in range(numCourses)] # InDegree
-        for course,itsPrereq in prerequisites:
-            dependentCourses[itsPrereq].append(course)
-            prereqCnt[course]+=1
+        for crs, req in prerequisites:
+            crsReq[crs].append(req)
 
-        prereqCompletedCnt = 0 # Cnt of courses whose prerequisite_courses are completed
-        # Cnt of vertices with inDegree zero
+        def dfs(crs):
+            # BCs
+            if crs in visited: # Cycle
+                return False
+            if crsReq[crs] == []:
+                return True
 
-        prereqCompletedOf = collections.deque()
-        for course in range(numCourses): # Loop to add courses as completed if they have no dependents
-            if prereqCnt[course] == 0:
-                prereqCompletedOf.append(course)
-                prereqCompletedCnt += 1
+            visited.add(crs)
+            # RCs
+            for req in crsReq[crs]:
+                if not dfs(req):
+                    return False
 
-        while prereqCompletedOf:
-            prereqCourse = prereqCompletedOf.popleft()
-            # Now decrement count-of-Incomplete-prerequisites for all those courses 
-            #          for which curr_course was one of the prerequisite
-            for course in dependentCourses[prereqCourse]:
-                prereqCnt[course] -= 1
-                if prereqCnt[course] == 0:
-                    prereqCompletedCnt += 1
-                    prereqCompletedOf.append(course)
+            visited.remove(crs)
+            crsReq[crs] = []
+            return True
 
-        return prereqCompletedCnt == numCourses
+        for c in range(numCourses):
+            if not dfs(c):
+                return False
+
+        return True
 
 
 if __name__ == '__main__':
