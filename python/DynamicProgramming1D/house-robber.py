@@ -28,19 +28,41 @@
 #
 from typing import List
 
+# A. Recursive (top-down)
 class Solution:
     def rob(self, nums: List[int]) -> int:
-        rob1, rob2 = 0, 0
 
-        for n in nums:
-            temp = max(rob1 + n, rob2)
-            rob1 = rob2
-            rob2 = temp
+        def rRob(i):
+            if i < 0:
+                return 0
 
-        return rob2
+            return (max(nums[i] + rRob(i - 2), rRob(i - 1)))
+
+        return rRob(len(nums) - 1)
+
+# class Solution:
+#     def rob(self, nums: List[int]) -> int:
+#         rob1, rob2 = 0, 0
+
+#         for n in nums:
+#             temp = max(rob1 + n, rob2)
+#             rob1 = rob2
+#             rob2 = temp
+
+#         return rob2
 
 if __name__ == '__main__':
     res = Solution()
     print(res.rob(nums = [1,2,3,1]))
     print(res.rob(nums = [2,7,9,3,1]))
 
+
+# RT
+# A. Recursive (top-down)
+# nums = [1,2,3,1]
+# rRob(3)
+# max(nums[3] + rRob(1), rRob(2))
+# max(1 + (max(nums[1] + rRob(-1), rRob(0))), rRob(2))
+# rRob()
+# rRob(3)
+# 

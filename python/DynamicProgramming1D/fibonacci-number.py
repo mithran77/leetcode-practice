@@ -31,17 +31,17 @@
 # 0 <= n <= 30
 #
 
-# # Recursive no optimizations
+# # Recursive no optimizations (top-down)
 # class Solution:
 #     def fib(self, n: int) -> int:
 #         # BCs
-#         if n < 2:
+#         if n <= 1:
 #             return n
 
 #         # RC
 #         return self.fib(n - 1) + self.fib(n -2)
 
-# # Recursive with Memoization
+# # Recursive with Memoization (top-down)
 # class Solution:
 #     def fib(self, n: int) -> int:
 
@@ -55,10 +55,26 @@
 
 #         return fastFib(n, cache)
 
-# Memoization without auxilary stack
+# # Tabluation with Memoization (bottom-up)
+# from array import array
+
+# class Solution:
+#     def fib(self, n: int) -> int:
+#         if n <= 1:
+#             return n
+
+#         memo = array('i', [-1] * (n + 1))
+#         memo[0], memo[1] = 0, 1
+
+#         for i in range(2, n+1):
+#             memo[i] = memo[i - 1] + memo[i - 2]
+
+#         return memo[n]
+
+# Tabulation optimized for space (bottom-up)
 class Solution:
     def fib(self, n: int) -> int:
-        if n < 2:
+        if n <= 1:
             return n
 
         prev2, prev = 0, 1
