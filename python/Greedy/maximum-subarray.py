@@ -94,20 +94,32 @@ from typing import List
 
 
 # Kadane's algorithm
+# class Solution:
+#     def maxSubArray(self, nums: List[int]) -> int:
+#         max_sum, sum = nums[0], 0
+
+#         for i in range(len(nums)):
+#             if sum < 0: # Move slow pointer if sum is negative
+#                 sum = 0
+#             sum += nums[i]
+#             max_sum = max(max_sum, sum)
+
+#         return max_sum
+
 class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
-        max_sum, sum = nums[0], 0
+        maxSum, curSum = nums[0], 0
+        
+        for n in nums:
+            if curSum < 0:
+                curSum = 0
+            curSum += n
+            maxSum = max(maxSum, curSum)
 
-        for i in range(len(nums)):
-            if sum < 0: # Move slow pointer if sum is negative
-                sum = 0
-            sum += nums[i]
-            max_sum = max(max_sum, sum)
-
-        return max_sum
-
+        return maxSum
 
 if __name__ == '__main__':
     res = Solution()
-    print(res.maxSubArray([5,4,-1,7,8]))
     print(res.maxSubArray([-2,1,-3,4,-1,2,1,-5,4]))
+    print(res.maxSubArray([1]))
+    print(res.maxSubArray([5,4,-1,7,8]))
