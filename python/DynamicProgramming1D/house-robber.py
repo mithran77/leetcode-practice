@@ -28,28 +28,51 @@
 #
 from typing import List
 
-# A. Recursive (top-down)
-class Solution:
-    def rob(self, nums: List[int]) -> int:
-
-        def rRob(i):
-            if i < 0:
-                return 0
-
-            return (max(nums[i] + rRob(i - 2), rRob(i - 1)))
-
-        return rRob(len(nums) - 1)
-
+# # A. Recursive (top-down)
 # class Solution:
 #     def rob(self, nums: List[int]) -> int:
-#         rob1, rob2 = 0, 0
 
-#         for n in nums:
-#             temp = max(rob1 + n, rob2)
-#             rob1 = rob2
-#             rob2 = temp
+#         def rRob(i):
+#             if i < 0:
+#                 return 0
 
-#         return rob2
+#             return (max(nums[i] + rRob(i - 2), rRob(i - 1)))
+
+#         return rRob(len(nums) - 1)
+
+# # B. Recursive + Memoization (top-down)
+# class Solution:
+#     def rob(self, nums: List[int]) -> int:
+
+#         memo = [-1] * len(nums)
+
+#         def rRob(i):
+#             if i < 0:
+#                 return 0
+
+#             if memo[i] >= 0:
+#                 return memo[i]
+
+#             res = (max(nums[i] + rRob(i - 2), rRob(i - 1)))
+#             memo[i] = res
+
+#             return res
+
+#         return rRob(len(nums) - 1)
+
+# Tabulation + space optimized (bottom-top)
+class Solution:
+    def rob(self, nums: List[int]) -> int:
+        prev1, prev2 = 0, 0
+        # prev2, prev1, nums[i], ..., nums[n]
+        
+        for n in nums:
+            tmp = prev1
+            prev1 = max(n + prev2, prev1)
+            prev2 = tmp
+
+        return prev1
+
 
 if __name__ == '__main__':
     res = Solution()
