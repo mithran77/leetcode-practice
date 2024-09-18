@@ -39,29 +39,44 @@ from typing import List
 #         return output
 
 
+# class Solution:
+#     def merge(self, intervals: List[List[int]]) -> List[List[int]]:
+
+#         # Base case
+#         if len(intervals) < 2:
+#             return intervals
+
+#         # sort on first value
+#         intervals = sorted(intervals, key=lambda x: x[0])
+#         i = 0
+
+#         while i < len(intervals) - 1:
+#             if intervals[i][1] >= intervals[i+1][0]:
+#                 intervals[i][1] = max(intervals[i][1], intervals[i+1][1])
+#                 if intervals[i][1] >= intervals[i+1][1]:
+#                     del(intervals[i+1])
+#             else:
+#                 i += 1
+
+#         return intervals
+
 class Solution:
     def merge(self, intervals: List[List[int]]) -> List[List[int]]:
+        intervals.sort(key = lambda i : i[0])
+        output = [intervals[0]]
 
-        # Base case
-        if len(intervals) < 2:
-            return intervals
-
-        # sort on first value
-        intervals = sorted(intervals, key=lambda x: x[0])
-        i = 0
-
-        while i < len(intervals) - 1:
-            if intervals[i][1] >= intervals[i+1][0]:
-                intervals[i][1] = max(intervals[i][1], intervals[i+1][1])
-                if intervals[i][1] >= intervals[i+1][1]:
-                    del(intervals[i+1])
+        for start, end in intervals[1:]:
+            prevEnd = output[-1][1]
+            if start <= prevEnd: # Overlapping
+                output[-1][1] = max(prevEnd, end)
             else:
-                i += 1
+                output.append([start, end])
 
-        return intervals
+        return output
 
 
 if __name__ == '__main__':
     res = Solution()
     print(res.merge([[1,3],[2,6],[8,10],[15,18]]))
     print(res.merge([[1,4],[4,5]]))
+
