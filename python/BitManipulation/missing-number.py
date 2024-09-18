@@ -34,35 +34,46 @@
 from typing import List
 
 
-class Solution: # WRONG SOLUTION, READ QUESTION PROPERLY
-    def missingNumber(self, nums: List[int]) -> int:
-        # Corner cases
-        if len(nums) == 1:
-            if nums[-1] == 0 or nums[-1] == (len(nums) - 1):
-                return nums[-1] + 1
-            else:
-                return nums[-1] - 1
+# class Solution: # WRONG SOLUTION, READ QUESTION PROPERLY
+#     def missingNumber(self, nums: List[int]) -> int:
+#         # Corner cases
+#         if len(nums) == 1:
+#             if nums[-1] == 0 or nums[-1] == (len(nums) - 1):
+#                 return nums[-1] + 1
+#             else:
+#                 return nums[-1] - 1
 
-        nums = sorted(nums)
+#         nums = sorted(nums)
 
-        # Normal Cases
-        for i in range(1, len(nums)):
-            if i > 0 and (nums[i] != nums[i-1] + 1):
-                return nums[i] - 1
+#         # Normal Cases
+#         for i in range(1, len(nums)):
+#             if i > 0 and (nums[i] != nums[i-1] + 1):
+#                 return nums[i] - 1
 
-        return nums[-1] + 1
+#         return nums[-1] + 1
+
+
+# class Solution:
+#     def missingNumber(self, nums: List[int]) -> int:
+#         nums = sorted(nums)
+#         for i in range(0, len(nums)):
+#             if nums[i] != i:
+#                 return i
+#         return i + 1
+
 
 
 class Solution:
     def missingNumber(self, nums: List[int]) -> int:
-        nums = sorted(nums)
-        for i in range(0, len(nums)):
-            if nums[i] != i:
-                return i
-        return i + 1
-
-
+        res = len(nums)
+        
+        for i in range(len(nums)):
+            res += (i - nums[i])
+        return res
 
 if __name__ == '__main__':
     res = Solution()
-    print(res.maxArea([1,1]))
+    print(res.missingNumber(nums = [3,0,1]))
+    print(res.missingNumber(nums = [0,1]))
+    print(res.missingNumber(nums = [9,6,4,2,3,5,7,0,1]))
+    print(res.missingNumber(nums = [0]))
