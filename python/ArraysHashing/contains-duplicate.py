@@ -51,7 +51,8 @@ from typing import List
 #             hashset.add(n) # else add it to hashset
 #         return False # duplicate not exist return false
 
-
+# Iterating through a single hash set is a little faster (not in order of magnitude though)
+# 
 # class Solution:
 #     def containsDuplicate(self, nums: List[int]) -> bool:
 #         unique = set(nums)
@@ -71,6 +72,15 @@ class Solution:
                 return True
         return False
 
+# Better to use a hash set than a dict
+class Solution:
+    def containsDuplicate(self, nums: List[int]) -> bool:
+        exists = set()
+        for n in nums:
+            if n in exists:
+                return True
+            exists.add(n)
+        return False
 
 if __name__ == '__main__':
     res = Solution()

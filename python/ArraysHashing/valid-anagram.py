@@ -57,12 +57,10 @@
 #     def isAnagram(self, s: str, t: str) -> bool:
 
 #         s_cnt = {}
-        
+
 #         for c in s:
 #             s_cnt[c] = s_cnt.get(c, 0) + 1
-        
 #         for c in t:
-
 #             s_cnt[c] = s_cnt.get(c, 0) - 1
 
 #             if s_cnt[c] < 0:
@@ -73,16 +71,35 @@
 
 #         return s_cnt == {}
 
+# class Solution:
+#     def isAnagram(self, s: str, t: str) -> bool:
+#         if len(s) != len(t):
+#             return False
+#         s_count, t_count = {}, {}
+#         for i in range(len(s)):
+#             s_count[s[i]] = s_count.get(s[i], 0) + 1
+#             t_count[t[i]] = t_count.get(t[i], 0) + 1
+
+#         return s_count == t_count
+
 class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
         if len(s) != len(t):
             return False
-        s_count, t_count = {}, {}
-        for i in range(len(s)):
-            s_count[s[i]] = s_count.get(s[i], 0) + 1
-            t_count[t[i]] = t_count.get(t[i], 0) + 1
+        count = {}
+        for c in s:
+            count[c] = count.get(c, 0) + 1
 
-        return s_count == t_count
+        for c in t:
+            count[c] = count.get(c, 0) - 1
+
+            if count[c] < 0:
+                return False
+
+            if count[c] == 0:
+                del(count[c])
+
+        return count == {}
 
 if __name__ == '__main__':
     res = Solution()
