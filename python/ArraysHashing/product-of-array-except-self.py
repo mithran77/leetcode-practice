@@ -86,23 +86,39 @@ from typing import List
 
 #         return output
 
+# class Solution:
+#     def productExceptSelf(self, nums: List[int]) -> List[int]:
+#         res = [1] * len(nums)
+
+#         prefix_prod = 1
+#         for i in range(1, len(nums)):
+#             prefix_prod *= nums[i-1]
+#             res[i] *= prefix_prod
+
+#         postfix_prod = 1
+#         for i in range(len(nums)-2, -1, -1):
+#             postfix_prod *= nums[i+1]
+#             res[i] *= postfix_prod
+
+#         return res
+
 class Solution:
     def productExceptSelf(self, nums: List[int]) -> List[int]:
         res = [1] * len(nums)
 
-        prefix_prod = 1
-        for i in range(1, len(nums)):
-            prefix_prod *= nums[i-1]
-            res[i] *= prefix_prod
+        prod = 1
+        for i in range(len(nums)):
+            res[i] *= prod
+            prod *= nums[i]
 
-        postfix_prod = 1
-        for i in range(len(nums)-2, -1, -1):
-            postfix_prod *= nums[i+1]
-            res[i] *= postfix_prod
+        prod = 1
+        for i in range(len(nums) - 1, -1, -1):
+            res[i] *= prod
+            prod *= nums[i]
 
         return res
-
 
 if __name__ == '__main__':
     res = Solution()
     print(res.productExceptSelf([1,2,3,4]))
+    print(res.productExceptSelf([-1,1,0,-3,3]))
