@@ -142,8 +142,8 @@ class Solution:
 if __name__ == '__main__':
     res = Solution()
     print(res.threeSum([-1,0,1,2,-1,-4]))
-    # print(res.threeSum([0,1,1]))
-    # print(res.threeSum([0,0,0]))
-    # print(res.threeSum([]))
-    # print(res.threeSum([0]))
-    # print(res.threeSum([0,0,0,0]))
+    print(res.threeSum([0,1,1]))
+    print(res.threeSum([0,0,0]))
+    print(res.threeSum([]))
+    print(res.threeSum([0]))
+    print(res.threeSum([0,0,0,0]))
