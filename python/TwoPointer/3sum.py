@@ -86,33 +86,64 @@ from typing import List
 
 #         return output
 
+# class Solution:
+#     def threeSum(self, nums: List[int]) -> List[List[int]]:
+#         nums.sort()
+#         res = []
+#         for i in range(len(nums)):
+#             if i > 0 and nums[i] == nums[i-1]:
+#                 continue
+#             l, r = i + 1, len(nums) - 1
+#             while l < r:
+#                 three_sum = nums[i] + nums[l] + nums[r]
+#                 if three_sum < 0:
+#                     l += 1
+#                 elif three_sum > 0:
+#                     r -= 1
+#                 else:
+#                     res.append([nums[i], nums[l], nums[r]])
+#                     l += 1
+#                     while nums[l] == nums[l-1] and l < r:
+#                         l += 1
+
+#         return res
+
+
+# Most Understandable 
 class Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
         nums.sort()
         res = []
         for i in range(len(nums)):
-            if i > 0 and nums[i] == nums[i-1]:
+            if nums[i] > 0: # Early return
+                break
+            # Skip i duplicates
+            if i > 0 and nums[i] == nums[i - 1]:
                 continue
+            target = -nums[i]
             l, r = i + 1, len(nums) - 1
             while l < r:
-                three_sum = nums[i] + nums[l] + nums[r]
-                if three_sum < 0:
+                sum = nums[l] + nums[r]
+                if sum < target:
                     l += 1
-                elif three_sum > 0:
+                elif sum > target:
                     r -= 1
                 else:
-                    res.append([nums[i], nums[l], nums[r]])
-                    l += 1
-                    while nums[l] == nums[l-1] and l < r:
+                    triplet = [nums[i], nums[l], nums[r]]
+                    res.append(triplet)
+                    # Skip l duplicates
+                    while l < r and nums[l] == triplet[1]:
                         l += 1
-
+                    # Skip r duplicates
+                    while l < r and nums[r] == triplet[2]:
+                        r -= 1
         return res
 
 if __name__ == '__main__':
     res = Solution()
     print(res.threeSum([-1,0,1,2,-1,-4]))
-    print(res.threeSum([0,1,1]))
-    print(res.threeSum([0,0,0]))
-    print(res.threeSum([]))
-    print(res.threeSum([0]))
+    # print(res.threeSum([0,1,1]))
+    # print(res.threeSum([0,0,0]))
+    # print(res.threeSum([]))
+    # print(res.threeSum([0]))
     # print(res.threeSum([0,0,0,0]))

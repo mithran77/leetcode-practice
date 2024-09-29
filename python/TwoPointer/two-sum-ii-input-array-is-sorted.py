@@ -62,7 +62,7 @@ from typing import List
 #             if n in sum:
 #                 return [sum[n], i+1]
 #             difference = target - n
-            
+
 #             sum[difference] = i + 1
 
 class Solution:
@@ -76,7 +76,7 @@ class Solution:
             elif two_sum < target:
                 l += 1
             else:
-                return [l+1, r+1]
+                return [l + 1, r + 1]
 
         return []
 
