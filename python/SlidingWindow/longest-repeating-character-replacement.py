@@ -50,20 +50,34 @@
 
 #         return ans
 
+# class Solution:
+#     def characterReplacement(self, str: str, k: int) -> int:
+#         count = {}
+#         length = s = 0
+#         for f in range(len(str)):
+
+#             count[str[f]] = count.get(str[f], 0) + 1
+#             # Move the window
+#             while (sum(count.values()) - max(count.values())) > k:
+#                 count[str[s]] = count.get(str[s], 0) - 1
+#                 s += 1
+#             length = max(length, f - s + 1)
+
+#         return length
+
 class Solution:
-    def characterReplacement(self, str: str, k: int) -> int:
+    def characterReplacement(self, s: str, k: int) -> int:
         count = {}
-        length = s = 0
-        for f in range(len(str)):
+        l, maxf, res = 0, 0, 0
+        for r in range(len(s)):
+            count[s[r]] = count.get(s[r], 0) + 1
+            maxf = max(maxf, count[s[r]])
 
-            count[str[f]] = count.get(str[f], 0) + 1
-            # Move the window
-            while (sum(count.values()) - max(count.values())) > k:
-                count[str[s]] = count.get(str[s], 0) - 1
-                s += 1
-            length = max(length, f - s + 1)
-
-        return length
+            while (r - l + 1) - maxf > k:
+                count[s[l]] -= 1
+                l += 1
+            res = max(res, (r - l + 1))
+        return res
 
 if __name__ == '__main__':
     res = Solution()

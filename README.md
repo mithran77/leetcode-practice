@@ -64,7 +64,7 @@
 <li><b>🟧 <a href="https://leetcode.com/problems/longest-substring-without-repeating-characters/description/">Longest Substring Without Repeating Characters</a></b> <code>Initialize L pointer to 0. Iterate over s, adding characters to a charSet. If duplicate is found, remove characters from left until duplicate is gone. Continuously update longest substring and return it at end</code><br>
 <a href="python/SlidingWindow/longest-substring-without-repeating-characters.py">python</a>
 </li>
-<li><b>🟧 <a href="https://leetcode.com/problems/longest-repeating-character-replacement/description/">Longest Repeating Character Replacement</a></b> <code></code><br>
+<li><b>🟧 <a href="https://leetcode.com/problems/longest-repeating-character-replacement/description/">Longest Repeating Character Replacement</a></b> <code>Set L = 0 and iterate R through s, tracking the max frequency of any character by comparing against the current character count. Adjust L & char frequencies in window while the count of other characters exceeds k using maxf. Continuously update longest substring with repetitions and return it at end</code><br>
 <a href="python/SlidingWindow/longest-repeating-character-replacement.py">python</a>
 </li>
 <li><b>🟥 <a href="https://leetcode.com/problems/minimum-window-substring/description/">Minimum Window Substring</a></b> <code></code><br>
@@ -75,10 +75,28 @@
 
 <details>
 <summary><h4>Stack</h4></summary>
+<ul>
+<li><b>🟩 <a href="https://leetcode.com/problems/valid-parentheses/description/">Valid Parentheses</a></b> <code>Use a HashMap {')': '('}. Iterate through the string: append open brackets (not in the HashMap) to a stack. For closing brackets, return False if the stack is empty or there's a mismatch. Pop from the stack and continue. At the end, return whether the stack is empty</code><br>
+<a href="python/Stack/valid-parentheses.py">python</a> | 
+<a href="golang/Stack/valid-parentheses.go">go</a>
+</li>
+</ul>
 </details>
 
 <details>
 <summary><h4>Binary Search</h4></summary>
+<ul>
+<li><b>🟩 <a href="https://leetcode.com/problems/binary-search/description/">Binary Search</a></b> <code>Use 3 pointers: l, r & mid. Compare the mid value with the target and either move the window left/right or return the index if found.</code><br>
+<a href="python/BinarySearch/binary-search.py">python</a> | 
+<a href="golang/BinarySearch/binary-search.go">go</a>
+</li>
+<li><b>🟧 <a href="https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/description/">Find Minimum in Rotated Sorted Array</a></b> <code>Initialize l and r to the start and end. If nums[mid] > nums[r], move window right; otherwise, move window left, including mid. l and r will converge on smallest value, which you return at end</code><br>
+<a href="python/BinarySearch/find-minimum-in-rotated-sorted-array.py">python</a>
+</li>
+<li><b>🟧 <a href="https://leetcode.com/problems/search-in-rotated-sorted-array/">Search in Rotated Sorted Array</a></b> <code>Pray</code><br>
+<a href="python/BinarySearch/search-in-rotated-sorted-array.py">python</a>
+</li>
+</ul>
 </details>
 
 <details>

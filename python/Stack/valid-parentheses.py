@@ -58,21 +58,42 @@
 #         return True
 
 
+# class Solution:
+#     def isValid(self, s: str) -> bool:
+#         stack = []
+#         b_map = { '(': ')', '[': ']', '{': '}' }
+
+#         for c in s:
+#             need_close = b_map.get(c)
+#             if need_close:
+#                 stack.append(need_close)
+#             elif not stack or c != stack.pop():
+#                 return False
+
+#         return stack == []
+
 class Solution:
     def isValid(self, s: str) -> bool:
         stack = []
-        b_map = { '(': ')', '[': ']', '{': '}' }
+        brackets = {
+            ')': '(',
+            '}': '{',
+            ']': '['
+        }
 
         for c in s:
-            need_close = b_map.get(c)
-            if need_close:
-                stack.append(need_close)
-            elif not stack or c != stack.pop():
+            if c not in brackets: # Opening
+                stack.append(c)
+                continue
+            elif not stack or stack[-1] != brackets[c]:
                 return False
+            stack.pop()
 
         return stack == []
 
-
 if __name__ == '__main__':
     res = Solution()
-    print(res.maxArea([1,1]))
+    print(res.isValid("()"))
+    print(res.isValid("()[]{}"))
+    print(res.isValid("(]"))
+    print(res.isValid("([])"))
