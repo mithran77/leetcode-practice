@@ -90,10 +90,10 @@
 <a href="python/BinarySearch/binary-search.py">python</a> | 
 <a href="golang/BinarySearch/binary-search.go">go</a>
 </li>
-<li><b>🟧 <a href="https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/" target="_blank">Find Minimum in Rotated Sorted Array</a></b> <code>Initialize l and r to the start and end. If nums[mid] > nums[r], move window right; otherwise, move window left, including mid. l and r will converge on smallest value, which you return at end</code><br>
+<li><b>🟧 <a href="https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/" target="_blank">Find Minimum in Rotated Sorted Array</a></b> <code>Initialize l and r to the start and end. Update ans, as min(ans, nums[mid]). If nums[mid] > nums[r], move window right; otherwise, move window left. Return min(nums[l], ans)</code><br>
 <a href="python/BinarySearch/find-minimum-in-rotated-sorted-array.py">python</a>
 </li>
-<li><b>🟧 <a href="https://leetcode.com/problems/search-in-rotated-sorted-array/" target="_blank">Search in Rotated Sorted Array</a></b> <code>At most two sorted halfs, mid will be apart of left sorted or right sorted, if target is in range of sorted portion then search it, otherwise search other half</code><br>
+<li><b>🟧 <a href="https://leetcode.com/problems/search-in-rotated-sorted-array/" target="_blank">Search in Rotated Sorted Array</a></b> <code>Use 3 pointers l, r, mid. mid will be apart of either left sorted or right sorted portions. If target is in range of sorted portion then search it, otherwise search other half</code><br>
 <a href="python/BinarySearch/search-in-rotated-sorted-array.py">python</a>
 </li>
 </ul>
@@ -110,17 +110,17 @@
 <a href="python/LinkedList/merge-two-sorted-lists.py">python</a> | 
 <a href="golang/LinkedList/merge-two-sorted-lists.go">go</a>
 </li>
-<li><b>🟩 <a href="https://leetcode.com/problems/linked-list-cycle/" target="_blank">Linked List Cycle</a></b> <code>Initialize F & S pointers to head. Iterate while F and F.next exist, moving F by 2 and S by 1. If they are equal, return True; otherwise, return False</code><br>
+<li><b>🟩 <a href="https://leetcode.com/problems/linked-list-cycle/" target="_blank">Linked List Cycle</a></b> <code>Initialize f & s pointers to head. Iterate while f and f.next exist, moving f by 2 and s by 1. If they are equal, return True; otherwise, return False</code><br>
 <a href="python/LinkedList/linked-list-cycle.py">python</a> | 
 <a href="golang/LinkedList/linked-list-cycle.go">go</a>
 </li>
-<li><b>🟧 <a href="https://leetcode.com/problems/reorder-list/" target="_blank">Reorder List</a></b> <code>Move the s pointer to the center of the list while ensuring f.next exists. Set s.next as the start of the second half, then set s.next to None to end the first half. Reverse the second list, then use two temp variables to merge both halves.</code><br>
+<li><b>🟧 <a href="https://leetcode.com/problems/reorder-list/" target="_blank">Reorder List</a></b> <code>Move the s pointer to the center of the list while ensuring f.next exists. Set s.next as the start of the second half, then set s.next to None to end the first half. Reverse the second list, then use 2 temp variables to merge both halves.</code><br>
 <a href="python/LinkedList/reorder-list.py">python</a>
 </li>
-<li><b>🟧 <a href="https://leetcode.com/problems/remove-nth-node-from-end-of-list/" target="_blank">Remove Nth Node From End of List</a></b> <code>Create a dummy node pointing to head and assign it to s. Assign f to head and move f forward n times. Then, move both pointers until f reaches the end. Set s.next.next to s.next and return head</code><br>
+<li><b>🟧 <a href="https://leetcode.com/problems/remove-nth-node-from-end-of-list/" target="_blank">Remove Nth Node From End of List</a></b> <code>Create a dummy node pointing to head and assign it to l. Assign r to head and move r forward n times. Then, move both pointers until r reaches the end. Set l.next.next to l.next and return dummy.next</code><br>
 <a href="python/LinkedList/remove-nth-node-from-end-of-list.py">python</a>
 </li>
-<li><b>🟥 <a href="https://leetcode.com/problems/merge-k-sorted-lists/" target="_blank">Merge k Sorted Lists</a></b> <code></code><br>
+<li><b>🟥 <a href="https://leetcode.com/problems/merge-k-sorted-lists/" target="_blank">Merge k Sorted Lists</a></b> <code>Create mergeLists() to merge two lists. While len(lists) > 1, run an inner loop to merge two lists at a time, append the result to mergedLists, and assign mergedLists to lists. Finally, return lists[0]</code><br>
 <a href="python/LinkedList/merge-k-sorted-lists.py">python</a>
 </ul>
 </details>

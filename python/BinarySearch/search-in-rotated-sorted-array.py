@@ -46,7 +46,7 @@ class Solution:
 
             # m in Left sorted array
             if nums[l] <= nums[m]:
-                if target > nums[m] or target < nums[l]:
+                if target < nums[l] or target > nums[m]:
                     l = m + 1
                 else:
                     r = m - 1

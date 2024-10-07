@@ -9,8 +9,8 @@ class ListNode:
 class Solution:
     def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
 
-        cur = ListNode()
-        res = cur
+        dummy = ListNode()
+        cur = dummy
 
         while list1 and list2:
             if list1.val < list2.val:
@@ -21,13 +21,15 @@ class Solution:
                 list2 = list2.next
             cur = cur.next
 
-        if list1 is None:
-            cur.next = list2
-        elif list2 is None:
-            cur.next = list1
+        cur.next = list1 or list2
 
-        return res.next
+        return dummy.next
 
 
 if __name__ == '__main__':
     res = Solution()
+
+
+#
+# Input: list1 = [1,2,4], list2 = [1,3,5]
+# dummy: 0 -> [ 1 ->  ]
