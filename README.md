@@ -140,7 +140,7 @@
 <li><b>🟩 <a href="https://leetcode.com/problems/subtree-of-another-tree/" target="_blank">Subtree of Another Tree</a></b> <code>Create a separate fn isSameTree() and perform BFS on the root. At each node, if isSameTree(node, subTree) return True. Finally if no same trees were found, return False</code><br>
 <a href="python/Trees/subtree-of-another-tree.py">python</a>
 </li>
-<li><b>🟧 <a href="https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/" target="_blank">Lowest Common Ancestor of a Binary Search Tree</a></b> <code>If node.val > p & q, move to node.left. if node.val < p & q, move right.</code><br>
+<li><b>🟧 <a href="https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/" target="_blank">Lowest Common Ancestor of a Binary Search Tree</a></b> <code>While True: if root.val > p and q, move left. If root.val < p and q, move right. Otherwise, if root lies between p and q or equals p or q, return root</code><br>
 <a href="python/Trees/lowest-common-ancestor.py">python</a>
 </li>
 <li><b>🟧 <a href="https://leetcode.com/problems/binary-tree-level-order-traversal/" target="_blank">Binary Tree Level Order Traversal</a></b> <code>Add root to a Q. While the Q is not empty, initialize a level array. Run an inner loop for len(Q), adding node.val to level and left & right children back to the Q. If level is not empty, add it to res. Finally, return res</code><br>
@@ -155,8 +155,9 @@
 <li><b>🟧 <a href="https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/" target="_blank">Construct Binary Tree from Preorder and Inorder Traversal</a></b> <code>If either traversal is empty, return None. The 1st element in preorder is the root. Use inorder to find the root's index (mid). In inorder, elements left of mid are the left subtree, and elements right of mid are the right subtree. Recursively build subtrees.</code><br>
 <a href="python/Trees/construct-binary-tree-from-preorder-and-inorder-traversal.py">python</a>
 </li>
-<li><b>🟥 <a href="https://leetcode.com/problems/serialize-and-deserialize-binary-tree/" target="_blank">Serialize And Deserialize Binary Tree</a></b> <code>Use the same traversal for encoding and decoding. For encoding, if a node is None, add 'N' to res; otherwise, add str(node.val). For decoding, split the string by ','; if 'N', return None, otherwise return TreeNode(val) while incrementing i. Finally, return the root.</code><br>
+<li><b>🟥 <a href="https://leetcode.com/problems/serialize-and-deserialize-binary-tree/" target="_blank">Serialize And Deserialize Binary Tree</a></b> <code>Use the same traversal for encoding and decoding. For encoding, if a node is None, add 'N' to res; otherwise, add str(node.val). For decoding, split the string by ','; if 'N', return None, otherwise return TreeNode(val) while incrementing self.i. Finally, return the root.</code><br>
 <a href="python/Trees/serialize-and-deserialize-binary-tree.py">python</a>
+</li>
 </ul>
 </details>
 
@@ -166,6 +167,14 @@
 
 <details>
 <summary><h4>Backtracking</h4></summary>
+<ul>
+<li><b>🟧 <a href="https://leetcode.com/problems/combination-sum/" target="_blank">Combination Sum</a></b> <code>Define dfs(i, cur, total). Base cases: if target == total, append cur.copy() to res and return. If idx >= len(nums) or total > target, return. Append nums[i] to cur, add to total, then call dfs(). After, pop() from cur, subtract nums[i] from total, increment i, and call dfs() again. Finally, return res</code><br>
+<a href="python/Backtracking/combination-sum/combination-sum.py">python</a>
+</li>
+<li><b>🟧 <a href="https://leetcode.com/problems/word-search/" target="_blank">Word Search</a></b> <code>Define dfs(r, c, i). If i == len(word), return True. If r or c are out of bounds, characters don't match, or the cell is already in the path, return False. If the current cell matches word[i], add it to the path, and recursively check neighboring cells recording result. backtrack by removing the cell from the path and return result</code><br>
+<a href="python/Backtracking/word-search.py">python</a>
+</li>
+</ul>
 </details>
 
 <details>
@@ -174,6 +183,26 @@
 
 <details>
 <summary><h4>Graphs</h4></summary>
+<ul>
+<li><b>🟧 <a href="https://leetcode.com/problems/number-of-islands/" target="_blank">Number of Islands</a></b> <code>Define dfs(r, c) with BC: return if r or c are out of bounds, if grid[r][c] is not "1", or if (r, c) is in the visited set. If conditions are met, add (r, c) to visited and perform dfs on its four neighbors. Use a nested loop for r and c, and if grid[r][c] is "1" and not in visited, increment the islands and call dfs(r, c)</code><br>
+<a href="python/Graphs/number-of-islands.py">python</a>
+</li>
+<li><b>🟧 <a href="https://leetcode.com/problems/clone-graph/" target="_blank">Clone Graph</a></b> <code>Create a HashMap to track visited nodes. Define dfs(node) with a BC: if node is already visited, return its corresponding value from the HashMap. Otherwise, create a copy with node.val & map it in the HashMap. Then iterate through node's neighbors, appending the result of dfs(neighbor) to copy's neighbors. Finally, return the copy</code><br>
+<a href="python/Graphs/clone-graph.py">python</a>
+</li>
+<li><b>🟧 <a href="https://leetcode.com/problems/pacific-atlantic-water-flow/" target="_blank">Pacific Atlantic Water Flow</a></b> <code>Define dfs(r, c, pre_height) with BC: return if current cell (r, c) is out of bounds, has (height < pre_height), or already in visited. Use 2 HashSets to track cells reachable from the pac and atl oceans. Loop through cols to add nodes reachable from the first and last row to the Pacific and Atlantic sets. Similarly, loop through rows to add nodes reachable from the first and last column. Finally, loop through the grid(r & c) and add cells that reach both oceans to the result, and return it.</code><br>
+<a href="python/Graphs/pacific-atlantic-water-flow.py">python</a>
+</li>
+<li><b>🟧 <a href="https://leetcode.com/problems/course-schedule/" target="_blank">Course Schedule</a></b> <code>Create adjacency list for directed graph. Define dfs(c) with BCs: if course already visited, return False; if course has no dependencies, return True. For each course, Add it to visited, check its dependencies with dfs(). If any dfs() call fails, return False. After processing, remove course from visited, empty adj[c] and return True. If dfs() fails for any course, return False; otherwise, return True.</code><br>
+<a href="python/Graphs/course-schedule.py">python</a>
+</li>
+<li><b>🟧 <a href="https://leetcode.com/problems/graph-valid-tree/" target="_blank">Graph Valid Tree</a></b> <code>Create an adjacency list for each node using a HashMap (undirected graph). Use a set to track visited nodes. Define dfs(i, prev) with BC: if node already visited, return False. For each node, iterate through its neighbors, skipping previous node. If any check fails, return False, otherwise finally True. Return dfs(0, -1) and (len(visited) == n)</code><br>
+<a href="python/Graphs/graph-valid-tree.py">python</a>
+</li>
+<li><b>🟧 <a href="https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/" target="_blank">Number of Connected Components In An Undirected Graph</a></b> <code></code><br>
+<a href="python/Graphs/number-of-connected-components-in-an-undirected-graph.py">python</a>
+</li>
+</ul>
 </details>
 
 <details>

@@ -12,10 +12,16 @@ class Solution:
             if i >= len(candidates) or total > target:
                 return
 
+            # RCs
+            # same
             cur.append(candidates[i])
-            dfs(i, cur, total + candidates[i])
+            total += candidates[i]
+            dfs(i, cur, total)
+            # next
             cur.pop()
-            dfs(i + 1, cur, total)
+            total -= candidates[i]
+            i += 1
+            dfs(i, cur, total)
 
         dfs(0, [], 0)
         return res

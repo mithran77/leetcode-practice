@@ -2,11 +2,15 @@ from typing import List
 
 class Solution:
     def exist(self, board: List[List[str]], word: str) -> bool:
+        if not board or not board[0]:
+            return False
+
         ROWS, COLS = len(board), len(board[0])
         path = set()
 
         def dfs(r, c, i):
             # Base cases
+            # if len(path) == len(word):
             if i == len(word):
                 return True
             if (r < 0 or c < 0 or

@@ -103,39 +103,71 @@ from collections import deque
 
 #         return islands
 
-# BFS
+# # BFS
+# class Solution:
+
+#     def numIslands(self, grid: List[List[str]]) -> int:
+#         if not grid:
+#             return 0
+
+#         ROWS, COLS = len(grid), len(grid[0])
+#         visited = set()
+#         islands = 0
+
+#         def bfs(r, c):
+#             q = deque()
+#             q.append((r, c))
+#             visited.add((r, c))
+
+#             while(q):
+#                 row, col = q.popleft()
+#                 neighbours = [[0, -1], [0, 1], [-1, 0], [1, 0]]
+#                 for dr, dc in neighbours:
+#                     r, c = row + dr, col + dc
+#                     if (r in range(ROWS) and
+#                         c in range(COLS) and
+#                         (r, c) not in visited and
+#                         grid[r][c] == "1"):
+#                         q.append((r, c))
+#                         visited.add((r, c))
+
+#         for r in range(ROWS):
+#             for c in range(COLS):
+#                 if grid[r][c] == "1" and (r, c) not in visited:
+#                     islands += 1
+#                     bfs(r, c)
+
+#         return islands
+
+# DFS
 class Solution:
 
     def numIslands(self, grid: List[List[str]]) -> int:
-        if not grid:
+        if not grid or not grid[0]:
             return 0
 
         ROWS, COLS = len(grid), len(grid[0])
         visited = set()
         islands = 0
 
-        def bfs(r, c):
-            q = deque()
-            q.append((r, c))
-            visited.add((r, c))
+        def dfs(r, c):
+            if (r not in range(ROWS) or
+                c not in range(COLS) or
+                (r, c) in visited or
+                grid[r][c] != "1"):
+                return
 
-            while(q):
-                row, col = q.popleft()
-                neighbours = [[0, -1], [0, 1], [-1, 0], [1, 0]]
-                for dr, dc in neighbours:
-                    r, c = row + dr, col + dc
-                    if (r in range(ROWS) and
-                        c in range(COLS) and
-                        (r, c) not in visited and
-                        grid[r][c] == "1"):
-                        q.append((r, c))
-                        visited.add((r, c))
+            visited.add((r, c))
+            dfs(r + 1, c)
+            dfs(r - 1, c)
+            dfs(r, c + 1)
+            dfs(r, c - 1)
 
         for r in range(ROWS):
             for c in range(COLS):
                 if grid[r][c] == "1" and (r, c) not in visited:
                     islands += 1
-                    bfs(r, c)
+                    dfs(r, c)
 
         return islands
 
