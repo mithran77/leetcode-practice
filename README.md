@@ -199,7 +199,7 @@
 <li><b>🟧 <a href="https://leetcode.com/problems/graph-valid-tree/" target="_blank">Graph Valid Tree</a></b> <code>Create an adjacency list for each node using a HashMap (undirected graph). Use a set to track visited nodes. Define dfs(i, prev) with BC: if node already visited, return False. For each node, iterate through its neighbors, skipping previous node. If any check fails, return False, otherwise finally True. Return dfs(0, -1) and (len(visited) == n)</code><br>
 <a href="python/Graphs/graph-valid-tree.py">python</a>
 </li>
-<li><b>🟧 <a href="https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/" target="_blank">Number of Connected Components In An Undirected Graph</a></b> <code></code><br>
+<li><b>🟧 <a href="https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/" target="_blank">Number of Connected Components In An Undirected Graph</a></b> <code>Use Union-Find with parent and rank arrays. Define findRootParent(v) to get the absolute root parent of a node. Define union(v1, v2) to merge two nodes by their root parents. If they share the same parent, return 0; otherwise, merge them and return 1. Initialize res to the number of nodes, and for each edge, decrement res by the result of union(e1, e2)</code><br>
 <a href="python/Graphs/number-of-connected-components-in-an-undirected-graph.py">python</a>
 </li>
 </ul>

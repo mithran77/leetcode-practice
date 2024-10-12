@@ -38,7 +38,7 @@ class Solution:
         par = [ i for i in range(n) ]
         rank = [1] * n
 
-        def find(v):
+        def findRootParent(v):
             res = v
 
             while res != par[res]:
@@ -48,17 +48,17 @@ class Solution:
             return res
 
         def union(v1, v2):
-            p1, p2 = find(v1), find(v2)
+            p1, p2 = findRootParent(v1), findRootParent(v2)
 
             if p1 == p2:
                 return 0
 
-            if rank[p2] > rank[p1]:
+            if rank[p2] > rank[p1]: # Ensure tree height ~1
                 par[p1] = p2
                 rank[p2] += rank[p1]
             else:
                 par[p2] = p1
-                rank[p2] += rank[p1]
+                rank[p1] += rank[p2]
 
             return 1
 
