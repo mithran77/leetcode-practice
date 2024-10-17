@@ -33,51 +33,88 @@ from typing import List
 #     def rob(self, nums: List[int]) -> int:
 
 #         def rRob(i):
+#             if i == 0:
+#                 return nums[i]
 #             if i < 0:
 #                 return 0
 
-#             return (max(nums[i] + rRob(i - 2), rRob(i - 1)))
+#             pick = nums[i] + rRob(i - 2)
+#             not_pick = 0 + rRob(i - 1)
+
+#             return (max(pick, not_pick))
 
 #         return rRob(len(nums) - 1)
 
-# # B. Recursive + Memoization (top-down)
+# # # B. Recursive + Memoization (top-down)
 # class Solution:
 #     def rob(self, nums: List[int]) -> int:
 
 #         memo = [-1] * len(nums)
 
 #         def rRob(i):
-#             if i < 0:
-#                 return 0
 
-#             if memo[i] >= 0:
-#                 return memo[i]
+#             if i == 0: return nums[i]
+#             if i < 0: return 0
 
-#             res = (max(nums[i] + rRob(i - 2), rRob(i - 1)))
+#             if memo[i] != -1: return memo[i]
+
+#             pick = nums[i] + rRob(i - 2)
+#             not_pick = 0 + rRob(i - 1)
+
+#             res = (max(pick, not_pick))
 #             memo[i] = res
 
 #             return res
 
 #         return rRob(len(nums) - 1)
 
+# # Tabulation (bottom-top)
+# class Solution:
+#     def rob(self, nums: List[int]) -> int:
+
+#         dp = [None] * len(nums)
+#         dp[0] = nums[0]
+
+#         for i in range(1, len(nums)):
+#             take = nums[i] + (dp[i-2] if (i > 1) else 0)
+#             not_take = 0 + dp[i-1]
+#             dp[i] = max(take, not_take)
+
+#         return dp[-1]
+
+# # Tabulation + space optimized (bottom-top)
+# class Solution:
+#     def rob(self, nums: List[int]) -> int:
+#         s, f = 0, 0
+#         # s, f, nums[i], ..., nums[n]
+
+#         for n in nums:
+#             take = n + s
+#             not_take = f
+#             s = f
+#             f = max(take, not_take)
+
+#         return f
+
 # Tabulation + space optimized (bottom-top)
 class Solution:
     def rob(self, nums: List[int]) -> int:
-        prev1, prev2 = 0, 0
-        # prev2, prev1, nums[i], ..., nums[n]
-        
-        for n in nums:
-            tmp = prev1
-            prev1 = max(n + prev2, prev1)
-            prev2 = tmp
+        s, f = 0, 0
+        # s, f, nums[i], ..., nums[n]
 
-        return prev1
+        for n in nums:
+            tmp = f
+            f = max(n + s, f)
+            s = tmp
+
+        return f
 
 
 if __name__ == '__main__':
     res = Solution()
     print(res.rob(nums = [1,2,3,1]))
     print(res.rob(nums = [2,7,9,3,1]))
+    print(res.rob(nums = [1,2]))
 
 
 # RT

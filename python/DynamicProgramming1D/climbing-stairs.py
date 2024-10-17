@@ -42,18 +42,17 @@
 
 #         return fib_list[n-1]
 
-
+# Bottom up DP
 class Solution:
     def climbStairs(self, n: int) -> int:
-        one, two = 1, 1
-        
-        for _ in range(n - 1):
-            tmp = one
-            one = one + two
-            two = tmp
+        f, s = 1, 1
 
-        return one
+        for _ in range(n - 1): # [..., f, s, ...]
+            tmp = f
+            f = f + s
+            s = tmp
 
+        return f
 
 if __name__ == '__main__':
     res = Solution()
