@@ -221,16 +221,16 @@
 <li><b>🟧 <a href="https://leetcode.com/problems/house-robber-ii/" target="_blank">House Robber II</a></b> <code>Define function rob1(). If nums size is 1, return nums[0]. Otherwise, return maximum of rob1(nums[1:]) and rob1(nums[:len(nums)-1])</code><br>
 <a href="python/DynamicProgramming1D/house-robber-ii.py">python</a>
 </li>
-<li><b>🟧 <a href="https://leetcode.com/problems/longest-palindromic-substring/" target="_blank">Longest Palindromic Substring</a></b> <code>Initialize res as "" and res_len as 0. Loop through the string, checking for odd-length palindromes (using l, r = i, i) and even-length palindromes (using l, r = i, i+1). Update res and res_len whenever a longer palindrome is found. Finally, return res</code><br>
+<li><b>🟧 <a href="https://leetcode.com/problems/longest-palindromic-substring/" target="_blank">Longest Palindromic Substring</a></b> <code>Initialize res as "" and res_len as 0. Loop through the string, checking for odd-length (l, r = i, i) and even-length (l, r = i, i+1) palindromes. Update res and res_len whenever a longer palindrome is found. Finally, return res</code><br>
 <a href="python/DynamicProgramming1D/longest-palindromic-substring.py">python</a>
 </li>
-<li><b>🟧 <a href="https://leetcode.com/problems/palindromic-substrings/" target="_blank">Palindromic Substrings</a></b> <code></code><br>
-<a href="">python</a>
+<li><b>🟧 <a href="https://leetcode.com/problems/palindromic-substrings/" target="_blank">Palindromic Substrings</a></b> <code>Initialize count to 0. Loop through the string, checking for odd-length (l, r = i, i) and even-length (l, r = i, i+1) palindromes using expand-from-center algorithm. Increment count for each palindrome found, and return total count at the end</code><br>
+<a href="python/DynamicProgramming1D/palindromic-substrings.py">python</a>
 </li>
 <li><b>🟧 <a href="https://leetcode.com/problems/decode-ways/" target="_blank">Decode Ways</a></b> <code></code><br>
 <a href="">python</a>
 </li>
-<li><b>🟧 <a href="https://leetcode.com/problems/coin-change/" target="_blank">Coin Change</a></b> <code></code><br>
+<li><b>🟧 <a href="https://leetcode.com/problems/coin-change/" target="_blank">Coin Change</a></b> <code>Use tabulation to create a DP array of size amount + 1, initialized to amount + 1. For each amount from 1 to amount, loop through each coin and update dp[a] to the minimum of dp[a] and 1 + dp[a - c]. Return dp[amount] if it's updated, otherwise return -1.</code><br>
 <a href="">python</a>
 </li>
 <li><b>🟧 <a href="https://leetcode.com/problems/maximum-product-subarray/" target="_blank">Maximum Product Subarray</a></b> <code></code><br>

@@ -33,14 +33,14 @@ from typing import List
 
 class Solution:
     def rob1(self, nums: List[int]) -> int:
-        prev2, prev1 = 0, 0
+        s, f = 0, 0
 
         for n in nums:
-            tmp = prev1
-            prev1 = max(n + prev2, prev1)
-            prev2 = tmp
+            tmp = f
+            f = max(n + s, f)
+            s = tmp
 
-        return prev1
+        return f
     
     def rob(self, nums: List[int]) -> int:
         
