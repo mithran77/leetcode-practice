@@ -202,6 +202,9 @@
 <li><b>🟧 <a href="https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/" target="_blank">Number of Connected Components In An Undirected Graph</a></b> <code>Use Union-Find with parent and rank arrays. Define findRootParent(v) to get the absolute root parent of a node. Define union(v1, v2) to merge two nodes by their root parents. If they share the same parent, return 0; otherwise, merge them and return 1. Initialize res to the number of nodes, and for each edge, decrement res by the result of union(e1, e2)</code><br>
 <a href="python/Graphs/number-of-connected-components-in-an-undirected-graph.py">python</a>
 </li>
+<li><b>🟥 <a href="https://leetcode.com/problems/minimize-malware-spread/" target="_blank">Minimize Malware Spread</a></b> <code>https://github.com/doocs/leetcode/blob/main/solution/0900-0999/0924.Minimize%20Malware%20Spread/README_EN.md</code><br>
+<a href="python/Graphs/minimize-malware-spread.py">python</a>
+</li>
 </ul>
 </details>
 
@@ -227,14 +230,14 @@
 <li><b>🟧 <a href="https://leetcode.com/problems/palindromic-substrings/" target="_blank">Palindromic Substrings</a></b> <code>Initialize count to 0. Loop through the string, checking for odd-length (l, r = i, i) and even-length (l, r = i, i+1) palindromes using expand-from-center algorithm. Increment count for each palindrome found, and return total count at the end</code><br>
 <a href="python/DynamicProgramming1D/palindromic-substrings.py">python</a>
 </li>
-<li><b>🟧 <a href="https://leetcode.com/problems/decode-ways/" target="_blank">Decode Ways</a></b> <code></code><br>
+<li><b>🟧 <a href="https://leetcode.com/problems/decode-ways/" target="_blank">Decode Ways</a></b> <code>BCs: If s is '' or starts with '0', return 0. If s length is 1, return 1. Initialize upto_prev and upto_cur to 1. Loop from 1 to len(s). Convert s[i] and (s[i-1] + s[i]) to 0-based integers. If cur > 0, add upto_cur to val. If prev forms a number between 10 and 26, add upto_prev to val. Update upto_prev to upto_cur and upto_cur to val. Finally, return upto_cur</code><br>
 <a href="">python</a>
 </li>
 <li><b>🟧 <a href="https://leetcode.com/problems/coin-change/" target="_blank">Coin Change</a></b> <code>Use tabulation to create a DP array of size amount + 1, initialized to amount + 1. For each amount from 1 to amount, loop through each coin and update dp[a] to the minimum of dp[a] and 1 + dp[a - c]. Return dp[amount] if it's updated, otherwise return -1.</code><br>
 <a href="">python</a>
 </li>
-<li><b>🟧 <a href="https://leetcode.com/problems/maximum-product-subarray/" target="_blank">Maximum Product Subarray</a></b> <code></code><br>
-<a href="">python</a>
+<li><b>🟧 <a href="https://leetcode.com/problems/maximum-product-subarray/" target="_blank">Maximum Product Subarray</a></b> <code>Initialize cur_max and cur_min to 1 & res to nums[0]. Loop through nums, updating cur_max as the maximum and cur_min as the minimum of (n * cur_max, n * cur_min, n) for each n. Update res as the maximum of res and cur_max. Return res</code><br>
+<a href="python/DynamicProgramming1D/maximum-product-subarray.py">python</a>
 </li>
 <li><b>🟧 <a href="https://leetcode.com/problems/word-break/" target="_blank">Word Break</a></b> <code></code><br>
 <a href="">python</a>
@@ -255,6 +258,29 @@
 
 <details>
 <summary><h4>Intervals</h4></summary>
+<ul>
+<li><b>🟩 <a href="https://leetcode.com/problems/meeting-rooms/" target="_blank">Meeting Rooms</a></b> <code></code><br>
+<a href="python/Intervals/meeting-rooms.py">python</a>
+</li>
+<li><b>🟧 <a href="https://leetcode.com/problems/meeting-rooms-ii/" target="_blank">Meeting Rooms II</a></b> <code></code><br>
+<a href="python/Intervals/meeting-rooms-ii.py">python</a>
+</li>
+<li><b>🟧 <a href="https://leetcode.com/problems/insert-interval/" target="_blank">Insert Interval</a></b> <code></code><br>
+<a href="python/Intervals/insert-interval.py">python</a>
+</li>
+<li><b>🟧 <a href="https://leetcode.com/problems/merge-intervals/" target="_blank">Merge Intervals</a></b> <code></code><br>
+<a href="python/Intervals/merge-intervals.py">python</a>
+</li>
+<li><b>🟧 <a href="https://leetcode.com/problems/non-overlapping-intervals/" target="_blank">Non Overlapping Intervals</a></b> <code></code><br>
+<a href="python/Intervals/non-overlapping-intervals.py">python</a>
+</li>
+<li><b>🟥 <a href="https://leetcode.com/problems/minimum-interval-to-include-each-query/" target="_blank">Minimum Interval to Include Each Query</a></b> <code></code><br>
+<a href="">python</a>
+</li>
+<li><b>🟥 <a href="https://leetcode.com/problems/number-of-flowers-in-full-bloom/" target="_blank">Number of Flowers in Full Bloom</a></b> <code>Create arrays with (people, idx), start and end times. Heapify the start and end arrays. Loop through a sorted array of people, increment the count while start_time <= p, and decrement it when end_time < p. Assign count to res[i], then return the final res</code><br>
+<a href="python/Intervals/number-of-flowers-in-full-bloom.py">python</a>
+</li>
+</ul>
 </details>
 
 <details>
@@ -264,7 +290,6 @@
 <details>
 <summary><h4>Bit Manipulation</h4></summary>
 </details>
-
 
 
 <h4>Profile: <a href="https://leetcode.com/u/mithran77/">mithran77</a></h4>
