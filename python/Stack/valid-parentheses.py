@@ -72,24 +72,41 @@
 
 #         return stack == []
 
+# class Solution:
+#     def isValid(self, s: str) -> bool:
+#         stack = []
+#         brackets = {
+#             ')': '(',
+#             '}': '{',
+#             ']': '['
+#         }
+
+#         for c in s:
+#             if c not in brackets: # Opening
+#                 stack.append(c)
+#                 continue
+#             elif not stack or stack[-1] != brackets[c]:
+#                 return False
+#             stack.pop()
+
+#         return stack == []
+
 class Solution:
     def isValid(self, s: str) -> bool:
         stack = []
-        brackets = {
+        brackets_map = {
             ')': '(',
             '}': '{',
             ']': '['
         }
-
         for c in s:
-            if c not in brackets: # Opening
+            if c in brackets_map:
+                if not stack or stack.pop() != brackets_map[c]:
+                    return False
+            else:
                 stack.append(c)
-                continue
-            elif not stack or stack[-1] != brackets[c]:
-                return False
-            stack.pop()
 
-        return stack == []
+        return len(stack) == 0
 
 if __name__ == '__main__':
     res = Solution()

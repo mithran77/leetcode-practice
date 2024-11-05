@@ -7,11 +7,11 @@
 <a href="python/ArraysHashing/contains-duplicate.py">python</a> | 
 <a href="golang/ArraysHashing/contains-duplicate.go">go</a>
 </li>
-<li><b>🟩 <a href="https://leetcode.com/problems/valid-anagram/" target="_blank">Valid Anagram</a></b> <code>Create char_count HashMap for s, then subtract counts from HashMap while looping through t</code><br>
+<li><b>🟩 <a href="https://leetcode.com/problems/valid-anagram/" target="_blank">Valid Anagram</a></b> <code>If lengths of s and t are not same, return False. Use counter(HashMap) to track character frequencies by incrementing for characters in s and decrementing for those in t. if any counts are not zero, return False; otherwise, return True</code><br>
 <a href="python/ArraysHashing/valid-anagram.py">python</a> |
 <a href="golang/ArraysHashing/valid-anagram.go">go</a> 
 </li>
-<li><b>🟩 <a href="https://leetcode.com/problems/two-sum/" target="_blank">Two Sum</a></b> <code>Use HashMap to store required number with index of computed number, If required value is found, return a list of correspomding indexes</code><br>
+<li><b>🟩 <a href="https://leetcode.com/problems/two-sum/" target="_blank">Two Sum</a></b> <code>Store difference between the target and each number (target - num) in a HashMap with the current index as value. If the required value is already in the HashMap, return a list of indices of the pair that is found</code><br>
 <a href="python/ArraysHashing/two-sum.py">python</a> |
 <a href="golang/ArraysHashing/two-sum.go">go</a> 
 </li>
@@ -67,8 +67,11 @@
 <li><b>🟧 <a href="https://leetcode.com/problems/longest-repeating-character-replacement/" target="_blank">Longest Repeating Character Replacement</a></b> <code>Set L = 0 and iterate R through s, tracking the max frequency of any character by comparing against the current character count. Adjust L & char frequencies in window while the count of other characters exceeds k using maxf. Continuously update longest substring with repetitions and return it at end</code><br>
 <a href="python/SlidingWindow/longest-repeating-character-replacement.py">python</a>
 </li>
-<li><b>🟥 <a href="https://leetcode.com/problems/minimum-window-substring/" target="_blank">Minimum Window Substring</a></b> <code></code><br>
-<a href="#">python</a>
+<li><b>🟥 <a href="https://leetcode.com/problems/minimum-window-substring/" target="_blank">Minimum Window Substring</a></b> <code>Use 2 HashMaps to track char counts in s and t, and initialize have to 0. Loop through s, updating window counts and incrementing have when (window[c] == count_t[c]). Loop while (have == len(count_t)), if current window is smaller than ans_len, update ans and ans_len. Slide l right, adjusting window[s[l]] & have if window count goes below count_t. Return ans</code><br>
+<a href="python/SlidingWindow/minimum-window-substring.py">python</a>
+</li>
+<li><b>🟥 <a href="https://leetcode.com/problems/sliding-window-maximum/" target="_blank">Sliding Window Maximum</a></b> <code></code><br>
+<a href="python/SlidingWindow/sliding-window-maximum.py">python</a>
 </li>
 </ul>
 </details>
@@ -76,9 +79,27 @@
 <details>
 <summary><h4>Stack</h4></summary>
 <ul>
-<li><b>🟩 <a href="https://leetcode.com/problems/valid-parentheses/" target="_blank">Valid Parentheses</a></b> <code>Use a HashMap {')': '('}. Iterate through the string: append open brackets (not in the HashMap) to a stack. For closing brackets, return False if the stack is empty or there's a mismatch. Pop from the stack and continue. At the end, return whether the stack is empty</code><br>
+<li><b>🟩 <a href="https://leetcode.com/problems/valid-parentheses/" target="_blank">Valid Parentheses</a></b> <code>Use a HashMap {')': '('}. Iterate through the string: append open brackets to stack. For closing brackets, return False if the stack is empty or there's a mismatch with stack.pop(). At the end, return whether the stack is empty</code><br>
 <a href="python/Stack/valid-parentheses.py">python</a> | 
 <a href="golang/Stack/valid-parentheses.go">go</a>
+</li>
+<li><b>🟧 <a href="https://leetcode.com/problems/min-stack/" target="_blank">Min Stack</a></b> <code>Use 2 stacks: one for values and one to keep track of the minimum value so far (min_stack). During each insert, push the current minimum onto min_stack.</code><br>
+<a href="python/Stack/min-stack.py">python</a>
+</li>
+<li><b>🟧 <a href="https://leetcode.com/problems/evaluate-reverse-polish-notation/" target="_blank">Evaluate Reverse Polish Notation</a></b> <code>Use a stack to store operands. When an operator is encountered, pop the last two operands, perform the operation in the correct order, and push the result back onto the stack. At the end, return the last value in the stack</code><br>
+<a href="python/Stack/evaluate-reverse-polish-notation.py">python</a>
+</li>
+<li><b>🟧 <a href="https://leetcode.com/problems/generate-parentheses/" target="_blank">Generate Parentheses</a></b> <code>Use stack to store braces while generating valid combinations. Define dfs to recursively explore paths, skipping invalid paths based on counts of open & close brackets. Append stack content to the results when both counts equal n. If (o_cnt < n), add opening bracket, call dfs, then backtrack. If (c_cnt < o_cnt), add closing bracket, call dfs, then backtrack again. Return ans finally</code><br>
+<a href="python/Stack/generate-parentheses.py">python</a>
+</li>
+<li><b>🟧 <a href="https://leetcode.com/problems/daily-temperatures/" target="_blank">Daily Temperatures</a></b> <code>Initialize ans array with 0's. Iterate through temperatures, while using a monotonically decreasing stack to store element index. While (temperature[i] > temperature[stack[top]]), pop from stack and update ans[stack_index] with difference between indices.</code><br>
+<a href="python/Stack/daily-temperatures.py">python</a>
+</li>
+<li><b>🟧 <a href="https://leetcode.com/problems/car-fleet/" target="_blank">Car Fleet</a></b> <code>Sort (position, speed) pairs by position in ascending order. Iterate through pairs in reverse. For each car, calculate time to reach target; if this time <= the time at top of the stack, it joins the same fleet. Otherwise, add it to the stack. Finally, return the stack’s length as number of fleets</code><br>
+<a href="python/Stack/car-fleet.py">python</a>
+</li>
+<li><b>🟥 <a href="https://leetcode.com/problems/largest-rectangle-in-histogram/" target="_blank">Largest Rectangle In Histogram</a></b> <code></code><br>
+<a href="">python</a>
 </li>
 </ul>
 </details>
@@ -90,11 +111,25 @@
 <a href="python/BinarySearch/binary-search.py">python</a> | 
 <a href="golang/BinarySearch/binary-search.go">go</a>
 </li>
+<li><b>🟧 <a href="https://leetcode.com/problems/search-a-2d-matrix/" target="_blank">Search a 2D Matrix</a></b> <code>Use binary search to find row, where the target may lie based on row boundaries. If the target isn’t within any of the row ranges, return False. Otherwise, set the row to the last calculated midpoint and perform a binary search within that row for the target</code><br>
+<a href="python/BinarySearch/search-a-2d-matrix.py">python</a>
+</li>
+<li><b>🟧 <a href="https://leetcode.com/problems/koko-eating-bananas/" target="_blank">Koko Eating Bananas</a></b> <code>Use binary search between 1 and max(piles) to find the minimum eating speed. If a solution meets the hours constraint 
+ℎ
+h, try smaller speeds to minimize further. Return the last speed that satisfies the condition</code><br>
+<a href="python/BinarySearch/koko-eating-bananas.py">python</a>
+</li>
 <li><b>🟧 <a href="https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/" target="_blank">Find Minimum in Rotated Sorted Array</a></b> <code>Initialize l and r to the start and end. Update ans, as min(ans, nums[mid]). If nums[mid] > nums[r], move window right; otherwise, move window left. Return min(nums[l], ans)</code><br>
 <a href="python/BinarySearch/find-minimum-in-rotated-sorted-array.py">python</a>
 </li>
 <li><b>🟧 <a href="https://leetcode.com/problems/search-in-rotated-sorted-array/" target="_blank">Search in Rotated Sorted Array</a></b> <code>Use 3 pointers l, r, mid. mid will be apart of either left sorted or right sorted portions. If target is in range of sorted portion then search it, otherwise search other half</code><br>
 <a href="python/BinarySearch/search-in-rotated-sorted-array.py">python</a>
+</li>
+<li><b>🟧 <a href="https://leetcode.com/problems/time-based-key-value-store/" target="_blank">Time Based Key Value Store</a></b> <code></code><br>
+<a href="">python</a>
+</li>
+<li><b>🟥 <a href="https://leetcode.com/problems/median-of-two-sorted-arrays/" target="_blank">Median of Two Sorted Arrays</a></b> <code></code><br>
+<a href="">python</a>
 </li>
 </ul>
 </details>
@@ -231,19 +266,19 @@
 <a href="python/DynamicProgramming1D/palindromic-substrings.py">python</a>
 </li>
 <li><b>🟧 <a href="https://leetcode.com/problems/decode-ways/" target="_blank">Decode Ways</a></b> <code>BCs: If s is '' or starts with '0', return 0. If s length is 1, return 1. Initialize upto_prev and upto_cur to 1. Loop from 1 to len(s). Convert s[i] and (s[i-1] + s[i]) to 0-based integers. If cur > 0, add upto_cur to val. If prev forms a number between 10 and 26, add upto_prev to val. Update upto_prev to upto_cur and upto_cur to val. Finally, return upto_cur</code><br>
-<a href="">python</a>
+<a href="python/DynamicProgramming1D/decode-ways.py">python</a>
 </li>
 <li><b>🟧 <a href="https://leetcode.com/problems/coin-change/" target="_blank">Coin Change</a></b> <code>Use tabulation to create a DP array of size amount + 1, initialized to amount + 1. For each amount from 1 to amount, loop through each coin and update dp[a] to the minimum of dp[a] and 1 + dp[a - c]. Return dp[amount] if it's updated, otherwise return -1.</code><br>
-<a href="">python</a>
+<a href="python/DynamicProgramming1D/coin-change.py">python</a>
 </li>
 <li><b>🟧 <a href="https://leetcode.com/problems/maximum-product-subarray/" target="_blank">Maximum Product Subarray</a></b> <code>Initialize cur_max and cur_min to 1 & res to nums[0]. Loop through nums, updating cur_max as the maximum and cur_min as the minimum of (n * cur_max, n * cur_min, n) for each n. Update res as the maximum of res and cur_max. Return res</code><br>
 <a href="python/DynamicProgramming1D/maximum-product-subarray.py">python</a>
 </li>
-<li><b>🟧 <a href="https://leetcode.com/problems/word-break/" target="_blank">Word Break</a></b> <code></code><br>
-<a href="">python</a>
+<li><b>🟧 <a href="https://leetcode.com/problems/word-break/" target="_blank">Word Break</a></b> <code>Initialize DP array with False and set the last element to True. Loop through the string in reverse, checking each substring against the list of words. If a match is found, update the DP array at the current index to dp[i + len(w)] and break the inner loop. Finally, return the value of dp[0]</code><br>
+<a href="python/DynamicProgramming1D/word-break.py">python</a>
 </li>
-<li><b>🟧 <a href="https://leetcode.com/problems/longest-increasing-subsequence/" target="_blank">Longest Increasing Subsequence</a></b> <code></code><br>
-<a href="">python</a>
+<li><b>🟧 <a href="https://leetcode.com/problems/longest-increasing-subsequence/" target="_blank">Longest Increasing Subsequence</a></b> <code>Declare a dp array initialized to 1 for each element in nums. Loop through nums in reverse, for each element, loop again from i + 1 to len(nums). If nums[i] < nums[j], update dp[i] to max(dp[i], 1 + dp[j]). Finally, return the maximum value in dp</code><br>
+<a href="python/DynamicProgramming1D/longest-increasing-subsequence.py">python</a>
 </li>
 </ul>
 </details>

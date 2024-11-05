@@ -106,6 +106,27 @@ import array as arr
 
 #         return word_map.values()
 
+# class Solution:
+#     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+#         anagrams = {}
+
+#         for word in strs:
+#             cnt = [0] * 26
+
+#             for c in word:
+#                 cnt[ord(c) - ord('a')] += 1
+    
+#             cnt = tuple(cnt)
+#             if cnt not in anagrams:
+#                 anagrams[cnt] = []
+
+#             anagrams[cnt].append(word)
+
+#         res = []
+#         for k in anagrams:
+#             res.append(anagrams[k])
+#         return res
+
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
         res = collections.defaultdict(list)
@@ -119,4 +140,6 @@ class Solution:
 
 if __name__ == '__main__':
     res = Solution()
-    print(res.groupAnagrams(["eat","tea","tan","ate","nat","bat"]))
+    print(res.groupAnagrams(strs = ["eat","tea","tan","ate","nat","bat"]))
+    print(res.groupAnagrams(strs = [""]))
+    print(res.groupAnagrams(strs = ["a"]))

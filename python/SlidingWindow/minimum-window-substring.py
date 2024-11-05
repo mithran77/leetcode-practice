@@ -94,46 +94,77 @@
 #         return "" if ans[0] == float("inf") else s[ans[1] : ans[2] + 1]
 
 
-from collections import Counter
+# from collections import Counter
+
+# class Solution:
+#     def minWindow(self, s: str, t: str) -> str:
+#         if not t or not s:
+#             return ""
+
+#         dict_t = Counter(t)
+
+#         required = len(dict_t)
+#         l, r = 0, 0
+#         formed = 0
+#         window_counts = {}
+
+#         ans = float("inf"), None, None
+
+#         while r < len(s):
+#             character = s[r]
+#             window_counts[character] = window_counts.get(character, 0) + 1
+
+#             if character in dict_t and window_counts[character] == dict_t[character]:
+#                 formed += 1
+
+#             while l <= r and formed == required:
+#                 character = s[l]
+
+#                 if r - l + 1 < ans[0]:
+#                     ans = (r - l + 1, l, r)
+
+#                 window_counts[character] -= 1
+#                 if character in dict_t and window_counts[character] < dict_t[character]:
+#                     formed -= 1
+
+#                 l += 1
+
+#             r += 1
+
+#         return "" if ans[0] == float("inf") else s[ans[1] : ans[2] + 1]
+
 
 class Solution:
     def minWindow(self, s: str, t: str) -> str:
-        if not t or not s:
+        if not t:
             return ""
+        ans, ans_len = "", len(s) + 1
+        count_t, window = {}, {}
+        l, r, have = 0, 0, 0
 
-        dict_t = Counter(t)
+        for c in t:
+            count_t[c] = 1 + count_t.get(c, 0)
 
-        required = len(dict_t)
-        l, r = 0, 0
-        formed = 0
-        window_counts = {}
+        for r in range(len(s)):
+            window[s[r]] = 1 + window.get(s[r], 0)
 
-        ans = float("inf"), None, None
+            if s[r] in count_t and window[s[r]] == count_t[s[r]]:
+                have += 1
 
-        while r < len(s):
-            character = s[r]
-            window_counts[character] = window_counts.get(character, 0) + 1
+            while have == len(count_t):
+                if ans_len > (r - l + 1):
+                    ans = s[l : r + 1]
+                    ans_len = len(ans)
 
-            if character in dict_t and window_counts[character] == dict_t[character]:
-                formed += 1
-
-            while l <= r and formed == required:
-                character = s[l]
-
-                if r - l + 1 < ans[0]:
-                    ans = (r - l + 1, l, r)
-
-                window_counts[character] -= 1
-                if character in dict_t and window_counts[character] < dict_t[character]:
-                    formed -= 1
-
+                window[s[l]] -= 1
+                if s[l] in count_t and window[s[l]] < count_t[s[l]]:
+                    have -= 1
                 l += 1
 
-            r += 1
-
-        return "" if ans[0] == float("inf") else s[ans[1] : ans[2] + 1]
-
+        return ans
 
 if __name__ == '__main__':
     res = Solution()
-    print(res.maxArea([1,1]))
+    print(res.minWindow(s = "ADOBECODEBANC", t = "ABC"))
+    print(res.minWindow(s = "a", t = "a"))
+    print(res.minWindow(s = "a", t = "aa"))
