@@ -121,14 +121,12 @@ class ListNode:
 
 class Solution:
     def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
-        s = dummy = ListNode(0, head)
-        f = head
+        f = s = dummy = ListNode(0, head)
 
-        while n > 0 and f:
+        for _ in range(n):
             f = f.next
-            n -= 1
 
-        while f:
+        while f.next:
             s = s.next
             f = f.next
 

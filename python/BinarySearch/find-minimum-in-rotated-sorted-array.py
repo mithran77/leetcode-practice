@@ -73,21 +73,36 @@ from typing import List
 
 #         return min
 
+# class Solution:
+#     def findMin(self, nums: List[int]) -> int:
+#         l, r = 0, len(nums) - 1
+#         ans = float("inf")
+
+#         while l <= r:
+#             mid = l + (r - l) // 2
+#             ans = min(ans, nums[mid])
+
+#             if nums[mid] > nums[r]:
+#                 l = mid + 1
+#             else:
+#                 r = mid - 1
+
+#         return min(ans, nums[l])
+
+# Using template
+
 class Solution:
     def findMin(self, nums: List[int]) -> int:
         l, r = 0, len(nums) - 1
-        ans = float("inf")
 
-        while l <= r:
-            mid = l + (r - l) // 2
-            ans = min(ans, nums[mid])
-
-            if nums[mid] > nums[r]:
-                l = mid + 1
+        while l < r:
+            m = l + ((r - l) // 2)
+            if nums[m] < nums[r]:
+                r = m
             else:
-                r = mid - 1
+                l = m + 1
 
-        return min(ans, nums[l])
+        return nums[l]
 
 if __name__ == '__main__':
     res = Solution()

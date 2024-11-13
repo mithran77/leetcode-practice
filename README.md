@@ -106,10 +106,23 @@
 
 <details>
 <summary><h4>Binary Search</h4></summary>
+<blockquote>
+Template : <a href="https://leetcode.com/discuss/study-guide/786126/Python-Powerful-Ultimate-Binary-Search-Template.-Solved-many-problems">leetcode</a> |
+<a href="https://towardsdatascience.com/powerful-ultimate-binary-search-template-and-many-leetcode-problems-1f850ef95651">medium</a>
+</blockquote>
 <ul>
 <li><b>🟩 <a href="https://leetcode.com/problems/binary-search/" target="_blank">Binary Search</a></b> <code>Use 3 pointers: l, r & mid. Compare the mid value with the target and either move the window left/right or return the index if found.</code><br>
 <a href="python/BinarySearch/binary-search.py">python</a> | 
 <a href="golang/BinarySearch/binary-search.go">go</a>
+</li>
+<li><b>🟩 <a href="https://leetcode.com/problems/first-bad-version/" target="_blank">First Bad Version</a></b> <code></code><br>
+<a href="python/BinarySearch/first-bad-version.py">python</a>
+</li>
+<li><b>🟩 <a href="https://leetcode.com/problems/sqrtx/" target="_blank">Sqrt(x)</a></b> <code></code><br>
+<a href="python/BinarySearch/first-bad-version.py">python</a>
+</li>
+<li><b>🟩 <a href="https://leetcode.com/problems/sqrtx/" target="_blank">Sqrt(x)</a></b> <code></code><br>
+<a href="python/BinarySearch/first-bad-version.py">python</a>
 </li>
 <li><b>🟧 <a href="https://leetcode.com/problems/search-a-2d-matrix/" target="_blank">Search a 2D Matrix</a></b> <code>Use binary search to find row, where the target may lie based on row boundaries. If the target isn’t within any of the row ranges, return False. Otherwise, set the row to the last calculated midpoint and perform a binary search within that row for the target</code><br>
 <a href="python/BinarySearch/search-a-2d-matrix.py">python</a>
@@ -138,11 +151,11 @@ h, try smaller speeds to minimize further. Return the last speed that satisfies 
 <summary><h4>Linked List</h4></summary>
 <ul>
 <li><b>🟩 <a href="https://leetcode.com/problems/reverse-linked-list/" target="_blank">Reverse Linked List</a></b> <code>Initialize prev, cur = None, head. Iterate through the list, updating prev and cur. At the end, return prev as the new head</code><br>
-<a href="python/LinkedList/reverse-linked-list.py">python</a> | 
+<a href="python/LinkedList/reverse-linked-list/reverse-linked-list.py">python</a> | 
 <a href="golang/LinkedList/reverse-linked-list.go">go</a>
 </li>
 <li><b>🟩 <a href="https://leetcode.com/problems/merge-two-sorted-lists/" target="_blank">Merge Two Sorted Lists</a></b> <code>Create an empty node cur with a pointer res. Iterate while both list1 and list2 are not None, adding the node with the lower value to cur. Then if either list is None, append the other list. Finally, return res.next</code><br>
-<a href="python/LinkedList/merge-two-sorted-lists.py">python</a> | 
+<a href="python/LinkedList/merge-two-sorted-lists/merge-two-sorted-lists.py">python</a> | 
 <a href="golang/LinkedList/merge-two-sorted-lists.go">go</a>
 </li>
 <li><b>🟩 <a href="https://leetcode.com/problems/linked-list-cycle/" target="_blank">Linked List Cycle</a></b> <code>Initialize f & s pointers to head. Iterate while f and f.next exist, moving f by 2 and s by 1. If they are equal, return True; otherwise, return False</code><br>
@@ -155,8 +168,15 @@ h, try smaller speeds to minimize further. Return the last speed that satisfies 
 <li><b>🟧 <a href="https://leetcode.com/problems/remove-nth-node-from-end-of-list/" target="_blank">Remove Nth Node From End of List</a></b> <code>Create a dummy node pointing to head and assign it to l. Assign r to head and move r forward n times. Then, move both pointers until r reaches the end. Set l.next.next to l.next and return dummy.next</code><br>
 <a href="python/LinkedList/remove-nth-node-from-end-of-list.py">python</a>
 </li>
+<li><b>🟧 <a href="https://leetcode.com/problems/copy-list-with-random-pointer/" target="_blank">Copy List with Random Pointer</a></b> <code>First, create a map to store the deep copies of each node. Traverse the original linked list, creating deep copies of all nodes. Then, traverse it again to set the next and random pointers for the copied nodes using the map. Finally, return the deep copy of the head node from the map</code><br>
+<a href="python/LinkedList/copy-list-with-random-pointer.py">python</a>
+</li>
+<li><b>🟧 <a href="https://leetcode.com/problems/add-two-numbers/" target="_blank">Add Two Numbers</a></b> <code>Traverse both input lists using a dummy node and maintain a carry. For each node, sum values and carry, add the remainder to the result list. Continue until both lists are exhausted, handling any leftover carry by adding an extra node. Return dummy.next as the final result</code><br>
+<a href="python/LinkedList/add-two-numbers.py">python</a>
+</li>
 <li><b>🟥 <a href="https://leetcode.com/problems/merge-k-sorted-lists/" target="_blank">Merge k Sorted Lists</a></b> <code>Create mergeLists() to merge two lists. While len(lists) > 1, run an inner loop to merge two lists at a time, append the result to mergedLists, and assign mergedLists to lists. Finally, return lists[0]</code><br>
 <a href="python/LinkedList/merge-k-sorted-lists.py">python</a>
+</li>
 </ul>
 </details>
 

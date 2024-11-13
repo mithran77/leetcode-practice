@@ -34,29 +34,60 @@
 from typing import List
 
 
+# class Solution:
+#     def search(self, nums: List[int], target: int) -> int:
+#         l, r = 0, len(nums) - 1
+
+#         while l <= r:
+#             m = l + (r - l) // 2
+
+#             if nums[m] == target:
+#                 return m
+
+#             # m in Left sorted array
+#             if nums[l] <= nums[m]:
+#                 if target < nums[l] or target > nums[m]:
+#                     l = m + 1
+#                 else:
+#                     r = m - 1
+
+#             # m in right sorted array
+#             else:
+#                 if target < nums[m] or target > nums[r]:
+#                     r = m - 1
+#                 else:
+#                     l = m + 1
+
+#         return -1
+
+
+
+
+
+
+
+# Template based
 class Solution:
     def search(self, nums: List[int], target: int) -> int:
         l, r = 0, len(nums) - 1
 
-        while l <= r:
-            m = l + (r - l) // 2
+        while l < r:
+            m = l + ((r - l) // 2)
 
             if nums[m] == target:
                 return m
-
-            # m in Left sorted array
-            if nums[l] <= nums[m]:
-                if target < nums[l] or target > nums[m]:
-                    l = m + 1
-                else:
-                    r = m - 1
-
-            # m in right sorted array
-            else:
-                if target < nums[m] or target > nums[r]:
-                    r = m - 1
+            if nums[l] <= nums[m]: # Left sorted
+                if nums[l] <= target < nums[m]:
+                    r = m
                 else:
                     l = m + 1
+            else: # nums[r] >= nums[m] Right sorted
+                if nums[m] < target <= nums[r]:
+                    l = m + 1
+                else:
+                    r = m
+        if nums[l] == target:
+            return l
 
         return -1
 
