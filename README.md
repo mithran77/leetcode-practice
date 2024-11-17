@@ -127,9 +127,7 @@ Template : <a href="https://leetcode.com/discuss/study-guide/786126/Python-Power
 <li><b>🟧 <a href="https://leetcode.com/problems/search-a-2d-matrix/" target="_blank">Search a 2D Matrix</a></b> <code>Use binary search to find row, where the target may lie based on row boundaries. If the target isn’t within any of the row ranges, return False. Otherwise, set the row to the last calculated midpoint and perform a binary search within that row for the target</code><br>
 <a href="python/BinarySearch/search-a-2d-matrix.py">python</a>
 </li>
-<li><b>🟧 <a href="https://leetcode.com/problems/koko-eating-bananas/" target="_blank">Koko Eating Bananas</a></b> <code>Use binary search between 1 and max(piles) to find the minimum eating speed. If a solution meets the hours constraint 
-ℎ
-h, try smaller speeds to minimize further. Return the last speed that satisfies the condition</code><br>
+<li><b>🟧 <a href="https://leetcode.com/problems/koko-eating-bananas/" target="_blank">Koko Eating Bananas</a></b> <code>Use binary search between 1 and max(piles) to find the minimum eating speed. If a solution meets the hours constraint ℎ, try smaller speeds to minimize further. Return the last speed that satisfies the condition</code><br>
 <a href="python/BinarySearch/koko-eating-bananas.py">python</a>
 </li>
 <li><b>🟧 <a href="https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/" target="_blank">Find Minimum in Rotated Sorted Array</a></b> <code>Initialize l and r to the start and end. Update ans, as min(ans, nums[mid]). If nums[mid] > nums[r], move window right; otherwise, move window left. Return min(nums[l], ans)</code><br>
@@ -162,6 +160,12 @@ h, try smaller speeds to minimize further. Return the last speed that satisfies 
 <a href="python/LinkedList/linked-list-cycle.py">python</a> | 
 <a href="golang/LinkedList/linked-list-cycle.go">go</a>
 </li>
+<li><b>🟩 <a href="https://leetcode.com/problems/middle-of-the-linked-list/" target="_blank">Middle of the Linked List</a></b> <code>Use s & f pointing to head. Use loop condition, f and f.next. Run them like tortoise & hare. Return s</code><br>
+<a href="python/LinkedList/middle-of-the-linked-list.py">python</a>
+</li>
+<li><b>🟩 <a href="https://leetcode.com/problems/palindrome-linked-list/" target="_blank">Palindrome Linked List</a></b> <code>Go to left center. Reverse 2nd half. Compare both from beginning (No need to compare remaining element as it will be middle)</code><br>
+<a href="python/LinkedList/palindrome-linked-list.py">python</a>
+</li>
 <li><b>🟧 <a href="https://leetcode.com/problems/reorder-list/" target="_blank">Reorder List</a></b> <code>Move the s pointer to the center of the list while ensuring f.next exists. Set s.next as the start of the second half, then set s.next to None to end the first half. Reverse the second list, then use 2 temp variables to merge both halves.</code><br>
 <a href="python/LinkedList/reorder-list.py">python</a>
 </li>
@@ -174,8 +178,14 @@ h, try smaller speeds to minimize further. Return the last speed that satisfies 
 <li><b>🟧 <a href="https://leetcode.com/problems/add-two-numbers/" target="_blank">Add Two Numbers</a></b> <code>Traverse both input lists using a dummy node and maintain a carry. For each node, sum values and carry, add the remainder to the result list. Continue until both lists are exhausted, handling any leftover carry by adding an extra node. Return dummy.next as the final result</code><br>
 <a href="python/LinkedList/add-two-numbers.py">python</a>
 </li>
+<li><b>🟧 <a href="https://leetcode.com/problems/lru-cache/" target="_blank">LRU Cache</a></b> <code>Utilize a HashMap for quick value access and a doubly linked list (DLL) to track the order of usage. The DLL has two dummy nodes marking the LRU (left) and MRU (right). For put operations, the DLL functions like a queue, while get operations involve moving nodes to the MRU side, introducing extra complexity</code><br>
+<a href="python/LinkedList/lru-cache.py">python</a>
+</li>
 <li><b>🟥 <a href="https://leetcode.com/problems/merge-k-sorted-lists/" target="_blank">Merge k Sorted Lists</a></b> <code>Create mergeLists() to merge two lists. While len(lists) > 1, run an inner loop to merge two lists at a time, append the result to mergedLists, and assign mergedLists to lists. Finally, return lists[0]</code><br>
 <a href="python/LinkedList/merge-k-sorted-lists.py">python</a>
+</li>
+<li><b>🟥 <a href="https://leetcode.com/problems/reverse-nodes-in-k-group/" target="_blank">Reverse Nodes in k-Group</a></b> <code>Use slow (s) and fast (f) pointers to traverse the list with an index counter i. When i is a multiple of k, disconnect f and move it forward. Reverse the sublist from s to f and connect it to the previous tail. Update prev_tail and start the next group from s. After traversal, connect any remaining nodes and return the modified list starting from dummy.next</code><br>
+<a href="python/LinkedList/reverse-nodes-in-k-group.py">python</a>
 </li>
 </ul>
 </details>
@@ -189,6 +199,12 @@ h, try smaller speeds to minimize further. Return the last speed that satisfies 
 <li><b>🟩 <a href="https://leetcode.com/problems/maximum-depth-of-binary-tree/" target="_blank">Maximum Depth of Binary Tree</a></b> <code>Use recursive DFS with a leaf case returning 0. At each step, return 1 + the max height of the left and right subtrees</code><br>
 <a href="python/Trees/maximum-depth-of-binary-tree.py">python</a>
 </li>
+<li><b>🟩 <a href="https://leetcode.com/problems/diameter-of-binary-tree/" target="_blank">Diameter of Binary Tree</a></b> <code></code><br>
+<a href="python/Trees/diameter-of-binary-tree.py">python</a>
+</li>
+<li><b>🟩 <a href="https://leetcode.com/problems/diameter-of-binary-tree/" target="_blank">Balanced Binary Tree</a></b> <code></code><br>
+<a href="python/Trees/balanced-binary-tree.py">python</a>
+</li>
 <li><b>🟩 <a href="https://leetcode.com/problems/same-tree/" target="_blank">Same Tree</a></b> <code>For base cases, return True if both nodes are None. If either is None or values don’t match, return False. In the recursive case, return fn(left) and fn(right)</code><br>
 <a href="python/Trees/same-tree.py">python</a>
 </li>
@@ -201,6 +217,12 @@ h, try smaller speeds to minimize further. Return the last speed that satisfies 
 <li><b>🟧 <a href="https://leetcode.com/problems/binary-tree-level-order-traversal/" target="_blank">Binary Tree Level Order Traversal</a></b> <code>Add root to a Q. While the Q is not empty, initialize a level array. Run an inner loop for len(Q), adding node.val to level and left & right children back to the Q. If level is not empty, add it to res. Finally, return res</code><br>
 <a href="python/Trees/binary-tree-level-order-traversal.py">python</a>
 </li>
+<li><b>🟧 <a href="https://leetcode.com/problems/binary-tree-level-order-traversal/" target="_blank">Binary Tree Right Side View</a></b> <code></code><br>
+<a href="python/Trees/binary-tree-right-side-view.py">python</a>
+</li>
+<li><b>🟧 <a href="https://leetcode.com/problems/count-good-nodes-in-binary-tree/" target="_blank">Count Good Nodes in Binary Tree</a></b> <code></code><br>
+<a href="python/Trees/count-good-nodes-in-binary-tree.py">python</a>
+</li>
 <li><b>🟧 <a href="https://leetcode.com/problems/validate-binary-search-tree/" target="_blank">Validate Binary Search Tree</a></b> <code>Define valid() with node, left, and right values. If node is None, return True. If node.val is not between left and right, return False. Recursively return valid(node.left, left, node.val) and valid(node.right, node.val, right)</code><br>
 <a href="python/Trees/validate-binary-search-tree.py">python</a>
 </li>
@@ -209,6 +231,9 @@ h, try smaller speeds to minimize further. Return the last speed that satisfies 
 </li>
 <li><b>🟧 <a href="https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/" target="_blank">Construct Binary Tree from Preorder and Inorder Traversal</a></b> <code>If either traversal is empty, return None. The 1st element in preorder is the root. Use inorder to find the root's index (mid). In inorder, elements left of mid are the left subtree, and elements right of mid are the right subtree. Recursively build subtrees.</code><br>
 <a href="python/Trees/construct-binary-tree-from-preorder-and-inorder-traversal.py">python</a>
+</li>
+<li><b>🟥 <a href="https://leetcode.com/problems/binary-tree-maximum-path-sum/" target="_blank">Binary Tree Maximum Path Sum</a></b> <code></code><br>
+<a href="">python</a>
 </li>
 <li><b>🟥 <a href="https://leetcode.com/problems/serialize-and-deserialize-binary-tree/" target="_blank">Serialize And Deserialize Binary Tree</a></b> <code>Use the same traversal for encoding and decoding. For encoding, if a node is None, add 'N' to res; otherwise, add str(node.val). For decoding, split the string by ','; if 'N', return None, otherwise return TreeNode(val) while incrementing self.i. Finally, return the root.</code><br>
 <a href="python/Trees/serialize-and-deserialize-binary-tree.py">python</a>
