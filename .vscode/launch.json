@@ -5,6 +5,14 @@
        // ./a.go
        // go run ./golang/LinkedList/singly-linked-list.go
        {
+            "name": "Python",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+       {
            "name": "Golang",
             "type": "go",
             "request": "launch",
@@ -12,14 +20,7 @@
             "program": "${workspaceFolder}/a.go",
             "console": "integratedTerminal"
             // "asRoot": true,
-        },
-        {
-            "name": "Python",
-            "type": "python",
-            "request": "launch",
-            "program": "${file}",
-            "console": "integratedTerminal",
-            "justMyCode": true
         }
+        
     ]
 }
