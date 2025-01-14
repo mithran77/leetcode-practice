@@ -72,28 +72,30 @@ from typing import List
 # Using template
 class Solution:
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
-        res = []
+        combinations = []
 
         def backtrack(cur, start, total):
             if total == target:
-                res.append(cur.copy())
-            elif total > target:
+                combinations.append(cur.copy())
+            if total >= target:
                 return
             for i in range(start, len(candidates)):
                 cur.append(candidates[i])
-                backtrack(cur, i, total + candidates[i])
+                total += candidates[i]
+                backtrack(cur, i, total)
+                total -= candidates[i]
                 cur.pop()
 
         backtrack([], 0, 0)
 
-        return res
+        return combinations
 
 
 if __name__ == '__main__':
     res = Solution()
     print(res.combinationSum([2,3,6,7], 7))
-    print(res.combinationSum([2,3,5], 8))
-    print(res.combinationSum([2], 1))
+    # print(res.combinationSum([2,3,5], 8))
+    # print(res.combinationSum([2], 1))
 
 
 # RTs

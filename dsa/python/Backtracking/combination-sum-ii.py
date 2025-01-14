@@ -85,7 +85,7 @@ class Solution:
                 temp_list.append(candidates[i])
                 backtrack(temp_list, i + 1, total+candidates[i])
                 temp_list.pop()
-    
+ 
         backtrack([], 0, 0)
 
         return res

@@ -60,20 +60,65 @@ from typing import List
 
 #         return intervals
 
+# class Solution:
+#     def merge(self, intervals: List[List[int]]) -> List[List[int]]:
+#         intervals.sort(key = lambda i : i[0])
+#         output = [intervals[0]]
+
+#         for start, end in intervals[1:]:
+#             prevEnd = output[-1][1]
+#             if start <= prevEnd: # Overlapping
+#                 output[-1][1] = max(prevEnd, end)
+#             else:
+#                 output.append([start, end])
+
+#         return output
+
+
+# class Solution:
+#     def merge(self, intervals: List[List[int]]) -> List[List[int]]:
+#         intervals.sort()
+#         i = 0
+        
+#         while i < (len(intervals) - 1):
+#             if intervals[i][1] >= intervals[i + 1][0]:
+#                 intervals[i][1] = max(intervals[i][1], intervals[i + 1][1])
+#                 del(intervals[i + 1])
+#                 continue
+#             i += 1
+            
+#         return intervals
+
+
+
+# class Solution:
+#     def merge(self, intervals: List[List[int]]) -> List[List[int]]:
+#         intervals.sort()
+#         i = 1
+
+#         while i < len(intervals):
+#             if intervals[i][0] <= intervals[i - 1][1]:
+#                 intervals[i][0] = intervals[i - 1][0]
+#                 intervals[i][1] = max(intervals[i][1], intervals[i - 1][1])
+#                 del(intervals[i - 1])
+#                 continue
+#             i += 1
+            
+#         return intervals
+
 class Solution:
     def merge(self, intervals: List[List[int]]) -> List[List[int]]:
-        intervals.sort(key = lambda i : i[0])
-        output = [intervals[0]]
+        intervals.sort()
+        merged = [intervals[0]]
 
-        for start, end in intervals[1:]:
-            prevEnd = output[-1][1]
-            if start <= prevEnd: # Overlapping
-                output[-1][1] = max(prevEnd, end)
+        for i in range(1, len(intervals)):
+            last, current = merged[-1], intervals[i]
+            if last[1] >= current[0]:
+                last[1] = max(last[1], current[1])
             else:
-                output.append([start, end])
+                merged.append(current)
 
-        return output
-
+        return merged
 
 if __name__ == '__main__':
     res = Solution()

@@ -88,5 +88,5 @@ class Solution:
 if __name__ == '__main__':
     res = Solution()
     print(res.subsets(nums = [1,2,3]))
-    print(res.subsets(nums = [0]))
+    # print(res.subsets(nums = [0]))
 

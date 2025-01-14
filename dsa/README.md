@@ -29,6 +29,9 @@
 <li><b>🟧 <a href="https://leetcode.com/problems/product-of-array-except-self/" target="_blank">Product of Array Except Self</a></b> <code>Initialize prod = 1. Loop L-R. First update ans array, ans[i] *= prod. Then update prod, prod *= nums[i], to use in the next iteration. Repeat the process R-L.</code><br>
 <a href="dsa/python/ArraysAndHashing/product-of-array-except-self.py">python</a>
 </li>
+<li><b>🟧 <a href="https://leetcode.com/problems/valid-sudoku/" target="_blank">Valid Sudoku</a></b> <code>Create 3 HashMaps of hash sets for- rows, cols & squares. For squares, use tuple (i // 3, j // 3) as the key. If duplicate in any of the 3 hashsets return False, otherwise add to all 3 maps. Return True at the end</code><br>
+<a href="dsa/python/ArraysAndHashing/valid-sudoku.py">python</a>
+</li>
 <li><b>🟧 <a href="https://leetcode.com/problems/longest-consecutive-sequence/" target="_blank">Longest Consecutive Sequence</a></b> <code>Convert nums to a set. For each number, check if num-1 is present (indicating the start of a sequence). If yes, iteratively check until there are no more num+1 elements in the set. Then update the longest sequence length.</code><br>
 <a href="dsa/python/ArraysAndHashing/longest-consecutive-sequence.py">python</a>
 </li>
@@ -101,8 +104,8 @@
 <li><b>🟧 <a href="https://leetcode.com/problems/car-fleet/" target="_blank">Car Fleet</a></b> <code>Sort (position, speed) pairs by position in ascending order. Iterate through pairs in reverse. For each car, calculate time to reach target; if this time <= the time at top of the stack, it joins the same fleet. Otherwise, add it to the stack. Finally, return the stack’s length as number of fleets</code><br>
 <a href="dsa/python/Stack/car-fleet.py">python</a>
 </li>
-<li><b>🟥 <a href="https://leetcode.com/problems/largest-rectangle-in-histogram/" target="_blank">Largest Rectangle In Histogram</a></b> <code></code><br>
-<a href="">python</a>
+<li><b>🟥 <a href="https://leetcode.com/problems/largest-rectangle-in-histogram/" target="_blank">Largest Rectangle In Histogram</a></b> <code>Maintain a monotonically increasing stack (start, height). Iterate through heights, when a smaller element is found, pop all taller elements from the stack, processing their contribution to max_area and mark the start index of the current element as the last popped pushing current element onto the stack. Run an additional loop for remaining elements in the stack, calculating their heights wrt len(heights), updating max_area. Finally return max_area</code><br>
+<a href="dsa/python/Stack/largest-rectangle-in-histogram.py">python</a>
 </li>
 </ul>
 </details>
@@ -425,16 +428,16 @@
 <details>
 <summary><h4>Intervals</h4></summary>
 <ul>
-<li><b>🟩 <a href="https://leetcode.com/problems/meeting-rooms/" target="_blank">Meeting Rooms</a></b> <code></code><br>
+<li><b>🟩 <a href="https://leetcode.com/problems/meeting-rooms/" target="_blank">Meeting Rooms</a></b> <code>Sort intervals by start time. Iterate from [1..len(intervals)], if (interval[i-1].end > interval[i].start) return False. Otherwise True</code><br>
 <a href="dsa/python/Intervals/meeting-rooms.py">python</a>
 </li>
-<li><b>🟧 <a href="https://leetcode.com/problems/meeting-rooms-ii/" target="_blank">Meeting Rooms II</a></b> <code></code><br>
+<li><b>🟧 <a href="https://leetcode.com/problems/meeting-rooms-ii/" target="_blank">Meeting Rooms II</a></b> <code>Create 2 arrays of sorted start and end times, Iterate while s < len(intervals). if start[s] < end[e], increment count and s. else increment e and decrement count. Update rooms at the end of each iteration. Finally return rooms</code><br>
 <a href="dsa/python/Intervals/meeting-rooms-ii.py">python</a>
 </li>
-<li><b>🟧 <a href="https://leetcode.com/problems/insert-interval/" target="_blank">Insert Interval</a></b> <code></code><br>
+<li><b>🟧 <a href="https://leetcode.com/problems/insert-interval/" target="_blank">Insert Interval</a></b> <code>Sort intervals. Add intervals to res, that end before newInterval starts(intervals[i][1] < newInterval[0]). Then, merge newInterval to reflect all overlapping intervals(intervals[i][0] <= newInterval[1]). Then, add any remaining intervals. Return res</code><br>
 <a href="dsa/python/Intervals/insert-interval.py">python</a>
 </li>
-<li><b>🟧 <a href="https://leetcode.com/problems/merge-intervals/" target="_blank">Merge Intervals</a></b> <code></code><br>
+<li><b>🟧 <a href="https://leetcode.com/problems/merge-intervals/" target="_blank">Merge Intervals</a></b> <code>Sort intervals based on starts. Create result array with 1st element of interval. Iterate through intervals from index 1, if the end of last interval in res is >= start of current interval, then update the end of the interval in res to max(end of current, end of res[-1]), otherwise add current to res. Return res finally</code><br>
 <a href="dsa/python/Intervals/merge-intervals.py">python</a>
 </li>
 <li><b>🟧 <a href="https://leetcode.com/problems/non-overlapping-intervals/" target="_blank">Non Overlapping Intervals</a></b> <code></code><br>

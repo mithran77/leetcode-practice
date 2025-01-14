@@ -24,24 +24,56 @@ from typing import List
 # Brute Force (expands from center)
 class Solution:
     def largestRectangleArea(self, heights: List[int]) -> int:
+        n = len(heights)
+        maxArea = 0
+
+        for i in range(n):
+            height = heights[i]
+
+            rightMost = i + 1
+            while rightMost < n and heights[rightMost] >= height:
+                rightMost += 1
+            
+            leftMost = i
+            while leftMost >= 0 and heights[leftMost] >= height:
+                leftMost -= 1
+            
+            rightMost -= 1
+            leftMost += 1
+            maxArea = max(maxArea, height * (rightMost - leftMost + 1))
+        return maxArea
+    
+# Time & Space Complexity
+# Time complexity: O(n ^ 2)
+# Space complexity: O(1)
+
+# Monotonic increasing stack
+class Solution:
+    def largestRectangleArea(self, heights: List[int]) -> int:
+        st = []
         max_area = 0
-        for i in range(len(heights)):
-            # max_area = max(max_area, heights[i])
 
-            # l, r = max(0, i - 1), min(len(heights), i + 1)
+        for i, h in enumerate(heights):
+            start = i
+            while st and h < st[-1][1]:
+                idx, height = st.pop()
+                max_area = max(max_area, height * (i - idx))
+                start = idx
 
-            while l >= 0 and r < len(heights) :
-                w = r - l + 1
-                max_area = max(max_area, w * heights[i])
-                if (-1 < l) and (heights[l] <= heights[i]):
-                    l -= 1
-                if r < len(heights) and (heights[r] <= heights[i]):
-                    r += 1
+            st.append((start, h))
+
+        for i, h in st:
+            max_area = max(max_area, h * (len(heights) - i))
 
         return max_area
 
+# Time & Space Complexity
+# Time complexity: O(n)
+# Space complexity: O(n)
+
+
 if __name__ == '__main__':
     res = Solution()
-    # print(res.largestRectangleArea(heights = [2,1,5,6,2,3]))
+    print(res.largestRectangleArea(heights = [2,1,5,6,2,3]))
     print(res.largestRectangleArea(heights = [2,4]))
 
