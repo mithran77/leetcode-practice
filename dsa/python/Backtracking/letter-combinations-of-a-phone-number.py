@@ -25,34 +25,68 @@
 
 from typing import List
 
+# class Solution:
+#     def letterCombinations(self, digits: str) -> List[str]:
+#         if not digits:
+#             return []
+
+#         digit_to_char = {
+#             '2': ['a', 'b', 'c'],
+#             '3': ['d', 'e', 'f'],
+#             '4': ['g', 'h', 'i'],
+#             '5': ['j', 'k', 'l'],
+#             '6': ['m', 'n', 'o'],
+#             '7': ['p', 'q', 'r', 's'],
+#             '8': ['t', 'u', 'v'],
+#             '9': ['w', 'x', 'y', 'z'],
+#         }
+
+#         combinations = []
+#         def backtrack(temp, start):
+#             if start == len(digits) and temp:
+#                 combinations.append(''.join(temp))
+#             else:
+#                 letters = digit_to_char.get(digits[start], [])
+#                 for l in letters:
+#                     temp.append(l)
+#                     backtrack(temp, start + 1)
+#                     temp.pop()  # Backtrack
+
+#         backtrack([], 0)
+
+#         return combinations
+
 class Solution:
     def letterCombinations(self, digits: str) -> List[str]:
-        if not digits:
-            return []
-
-        digit_to_char = {
-            '2': ['a', 'b', 'c'],
-            '3': ['d', 'e', 'f'],
-            '4': ['g', 'h', 'i'],
-            '5': ['j', 'k', 'l'],
-            '6': ['m', 'n', 'o'],
-            '7': ['p', 'q', 'r', 's'],
-            '8': ['t', 'u', 'v'],
-            '9': ['w', 'x', 'y', 'z'],
+        combinations = []
+        number_map = {
+            "1" : [],
+            "2" : ['a', 'b', 'c'],
+            "3" : ['d', 'e', 'f'],
+            "4" : ['g', 'h', 'i'],
+            "5" : ['j', 'k', 'l'],
+            "6" : ['m', 'n', 'o'],
+            "7" : ['p', 'q', 'r', 's'],
+            "8" : ['t', 'u', 'v'],
+            "9" : ['w', 'x', 'y', 'z'],
+            "0" : []
         }
 
-        combinations = []
-        def backtrack(temp, start):
-            if start == len(digits) and temp:
-                combinations.append(''.join(temp))
-            else:
-                letters = digit_to_char.get(digits[start], [])
-                for l in letters:
-                    temp.append(l)
-                    backtrack(temp, start + 1)
-                    temp.pop()  # Backtrack
+        def backtrack(start: int, cur: List[str]):
+            if len(cur) == len(digits):
+                combinations.append(''.join(cur))
+                return
+            if start >= len(digits):
+                return
 
-        backtrack([], 0)
+            letters = number_map[digits[start]]
+            for i in range(len(letters)):
+                cur.append(letters[i])
+                backtrack(start+1, cur)
+                cur.pop()
+
+        if len(digits) > 0:
+            backtrack(start=0, cur=[])
 
         return combinations
 

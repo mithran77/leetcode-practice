@@ -33,7 +33,6 @@
 # 0 <= cost[i] <= 999
 
 
-
 from typing import List
 
 class Solution:
@@ -54,6 +53,21 @@ class Solution:
 
         return rMinCost(len(cost))
 
+# class Solution:
+#     def minCostClimbingStairs(self, cost: List[int]) -> int:
+#         memo = [-1]*len(cost)
+#         def rMinCost(i):
+#             # BC
+#             if i >= len(cost):
+#                 return 0
+#             if memo[i] != -1:
+#                 return memo[i]
+#             jump = cost[i] + rMinCost(i+2)
+#             walk = cost[i] + rMinCost(i+1)
+#             memo[i] = min(jump, walk)
+#             return memo[i]
+
+#         return min(rMinCost(0), rMinCost(1))
 
 if __name__ == '__main__':
     res = Solution()

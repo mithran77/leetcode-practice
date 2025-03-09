@@ -26,16 +26,40 @@
 # 0 <= nums[i] <= 105
 
 from typing import List
+from collections import deque
+
 
 class Solution:
     def canJump(self, nums: List[int]) -> bool:
-        flag = len(nums) - 1
+        goal = len(nums) - 1
 
         for i in range(len(nums) - 1, -1, -1):
-            if i + nums[i] >= flag:
-                flag = i
+            if i + nums[i] >= goal:
+                goal = i
 
-        return True if flag == 0 else False
+        return goal == 0
+
+# # BFS TLE
+# class Solution:
+#     def canJump(self, nums: List[int]) -> bool:
+#         visited = set()
+#         q = deque([0])
+#         depth = 0
+
+#         while q:
+#             size = len(q)
+#             for _ in range(size):
+#                 start = q.popleft()
+#                 if start == len(nums) - 1:
+#                     return True
+#                 end = start + nums[start] + 1
+#                 for j in range(start + 1, end):
+#                     if j not in visited:
+#                         q.append(j)
+#                         visited.add(j)
+#             depth += 1
+        
+#         return False
 
 if __name__ == '__main__':
     res = Solution()

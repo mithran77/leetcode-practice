@@ -54,25 +54,22 @@
 
 from functools import cache
 
-# Recursive
+# Recursive memo
 class Solution:
-    # @cache
-    # def climbStairs(self, n: int) -> int:
-    #     if n < 2:
-    #         return 1
-    #     return self.climbStairs(n -1) + self.climbStairs(n - 2)
-
     def climbStairs(self, n: int) -> int:
-        cache = {}
+        memo = {}
 
-        def fib(n):
-            if n == 0 or n == 1:
-                cache[n] = 1
-            if n not in cache:
-                cache[n] = fib(n -1) + fib(n - 2)
-            return cache[n]
+        def rFib(i):
+            if i < 1:
+                return 0
+            if i < 3:
+                return i
+            if i in memo:
+                return memo[i]
+            memo[i] = rFib(i-1) + rFib(i-2)
+            return memo[i]
 
-        return fib(n)
+        return rFib(n)
 
 # 0 1 2
 # 0 1 2 3

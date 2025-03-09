@@ -45,14 +45,17 @@
 <a href="dsa/python/TwoPointer/valid-palindrome.py">python</a> | 
 <a href="golang/TwoPointer/valid-palindrome.go">go</a>
 </li>
+<li><b>🟧 <a href="https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/" target="_blank">Two Sum II Input Array Is Sorted</a></b> <code>Iterate with L & R pointers, adjust pointers based on cur_sum relative to target, and return indices if they match</code><br>
+<a href="dsa/python/TwoPointer/two-sum-ii-input-array-is-sorted.py">python</a>
+</li>
 <li><b>🟧 <a href="https://leetcode.com/problems/container-with-most-water/" target="_blank">Container With Most Water</a></b> <code>Iterate with L & R pointers, calculate the current area and update max_area if larger, then move pointer with the lower height</code><br>
 <a href="dsa/python/TwoPointer/container-with-most-water.py">python</a>
 </li>
-<li><b>🟧 <a href="https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/" target="_blank">Two Sum II</a></b> <code>Iterate with L & R pointers, adjust pointers based on cur_sum relative to target, and return indices if they match</code><br>
-<a href="dsa/python/TwoPointer/two-sum-ii-input-array-is-sorted.py">python</a>
-</li>
-<li><b>🟥 <a href="https://leetcode.com/problems/3sum/" target="_blank">3Sum</a></b> <code>Sort the array and iterate through nums, skipping duplicates. For each nums[i], set target = -nums[i] and iterate using L & R pointers to find pairs that sum to the target. Add indices on a match, and skip duplicates for L followed by R pointers</code><br>
+<li><b>🟧 <a href="https://leetcode.com/problems/3sum/" target="_blank">3Sum</a></b> <code>Sort the array and iterate through nums, skipping duplicates. For each nums[i], set target = -nums[i] and iterate using L & R pointers to find pairs that sum to the target. Add indices on a match, and skip duplicates for L followed by R pointers</code><br>
 <a href="dsa/python/TwoPointer/3sum.py">python</a>
+</li>
+<li><b>🟥 <a href="https://leetcode.com/problems/trapping-rain-water/" target="_blank">Trapping Rain Water</a></b> <code>Create left_max and right_max arrays(based on height[i-1]). Iterate len(height), calculating running sum of trapped_water(min(left_max, right_max) - height). Return trapped_water</code><br>
+<a href="dsa/python/TwoPointer/trapping-rain-water.py">python</a>
 </li>
 </ul>
 </details>
@@ -70,10 +73,19 @@
 <li><b>🟧 <a href="https://leetcode.com/problems/longest-substring-without-repeating-characters/" target="_blank">Longest Substring Without Repeating Characters</a></b> <code>Initialize L pointer to 0. Iterate over s, adding characters to a charSet. If duplicate is found, remove characters from left until duplicate is gone. Continuously update longest substring and return it at end</code><br>
 <a href="dsa/python/SlidingWindow/longest-substring-without-repeating-characters.py">python</a>
 </li>
+<li><b>🟧 <a href="https://leetcode.com/problems/frequency-of-the-most-frequent-element/" target="_blank">Frequency of the Most Frequent Element</a></b> <code>Sort the array(This helps in making numbers equal efficiently). Use sliding window, Expand the window by adding elements from the right, Check if we can make all numbers in the window equal using at most k operations, If not possible, shrink the window from the left. Keep track of the largest valid window. We try to make multiple numbers equal to the largest number in the current window while keeping the operations within the allowed limit k</code><br>
+<a href="dsa/python/SlidingWindow/frequency-of-the-most-frequent-element.py">python</a>
+</li>
+<li><b>🟧 <a href="https://leetcode.com/problems/longest-subarray-of-1s-after-deleting-one-element/" target="_blank">Longest Subarray of 1's After Deleting One Element</a></b> <code></code><br>
+<a href="dsa/python/SlidingWindow/longest-subarray-of-1s-after-deleting-one-element.py">python</a>
+</li>
 <li><b>🟧 <a href="https://leetcode.com/problems/longest-repeating-character-replacement/" target="_blank">Longest Repeating Character Replacement</a></b> <code>Set L = 0 and iterate R through s, tracking the max frequency of any character by comparing against the current character count. Adjust L & char frequencies in window while the count of other characters exceeds k using maxf. Continuously update longest substring with repetitions and return it at end</code><br>
 <a href="dsa/python/SlidingWindow/longest-repeating-character-replacement.py">python</a>
 </li>
-<li><b>🟥 <a href="https://leetcode.com/problems/minimum-window-substring/" target="_blank">Minimum Window Substring</a></b> <code>Use 2 HashMaps to track char counts in s and t, and initialize have to 0. Loop through s, updating window counts and incrementing have when (window[c] == count_t[c]). Loop while (have == len(count_t)), if current window is smaller than ans_len, update ans and ans_len. Slide l right, adjusting window[s[l]] & have if window count goes below count_t. Return ans</code><br>
+<li><b>🟧 <a href="https://leetcode.com/problems/permutation-in-string/" target="_blank">Permutation In String</a></b> <code>Calculate char_count of s1. For each char in s2, if it exists in s1: create char_count of s2, with len(s1). If char_count's are same return True. Otherwise return False finally</code><br>
+<a href="dsa/python/SlidingWindow/permutation-in-string.py">python</a>
+</li>
+<li><b>🟥 <a href="https://leetcode.com/problems/minimum-window-substring/" target="_blank">Minimum Window Substring</a></b> <code>Use 2 variables called have & need & 2 HashMaps to track char counts in s and t, and initialize have to 0. Loop through s, updating window counts and incrementing have when (window[c] == count_t[c]). Loop while (have == len(count_t)), if current window is smaller than ans_len, update res and ans_len. Slide l right, adjusting window[s[l]] & have if window count goes below count_t. Return res</code><br>
 <a href="dsa/python/SlidingWindow/minimum-window-substring.py">python</a>
 </li>
 <li><b>🟥 <a href="https://leetcode.com/problems/sliding-window-maximum/" target="_blank">Sliding Window Maximum</a></b> <code></code><br>
@@ -225,6 +237,9 @@
 <li><b>🟩 <a href="https://leetcode.com/problems/subtree-of-another-tree/" target="_blank">Subtree of Another Tree</a></b> <code>Create a separate fn isSameTree() and perform BFS on the root. At each node, if isSameTree(node, subTree) return True. Finally if no same trees were found, return False</code><br>
 <a href="dsa/python/Trees/subtree-of-another-tree.py">python</a>
 </li>
+<li><b>🟧 <a href="https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree" target="_blank">Lowest Common Ancestor of a Binary Tree</a></b> <code>Use an instance variable to store state. in the recursive function basecase, return False if node is None. Perform a post order dfs, use 3 flags to account for the 3 cases(parent of nodes, not parent and node parent of another). cur(if current node is p or q), left & right(if node is present in respective subtrees). If either 2 flags are true set self.lca. Return left or right or cur</code><br>
+<a href="dsa/python/Trees/lowest-common-ancestor-of-a-binary-tree.py">python</a>
+</li>
 <li><b>🟧 <a href="https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/" target="_blank">Lowest Common Ancestor of a Binary Search Tree</a></b> <code>While True: if root.val > p and q, move left. If root.val < p and q, move right. Otherwise, if root lies between p and q or equals p or q, return root</code><br>
 <a href="dsa/python/Trees/lowest-common-ancestor.py">python</a>
 </li>
@@ -258,7 +273,7 @@
 <details>
 <summary><h4>Heap / Priority Queue</h4></summary>
 <ul>
-<li><b>🟩 <a href="https://leetcode.com/problems/kth-largest-element-in-a-stream/" target="_blank">Kth Largest Element in a Stream</a></b> <code></code><br>
+<li><b>🟩 <a href="https://leetcode.com/problems/kth-largest-element-in-a-stream/" target="_blank">Kth Largest Element in a Stream</a></b> <code>Heapify nums to a min_heap and reduce the size to k. In add(), push element to heap, if len(min_heap) > k: pop and return min_heap[0]</code><br>
 <a href="dsa/python/Heap-PriorityQueue/kth-largest-element-in-a-stream.py">python</a>
 </li>
 <li><b>🟩 <a href="https://leetcode.com/problems/last-stone-weight/" target="_blank">Last Stone Weight</a></b> <code>Use a max-heap to repeatedly extract the two largest stones, smash them, and push the remaining stone back into the heap if any. Return the last stone in the heap or 0 if the heap is empty.</code><br>
@@ -270,14 +285,14 @@
 <li><b>🟧 <a href="https://leetcode.com/problems/kth-largest-element-in-an-array/" target="_blank">Kth Largest Element in an Array</a></b> <code>Use a max-heap and heapify the array. Keep popping elements until we reach the kth largest, then return it</code><br>
 <a href="dsa/python/Heap-PriorityQueue/kth-largest-element-in-an-array.py">python</a>
 </li>
-<li><b>🟧 <a href="https://leetcode.com/problems/k-closest-points-to-origin/" target="_blank">Task Schedule</a></b> <code></code><br>
+<li><b>🟧 <a href="https://leetcode.com/problems/task-scheduler/" target="_blank">Task Schedule</a></b> <code>Maintain 2 queues(free_q & idling_q). Construct free_q as a max_heap based on frequency. Simulate seconds while iterating, until both queues are empty. Each tick, consume a task from the free_q and move the remainder of the task to the idling_q [count, time+n]. If idling time is up, popleft from the idling q and add remaining tasks to the free_q. Finally return ticks</code><br>
 <a href="dsa/python/Heap-PriorityQueue/task-scheduler.py">python</a>
 </li>
-<li><b>🟧 <a href="https://leetcode.com/problems/k-closest-points-to-origin/" target="_blank">Design Twitter</a></b> <code>The system consists of a User class to manage user data (like following and tweet_head) and a Tweet class representing a singly linked list node with created_at and the next tweet. The Twitter class manages users through a user_map and handles follow/unfollow by creating users if needed and updating their following sets. Posting a tweet updates the user’s tweet_head with a new tweet node. To generate a news feed, a max-heap is built using tweet_heads of the user’s followees (including self), and tweets are extracted up to the feed size, with the next tweets from each list added back to the heap for chronological ordering.</code><br>
+<li><b>🟧 <a href="https://leetcode.com/problems/design-twitter/" target="_blank">Design Twitter</a></b> <code>Create a singly linked list class Tweet, with id, timestamp and next pointer. In class Twitter, create 2 dictionaries, following{uid: [follow_id]} and tweets{uid: Tweethead}, Initialize an incrementing timestamp to 0, to store last_modified to tweets when added. In postTweet, add timestamp as last_modified. For follow() and unfollow() add and discard from following dict. For getNewsFeed(), first create a max_heap based on last_modified for tweets for all following and user itself. To generate feed while heap is not empty and len(feed) < FEED_SIZE, pop from heap append to feed and add the tweet's next back to the heap. Finally return feed</code><br>
 <a href="dsa/python/Heap-PriorityQueue/design-twitter/design-twitter.py">python</a>
 </li>
-<li><b>🟧 <a href="https://leetcode.com/problems/k-closest-points-to-origin/" target="_blank">Find Median From Data Stream</a></b> <code></code><br>
-<a href="dsa/python/Heap-PriorityQueue/k-closest-points-to-origin.py">python</a>
+<li><b>🟧 <a href="https://leetcode.com/problems/find-median-from-data-stream/" target="_blank">Find Median From Data Stream</a></b> <code>Use 2 arrays as min & max heaps. For addNum(), Follow a 2 step process. First Insert, if num < max_heap[0]: push into max_heap otherwise push to min_heap. Then rebalance, if len of either heap is greater than the other by 1. For findMedian(), For the odd len case, return the top of the longer heap. For even case, get the top values by peaking, and return (v1+v2)/2</code><br>
+<a href="dsa/python/Heap-PriorityQueue/find-median-from-data-stream.py">python</a>
 </li>
 </ul>
 </details>
@@ -294,22 +309,26 @@
 <li><b>🟧 <a href="https://leetcode.com/problems/combination-sum/" target="_blank">Combination Sum</a></b> <code>Define dfs(i, cur, total). Base cases: if target == total, append cur.copy() to res and return. If idx >= len(nums) or total > target, return. Append nums[i] to cur, add to total, then call dfs(). After, pop() from cur, subtract nums[i] from total, increment i, and call dfs() again. Finally, return res</code><br>
 <a href="dsa/python/Backtracking/combination-sum/combination-sum.py">python</a>
 </li>
+<li><b>🟧 <a href="https://leetcode.com/problems/combination-sum-ii/" target="_blank">Combination Sum II</a></b> <code>Sort the array to handle duplicates efficiently, then use backtracking to explore combinations while maintaining a running total. Append valid combinations when the total matches the target and terminate early if it exceeds the target. Skip duplicate elements during iteration to avoid redundant results</code><br>
+<a href="dsa/python/Backtracking/combination-sum/combination-sum-ii.py">python</a>
+</li>
 <li><b>🟧 <a href="https://leetcode.com/problems/permutations/" target="_blank">Permutations</a></b> <code>Define backtrack(cur), with BC: if len(cur) == len(nums), add it to res and return. Otherwise loop through nums, if n is not in cur add it, and recursively call backtrack with the new cur, then pop the element and continue the iteration. Return res at the end</code><br>
 <a href="dsa/python/Backtracking/permutations.py">python</a>
 </li>
 <li><b>🟧 <a href="https://leetcode.com/problems/subsets-ii/" target="_blank">Subsets II</a></b> <code>Sort input array to group duplicates, then use backtracking to generate subsets by either including the current element (pick) or skipping it (no-pick); before making no-pick recursive call, ensure duplicates are skipped by advancing the index to the next unique value, thereby avoiding duplicates</code><br>
 <a href="dsa/python/Backtracking/subsets-ii.py">python</a>
 </li>
-<li><b>🟧 <a href="https://leetcode.com/problems/combination-sum-ii/" target="_blank">Combination Sum II</a></b> <code>Sort the array to handle duplicates efficiently, then use backtracking to explore combinations while maintaining a running total. Append valid combinations when the total matches the target and terminate early if it exceeds the target. Skip duplicate elements during iteration to avoid redundant results</code><br>
-<a href="dsa/python/Backtracking/combination-sum/combination-sum-ii.py">python</a>
 <li><b>🟧 <a href="https://leetcode.com/problems/word-search/" target="_blank">Word Search</a></b> <code>Define dfs(r, c, i). If i == len(word), return True. If r or c are out of bounds, characters don't match, or the cell is already in the path, return False. If the current cell matches word[i], add it to the path, and recursively check neighboring cells recording result. backtrack by removing the cell from the path and return result</code><br>
 <a href="dsa/python/Backtracking/word-search.py">python</a>
 </li>
-<li><b>🟧 <a href="https://leetcode.com/problems/letter-combinations-of-a-phone-number/" target="_blank">Letter Combinations of a Phone Number</a></b> <code></code><br>
-<a href="">python</a>
+<li><b>🟧 <a href="https://leetcode.com/problems/palindrome-partitioning/" target="_blank">Palindrome Partitioning</a></b> <code></code><br>
+<a href="dsa/python/Backtracking/palindrome-partitioning.py">python</a>
 </li>
-<li><b>🟧 <a href="https://leetcode.com/problems/n-queens/" target="_blank">N Queens</a></b> <code></code><br>
-<a href="">python</a>
+<li><b>🟧 <a href="https://leetcode.com/problems/letter-combinations-of-a-phone-number/" target="_blank">Letter Combinations of a Phone Number</a></b> <code>Create a map of numbers to a list of letters. Use a param start to backtrack() that increments each recursive call and tracks the idx of digits. BCs- len(path) == len(digits), add to res and return. start >= len(digits), return. Guard the backtrack call by a condition that checks if len(digits) > 0. Return combinations collected.</code><br>
+<a href="dsa/python/Backtracking/letter-combinations-of-a-phone-number.py">python</a>
+</li>
+<li><b>🟧 <a href="https://leetcode.com/problems/n-queens/" target="_blank">N Queens</a></b> <code>Create a fn that validates a (row, col) against already placed queens. Create another fn, that attempts to place queens on the board, if the (r,c) is a valid placement, place a queen, and recurse to attempt to place on the next row. BC: when len of placed queens reaches board size, save a copy of the board. Finally return placed queens.</code><br>
+<a href="dsa/python/Backtracking/n-queens.py">python</a>
 </li>
 </ul>
 </details>
@@ -323,8 +342,11 @@
 <li><b>🟧 <a href="https://leetcode.com/problems/design-add-and-search-words-data-structure/" target="_blank">Design Add and Search Words Data Structure</a></b> <code>In the AddWord method, the process remains identical to the insert method in a Trie. For search, a recursive approach is used: if the current character is not '.', check if it exists in the current node's children and continue the search(return False if not present). If the character is '.', recursively explore all children nodes, returning True if any branch leads to a match. If no valid path exists, return False</code><br>
 <a href="dsa/python/Tries/design-add-and-search-words-data-structure.py">python</a>
 </li>
-<li><b>🟥 <a href="" target="_blank">Word Search II</a></b> <code>Insert words into a Trie, then traverse the board recursively, exploring neighbors to match characters with Trie nodes. Terminate on mismatches and backtrack by marking and unmarking visited cells. Trie traversal handles mismatches, so explicit backtracking on the Trie isn’t needed</code><br>
+<li><b>🟥 <a href="https://leetcode.com/problems/word-search-ii/" target="_blank">Word Search II</a></b> <code>Insert words into a Trie, then traverse the board recursively, exploring neighbors to match characters with Trie nodes. Terminate on mismatches and backtrack by marking and unmarking visited cells. Trie traversal handles mismatches, so explicit backtracking on the Trie isn’t needed</code><br>
 <a href="dsa/python/Tries/word-search-ii.py">python</a>
+</li>
+<li><b>🟥 <a href="https://leetcode.com/problems/design-in-memory-file-system/" target="_blank">Design In-Memory File System</a></b> <code></code><br>
+<a href="dsa/python/Tries/design-in-memory-file-system.py">python</a>
 </li>
 </ul>
 </details>
@@ -379,6 +401,26 @@
 
 <details>
 <summary><h4>Advanced Graphs</h4></summary>
+<ul>
+<li><b>🟧 <a href="https://leetcode.com/problems/network-delay-time/" target="_blank">Network Delay Time</a></b> <code>Use Djikstra's algo. Sort neighbours by weight in min_heap. Maintain a max running time, that indicates the min path till the end. If visited contains all nodes return max_time, else -1</code><br>
+<a href="dsa/python/AdvancedGraphs/network-delay-time.py">python</a>
+</li>
+<li><b>🟧 <a href="https://leetcode.com/problems/reconstruct-itinerary/" target="_blank">Reconstruct Itinerary</a></b> <code></code><br>
+<a href="">python</a>
+</li>
+<li><b>🟧 <a href="https://leetcode.com/problems/min-cost-to-connect-all-points/" target="_blank">Min Cost to Connect All Points</a></b> <code>Use Prim's algo. Create adjacency list for bidirectional weighted graph[md, idx]. Iterate while len(visit) < len(points). pop from min_ heap, skip if already visited, and add neighbours to min_heap. Finally return min cost</code><br>
+<a href="dsa/python/AdvancedGraphs/min-cost-to-connect-all-points.py">python</a>
+</li>
+<li><b>🟥 <a href="https://leetcode.com/problems/swim-in-rising-water/" target="_blank">Swim in Rising Water</a></b> <code>Use BFS with a min_heap. Use (time, (r, c)) as ds on heap. Maintain a running max for times popped from heap. If (r, c) in visited, continue. If (r, c) is end, return max_time. Otherwise add valid neighbours.</code><br>
+<a href="dsa/python/AdvancedGraphs/swim-in-rising-water.py">python</a>
+</li>
+<li><b>🟥 <a href="https://leetcode.com/problems/alien-dictionary/" target="_blank">Alien Dictionary</a></b> <code></code><br>
+<a href="">python</a>
+</li>
+<li><b>🟧 <a href="https://leetcode.com/problems/cheapest-flights-within-k-stops/" target="_blank">Cheapest Flights Within K Stops</a></b> <code>Use Djikstra's algo. But add a parameter num_stops also to be tracked in the heap, Allow revisiting of node if num_stops is less, that existing value. Return cost, if dest is reached. Otherwise -1</code><br>
+<a href="dsa/python/AdvancedGraphs/cheapest-flights-within-k-stops.py">python</a>
+</li>
+</ul>
 </details>
 
 <details>
@@ -386,6 +428,9 @@
 <ul>
 <li><b>🟩 <a href="https://leetcode.com/problems/climbing-stairs/" target="_blank">Climbing Stairs</a></b> <code>Use bottom-up DP. Initialize f and s to 1. Iterate (n - 1) times, updating f as- sum of f + s and setting s to old value of f. Finally return f</code><br>
 <a href="dsa/python/1D-DynamicProgramming/climbing-stairs.py">python</a>
+</li>
+<li><b>🟩 <a href="https://leetcode.com/problems/min-cost-climbing-stairs/" target="_blank">Min Cost Climbing Stairs</a></b> <code>Use bottom-up DP. Initialize f and s to 1. Iterate (n - 1) times, updating f as- sum of f + s and setting s to old value of f. Finally return f</code><br>
+<a href="dsa/python/1D-DynamicProgramming/min-cost-climbing-stairs.py">python</a>
 </li>
 <li><b>🟧 <a href="https://leetcode.com/problems/house-robber/" target="_blank">House Robber</a></b> <code>Use 2 pointers f and s initialized to 0. Loop through nums, calculate take as (n + s) and not_take as f. Update s to current f and f to the max(take, not_take). Finally, return f</code><br>
 <a href="dsa/python/1D-DynamicProgramming/house-robber/house-robber.py">python</a>
@@ -423,6 +468,32 @@
 
 <details>
 <summary><h4>Greedy</h4></summary>
+<ul>
+<li><b>🟧 <a href="https://leetcode.com/problems/maximum-subarray/" target="_blank">Maximum Subarray</a></b> <code>Initialize max to nums[0] and cur to 0. Iterate through nums, if (cur < 0), reset cur to 0, add num to cur and maintain the running max. Return max at the end</code><br>
+<a href="dsa/python/Greedy/maximum-subarray.py">python</a>
+</li>
+<li><b>🟧 <a href="https://leetcode.com/problems/jump-game/" target="_blank">Jump Game</a></b> <code>Intialize goalpost to last index. Iterate through nums in reverse, for each i, check if (i + nums[i]) >= goalpost, if so move goalpost to i. Finally return goalpost == 0</code><br>
+<a href="dsa/python/Greedy/jump-game.py">python</a>
+</li>
+<li><b>🟧 <a href="https://leetcode.com/problems/jump-game-ii/" target="_blank">Jump Game II</a></b> <code>Use Breadth-First Search (BFS) with a visited set for optimization. Add indexes within the jump range to the queue. When the last index is popped from the queue, return the current height (level in BFS).</code><br>
+<a href="dsa/python/Greedy/jump-game-ii.py">python</a>
+</li>
+<li><b>🟧 <a href="https://leetcode.com/problems/gas-station/" target="_blank">Gas Station</a></b> <code>Check if sum(gas) < sum(cost) and return -1. Otherwise loop through gas mainitaining a running_total of remaining_gas. If it becomes < 0, reset running_total and set res to i + 1</code><br>
+<a href="dsa/python/Greedy/gas-station.py">python</a>
+</li>
+<li><b>🟧 <a href="https://leetcode.com/problems/hand-of-straights/description/" target="_blank">Hand of Straights</a></b> <code>Create a counter for, and sort hand. For each n in hand, if n has a count in counter, we try to create a hand by iterating size of hand and decrementing count from counter. If counter does not have a particular value, we return False. Otherwise return True.</code><br>
+<a href="dsa/python/Greedy/hand-of-straights.py">python</a>
+</li>
+<li><b>🟧 <a href="https://leetcode.com/problems/merge-triplets-to-form-target-triplet/" target="_blank">Merge Triplets to Form Target Triplet</a></b> <code>Create a res set, to hold the indexes of matched values from target. Iterate through triplets, and discard any, that have values > target. For the others, if we find a matching value, add its index to res. Finally return len(res) == 3</code><br>
+<a href="dsa/python/Greedy/hand-of-straights.py">python</a>
+</li>
+<li><b>🟧 <a href="https://leetcode.com/problems/partition-labels/" target="_blank">Partition Labels</a></b> <code>Create a hashmap of last indexes of each character in s. Iterate through s, maintaining a running max of the highest last index in the window of crossed characters, if i == max_index, append i to res. Return res at the end</code><br>
+<a href="dsa/python/Greedy/partition-labels.py">python</a>
+</li>
+<li><b>🟧 <a href="https://leetcode.com/problems/valid-parenthesis-string/" target="_blank">Valid Parenthesis String</a></b> <code></code><br>
+<a href="dsa/python/Greedy/partition-labels.py">python</a>
+</li>
+</ul>
 </details>
 
 <details>

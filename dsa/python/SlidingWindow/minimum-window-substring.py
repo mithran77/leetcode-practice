@@ -134,34 +134,67 @@
 #         return "" if ans[0] == float("inf") else s[ans[1] : ans[2] + 1]
 
 
+# class Solution:
+#     def minWindow(self, s: str, t: str) -> str:
+#         if not t:
+#             return ""
+#         ans, ans_len = "", len(s) + 1
+#         count_t, window = {}, {}
+#         l, r, have = 0, 0, 0
+
+#         for c in t:
+#             count_t[c] = 1 + count_t.get(c, 0)
+
+#         for r in range(len(s)):
+#             window[s[r]] = 1 + window.get(s[r], 0)
+
+#             if s[r] in count_t and window[s[r]] == count_t[s[r]]:
+#                 have += 1
+
+#             while have == len(count_t):
+#                 if ans_len > (r - l + 1):
+#                     ans = s[l : r + 1]
+#                     ans_len = len(ans)
+
+#                 window[s[l]] -= 1
+#                 if s[l] in count_t and window[s[l]] < count_t[s[l]]:
+#                     have -= 1
+#                 l += 1
+
+#         return ans
+
+from collections import defaultdict
+
 class Solution:
     def minWindow(self, s: str, t: str) -> str:
-        if not t:
-            return ""
-        ans, ans_len = "", len(s) + 1
-        count_t, window = {}, {}
-        l, r, have = 0, 0, 0
+        res, i = "", 0
+        min_len = float('inf')
 
+        # Get char count of t
+        t_count, w_count = defaultdict(int), defaultdict(int)
         for c in t:
-            count_t[c] = 1 + count_t.get(c, 0)
+            t_count[c] += 1
+        need, have = len(t_count), 0
 
-        for r in range(len(s)):
-            window[s[r]] = 1 + window.get(s[r], 0)
+        # Scan s
+        for j in range(len(s)):
+            w_count[s[j]] += 1
 
-            if s[r] in count_t and window[s[r]] == count_t[s[r]]:
+            if s[j] in t_count and t_count[s[j]] == w_count[s[j]]:
                 have += 1
 
-            while have == len(count_t):
-                if ans_len > (r - l + 1):
-                    ans = s[l : r + 1]
-                    ans_len = len(ans)
+            while have == need:
+                if (j - i + 1) < min_len:
+                    min_len = j - i + 1
+                    res = s[i:j+1]
 
-                window[s[l]] -= 1
-                if s[l] in count_t and window[s[l]] < count_t[s[l]]:
+                w_count[s[i]] -= 1
+                if s[i] in t_count and w_count[s[i]] < t_count[s[i]]:
                     have -= 1
-                l += 1
+                i += 1
 
-        return ans
+        return res
+
 
 if __name__ == '__main__':
     res = Solution()

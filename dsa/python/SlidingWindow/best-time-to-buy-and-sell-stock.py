@@ -54,17 +54,31 @@ from typing import List
 
 #         return max_profit
 
+# class Solution:
+#     def maxProfit(self, prices: List[int]) -> int:
+#         profit = 0
+#         f = s = 0
+#         for f in range(len(prices)):
+#             profit = max(profit, (prices[f] - prices[s]))
+#             if prices[s] > prices[f]:
+#                 s = f
+
+#         return profit
+
+# Using template
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
-        profit = 0
-        f = s = 0
+        s = 0
+        max_profit = 0
+
         for f in range(len(prices)):
-            profit = max(profit, (prices[f] - prices[s]))
-            if prices[s] > prices[f]:
+            profit = prices[f] - prices[s]
+            if profit < 0:
                 s = f
 
-        return profit
+            max_profit = max(max_profit, profit)
 
+        return max_profit
 
 if __name__ == '__main__':
     res = Solution()

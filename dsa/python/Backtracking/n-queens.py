@@ -22,40 +22,94 @@
 
 from typing import List
 
+# class Solution:
+#     def solveNQueens(self, n: int) -> List[List[str]]:
+#         queens = []
+#         # Create 3 sets to check if queens can attack each other
+#         cols, pos_diag, neg_diag = set(), set(), set()
+
+#         board = [['.'] * n for _ in range(n)] 
+
+#         def backtrack(r):
+#             # BC
+#             if r == n:
+#                 copy = [''.join(row) for row in board]
+#                 queens.append(copy)
+#             # RC
+#             else:
+#                 for c in range(n):
+#                     if (c in cols or (r + c) in pos_diag or (r - c) in neg_diag):
+#                         continue
+
+#                     # Bookkeeping
+#                     cols.add(c)
+#                     pos_diag.add(r + c)
+#                     neg_diag.add(r - c)
+#                     board[r][c] = 'Q'
+
+#                     backtrack(r + 1)
+
+#                     # Bookkeeping
+#                     cols.remove(c)
+#                     pos_diag.remove(r + c)
+#                     neg_diag.remove(r - c)
+#                     board[r][c] = '.'
+
+#         backtrack(0)
+#         return queens
+
+
 class Solution:
     def solveNQueens(self, n: int) -> List[List[str]]:
         queens = []
-        # Create 3 sets to check if queens can attack each other
-        cols, pos_diag, neg_diag = set(), set(), set()
+        board = [
+            ["." for _ in range(n)]
+            for _ in range(n)
+        ]
 
-        board = [['.'] * n for _ in range(n)] 
+        def valid_placement(row, col):
+            # Invalidate early for column and diagonals
+            # for already placed rows
 
-        def backtrack(r):
-            # BC
-            if r == n:
-                copy = [''.join(row) for row in board]
-                queens.append(copy)
-            # RC
-            else:
-                for c in range(n):
-                    if (c in cols or (r + c) in pos_diag or (r - c) in neg_diag):
-                        continue
+            # Column
+            for r in range(row):
+                if board[r][col] == 'Q':
+                    return False
 
-                    # Bookkeeping
-                    cols.add(c)
-                    pos_diag.add(r + c)
-                    neg_diag.add(r - c)
-                    board[r][c] = 'Q'
+            # 1st diagonal
+            r, c = row - 1, col + 1
+            while r >= 0 and c < n:
+                if board[r][c] == 'Q':
+                    return False
+                r -= 1
+                c += 1
 
-                    backtrack(r + 1)
+            # 2nd diagonal
+            r, c = row - 1, col - 1
+            while r >= 0 and c >= 0:
+                if board[r][c] == 'Q':
+                    return False
+                r -= 1
+                c -= 1
 
-                    # Bookkeeping
-                    cols.remove(c)
-                    pos_diag.remove(r + c)
-                    neg_diag.remove(r - c)
-                    board[r][c] = '.'
+            return True
 
-        backtrack(0)
+        def solve(row: int, col: int):
+            if row == n: # Deep copy the board & return
+                deep_copy = []
+                for r in range(n):
+                    deep_copy.append(''.join(board[r]))
+                queens.append(deep_copy)
+                return
+
+            for c in range(n):
+                if valid_placement(row, c):
+                    board[row][c] = 'Q' # Place
+                    solve(row+1, col)
+                    board[row][c] = '.' # Remove
+
+        solve(row=0, col=0)
+
         return queens
 
 if __name__ == '__main__':
