@@ -1,8 +1,12 @@
 # 141. Linked List Cycle
 
-# Given head, the head of a linked list, determine if the linked list has a cycle in it.
+# Given head, the head of a linked list, determine if the linked list has a
+# cycle in it.
 
-# There is a cycle in a linked list if there is some node in the list that can be reached again by continuously following the next pointer. Internally, pos is used to denote the index of the node that tail's next pointer is connected to. Note that pos is not passed as a parameter.
+# There is a cycle in a linked list if there is some node in the list that can
+# be reached again by continuously following the next pointer. Internally, pos
+# is used to denote the index of the node that tail's next pointer is
+# connected to. Note that pos is not passed as a parameter.
 
 # Return true if there is a cycle in the linked list. Otherwise, return false.
 
@@ -10,12 +14,14 @@
 
 # Input: head = [3,2,0,-4], pos = 1
 # Output: true
-# Explanation: There is a cycle in the linked list, where the tail connects to the 1st node (0-indexed).
+# Explanation: There is a cycle in the linked list, where the tail connects to
+# the 1st node (0-indexed).
 # Example 2:
 
 # Input: head = [1,2], pos = 0
 # Output: true
-# Explanation: There is a cycle in the linked list, where the tail connects to the 0th node.
+# Explanation: There is a cycle in the linked list, where the tail connects to
+# the 0th node.
 # Example 3:
 
 # Input: head = [1], pos = -1
@@ -39,20 +45,21 @@ class ListNode:
         self.val = x
         self.next = None
 
-class Solution:
-    def hasCycle(self, head: Optional[ListNode]) -> bool:
 
-        curr_node = head
-        id_list = [id(head)]
+# class Solution:
+#     def hasCycle(self, head: Optional[ListNode]) -> bool:
 
-        while curr_node != None:
-            if id(curr_node.next) in id_list:
-                return True
-            else:
-                curr_node = curr_node.next
-                id_list.append(id(curr_node))
+#         curr_node = head
+#         id_list = [id(head)]
 
-        return False
+#         while curr_node is not None:
+#             if id(curr_node.next) in id_list:
+#                 return True
+#             else:
+#                 curr_node = curr_node.next
+#                 id_list.append(id(curr_node))
+
+#         return False
 
 # Floyd cycle detection algorithm
 
@@ -75,6 +82,7 @@ class Solution:
 
 #         return False
 
+
 class Solution:
     def hasCycle(self, head: Optional[ListNode]) -> bool:
 
@@ -88,6 +96,7 @@ class Solution:
 
         return False
 
+
 if __name__ == '__main__':
     res = Solution()
-    print(res.maxArea([1,1]))
+    print()

@@ -1,11 +1,9 @@
 # 19. Remove Nth Node From End of List
 
-# Given the head of a linked list, remove the nth node from the end of the list and return its head.
-
- 
+# Given the head of a linked list, remove the nth node from the end of the
+# list and return its head.
 
 # Example 1:
-
 
 # Input: head = [1,2,3,4,5], n = 2
 # Output: [1,2,3,5]
@@ -17,7 +15,7 @@
 
 # Input: head = [1,2], n = 1
 # Output: [1]
- 
+
 
 # Constraints:
 
@@ -25,7 +23,7 @@
 # 1 <= sz <= 30
 # 0 <= Node.val <= 100
 # 1 <= n <= sz
- 
+
 
 # Follow up: Could you do this in one pass?
 
@@ -45,8 +43,10 @@
 #         self.next = next
 
 # class Solution:
-#     def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
-        
+#    def removeNthFromEnd(
+#        self, head: Optional[ListNode], n: int
+#    ) -> Optional[ListNode]:
+
 #         # Base cases
 #         if not head or (head.next is None and n == 1):
 #             return None
@@ -71,10 +71,9 @@
 #             curr_node
 #             count += 1
 
-
 #         for _ in range(target_node - 1):
 #             curr_node = curr_node.next
-        
+
 #         if curr_node and curr_node.next:
 #             curr_node.next = curr_node.next.next
 #         else:
@@ -99,7 +98,9 @@ class ListNode:
         self.next = next
 
 # class Solution:
-#     def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+#    def removeNthFromEnd(
+#        self, head: Optional[ListNode], n: int
+#    ) -> Optional[ListNode]:
 #         f = s = head
 
 #         for i in range(n):
@@ -119,8 +120,11 @@ class ListNode:
 
 #         return head
 
+
 class Solution:
-    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+    def removeNthFromEnd(
+        self, head: Optional[ListNode], n: int
+    ) -> Optional[ListNode]:
         f = s = dummy = ListNode(0, head)
 
         for _ in range(n):
@@ -134,6 +138,7 @@ class Solution:
 
         return dummy.next
 
+
 if __name__ == '__main__':
     ans = Solution()
-    print(ans.removeNthFromEnd(head = [1,2,3,4,5], n = 2))
+    print(ans.removeNthFromEnd(head=[1, 2, 3, 4, 5], n=2))

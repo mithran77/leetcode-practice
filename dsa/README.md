@@ -426,16 +426,16 @@
 <details>
 <summary><h4>1-D Dynamic Programming</h4></summary>
 <ul>
-<li><b>🟩 <a href="https://leetcode.com/problems/climbing-stairs/" target="_blank">Climbing Stairs</a></b> <code>Use bottom-up DP. Initialize f and s to 1. Iterate (n - 1) times, updating f as- sum of f + s and setting s to old value of f. Finally return f</code><br>
+<li><b>🟩 <a href="https://leetcode.com/problems/climbing-stairs/" target="_blank">Climbing Stairs</a></b> <code>Model this after fibonacci series starting with 1, 1. Use the fibonacci recurrance relation.</code><br>
 <a href="dsa/python/1D-DynamicProgramming/climbing-stairs.py">python</a>
 </li>
-<li><b>🟩 <a href="https://leetcode.com/problems/min-cost-climbing-stairs/" target="_blank">Min Cost Climbing Stairs</a></b> <code>Use bottom-up DP. Initialize f and s to 1. Iterate (n - 1) times, updating f as- sum of f + s and setting s to old value of f. Finally return f</code><br>
+<li><b>🟩 <a href="https://leetcode.com/problems/min-cost-climbing-stairs/" target="_blank">Min Cost Climbing Stairs</a></b> <code>Similar to climbing stairs, but we need to account for cost at individual stair as well. For the final result, we return the min(len-1, len-2).</code><br>
 <a href="dsa/python/1D-DynamicProgramming/min-cost-climbing-stairs.py">python</a>
 </li>
-<li><b>🟧 <a href="https://leetcode.com/problems/house-robber/" target="_blank">House Robber</a></b> <code>Use 2 pointers f and s initialized to 0. Loop through nums, calculate take as (n + s) and not_take as f. Update s to current f and f to the max(take, not_take). Finally, return f</code><br>
+<li><b>🟧 <a href="https://leetcode.com/problems/house-robber/" target="_blank">House Robber</a></b> <code>The base cases here should be 0, when idx < 0 and nums[house] when idx = 0. Reccurance relation starts from 1, and is the max(rRob(i-1), rRob(i-2) + nums[i])</code><br>
 <a href="dsa/python/1D-DynamicProgramming/house-robber/house-robber.py">python</a>
 </li>
-<li><b>🟧 <a href="https://leetcode.com/problems/house-robber-ii/" target="_blank">House Robber II</a></b> <code>Define function rob1(). If nums size is 1, return nums[0]. Otherwise, return maximum of rob1(nums[1:]) and rob1(nums[:len(nums)-1])</code><br>
+<li><b>🟧 <a href="https://leetcode.com/problems/house-robber-ii/" target="_blank">House Robber II</a></b> <code>Similar to house robber 1, but here we return the max(without_first_house, without_last_house)</code><br>
 <a href="dsa/python/1D-DynamicProgramming/house-robber-ii.py">python</a>
 </li>
 <li><b>🟧 <a href="https://leetcode.com/problems/longest-palindromic-substring/" target="_blank">Longest Palindromic Substring</a></b> <code>Initialize res as "" and res_len as 0. Loop through the string, checking for odd-length (l, r = i, i) and even-length (l, r = i, i+1) palindromes. Update res and res_len whenever a longer palindrome is found. Finally, return res</code><br>
@@ -464,6 +464,17 @@
 
 <details>
 <summary><h4>2-D Dynamic Programming</h4></summary>
+<ul>
+<li><b>🟧 <a href="https://leetcode.com/problems/unique-paths/" target="_blank">Unique Paths</a></b> <code></code><br>
+<a href="dsa/python/Greedy/maximum-subarray.py">python</a>
+</li>
+<li><b>🟧 <a href="https://leetcode.com/problems/longest-common-subsequence/" target="_blank">Longest Common Subsequence</a></b> <code>Start from the ends of both strings, and make the way to the start. If either indices goes out of bounds(-1), return 0. If characters match, return 1 + f(i-1, j-1), otherwise return max(f(i, j-1), f(i-1, j)).</code><br>
+<a href="dsa/python/2D-DynamicProgramming/longest-common-subsequence.py">python</a>
+</li>
+<li><b>🟧 <a href="https://www.geeksforgeeks.org/problems/longest-common-substring1452/1" target="_blank">Longest Common Substring</a></b> <code>Start from the ends of both strings, and make the way to the start. If either indices goes out of bounds(-1), return 0. If characters match, return 1 + f(i-1, j-1), otherwise return 0.</code><br>
+<a href="dsa/python/2D-DynamicProgramming/longest-common-substring1452.py">python</a>
+</li>
+</ul>
 </details>
 
 <details>

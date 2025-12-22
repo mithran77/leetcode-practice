@@ -1,6 +1,7 @@
 # 155. Min Stack
 
-# Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.
+# Design a stack that supports push, pop, top, and retrieving the minimum
+# element in constant time.
 
 # Implement the MinStack class:
 
@@ -33,8 +34,8 @@
 # Constraints:
 
 # -231 <= val <= 231 - 1
-# Methods pop, top and getMin operations will always be called on non-empty stacks.
-# At most 3 * 104 calls will be made to push, pop, top, and getMin.
+# Methods pop, top and getMin operations will always be called on non-empty
+# stacks. At most 3 * 104 calls will be made to push, pop, top, and getMin.
 
 # class MinStack:
 
@@ -63,7 +64,7 @@
 
 class MinStack:
 
-    def __init__(self, head = None):
+    def __init__(self, head=None):
         self.head = head
 
     def push(self, val: int) -> None:
@@ -80,6 +81,7 @@ class MinStack:
 
     def getMin(self) -> int:
         return self.head.min
+
 
 class Node:
     def __init__(self, val: int, min: int, next):
@@ -111,7 +113,7 @@ if __name__ == '__main__':
     print(minStack.push(-2))
     print(minStack.push(0))
     print(minStack.push(-1))
-    print(minStack.getMin()) # return -2
-    print(minStack.top())    # return -1
+    print(minStack.getMin())  # return -2
+    print(minStack.top())     # return -1
     print(minStack.pop())
-    print(minStack.getMin()) # return -2
+    print(minStack.getMin())  # return -2

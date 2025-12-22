@@ -1,6 +1,7 @@
 # https://leetcode.com/problems/reorder-list/description/
 from typing import Optional
 
+
 # Definition for singly-linked list.
 class ListNode:
     def __init__(self, val=0, next=None):
@@ -25,6 +26,7 @@ class ListNode:
 #             cur.val = nums[r]
 #             cur = cur.next
 #             l, r = l + 1, r + 1
+
 
 class Solution:
     def reorderList(self, head: Optional[ListNode]) -> None:
@@ -55,7 +57,7 @@ class Solution:
             l2.next = t1
             l1, l2 = t1, t2
 
+
 if __name__ == '__main__':
     res = Solution()
-    print(res.reorderList([1,2,3,4]))
-
+    print(res.reorderList([1, 2, 3, 4]))

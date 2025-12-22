@@ -1,7 +1,8 @@
 # 15. 3Sum
 
-# Given an integer array nums, return all the triplets [nums[i], nums[j], nums[k]] such 
-# that i != j, i != k, and j != k, and nums[i] + nums[j] + nums[k] == 0.
+# Given an integer array nums, return all the triplets [nums[i], nums[j],
+# nums[k]] such that i != j, i != k, and j != k, and
+# nums[i] + nums[j] + nums[k] == 0.
 
 # Notice that the solution set must not contain duplicate triplets.
 
@@ -53,8 +54,10 @@ from typing import List
 #             for j in range(i + 1, len(nums) - 1):
 #                 for k in range(j + 1, len(nums)):
 #                     t = sorted([nums[i], nums[j], nums[k]])
-#                     if (nums[i] + nums[j] + nums[k]) == 0 and t not in output:
-#                         output.append(t)
+#                    if ((nums[i] + nums[j] + nums[k]) == 0 and
+#                        t not in output
+#                    ):
+#                        output.append(t)
 
 #         return output
 
@@ -109,41 +112,75 @@ from typing import List
 #         return res
 
 
-# Most Understandable 
+# # Most Understandable
+# class Solution:
+#     def threeSum(self, nums: List[int]) -> List[List[int]]:
+#         nums.sort()
+#         res = []
+#         for i in range(len(nums)):
+#             if nums[i] > 0: # Early return
+#                 break
+#             # Skip i duplicates
+#             if i > 0 and nums[i] == nums[i - 1]:
+#                 continue
+#             target = -nums[i]
+#             l, r = i + 1, len(nums) - 1
+#             while l < r:
+#                 sum = nums[l] + nums[r]
+#                 if sum < target:
+#                     l += 1
+#                 elif sum > target:
+#                     r -= 1
+#                 else:
+#                     triplet = [nums[i], nums[l], nums[r]]
+#                     res.append(triplet)
+#                     # Skip l duplicates
+#                     while l < r and nums[l] == triplet[1]:
+#                         l += 1
+#                     # Skip r duplicates
+#                     while l < r and nums[r] == triplet[2]:
+#                         r -= 1
+
+#         return res
+
+# Simplest final else
 class Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
         nums.sort()
         res = []
+
         for i in range(len(nums)):
-            if nums[i] > 0: # Early return
+            if nums[i] > 0:
                 break
-            # Skip i duplicates
+
             if i > 0 and nums[i] == nums[i - 1]:
                 continue
+
             target = -nums[i]
             l, r = i + 1, len(nums) - 1
+
             while l < r:
-                sum = nums[l] + nums[r]
-                if sum < target:
+                cur_sum = nums[l] + nums[r]
+                if cur_sum < target:
                     l += 1
-                elif sum > target:
+                elif cur_sum > target:
                     r -= 1
                 else:
-                    triplet = [nums[i], nums[l], nums[r]]
-                    res.append(triplet)
-                    # Skip l duplicates
-                    while l < r and nums[l] == triplet[1]:
+                    res.append([nums[i], nums[l], nums[r]])
+                    l, r = l + 1, r - 1
+                    while l < r and nums[l] == nums[l - 1]:
                         l += 1
-                    # Skip r duplicates
-                    while l < r and nums[r] == triplet[2]:
+                    while l < r and nums[r] == nums[r + 1]:
                         r -= 1
+
         return res
+
 
 if __name__ == '__main__':
     res = Solution()
-    print(res.threeSum([-1,0,1,2,-1,-4]))
-    print(res.threeSum([0,1,1]))
-    print(res.threeSum([0,0,0]))
+    print(res.threeSum([-1, 0, 1, 2, -1, -4]))
+    print(res.threeSum([0, 1, 1]))
+    print(res.threeSum([0, 0, 0]))
     print(res.threeSum([]))
     print(res.threeSum([0]))
-    print(res.threeSum([0,0,0,0]))
+    print(res.threeSum([0, 0, 0, 0]))

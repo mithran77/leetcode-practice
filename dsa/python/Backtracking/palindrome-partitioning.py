@@ -18,30 +18,60 @@
 
 from typing import List
 
+# class Solution:
+#     def partition(self, s: str) -> List[List[str]]:
+#         partitions = []
+
+#         def backtrack(temp, start):
+#             if start == len(s):
+#                 partitions.append(temp.copy())
+#             else:
+#                 for i in range(start, len(s)):
+#                     if self.is_palindrome(s, start, i):
+#                         temp.append(s[start:i+1])
+#                         backtrack(temp, i + 1)
+#                         temp.pop()
+
+#         backtrack([], 0)
+#         return partitions
+
+#     def is_palindrome(self, s, low, high):
+#         while low < high:
+#             if s[low] != s[high]:
+#                 return False
+#             low += 1
+#             high -= 1
+#         return True
+
 class Solution:
     def partition(self, s: str) -> List[List[str]]:
-        partitions = []
 
-        def backtrack(temp, start):
+        partitons = []
+
+        def is_palindrome(l, r):
+            while l < r:
+                if s[l] != s[r]:
+                    return False
+                l += 1
+                r -= 1
+
+            return True
+
+        def backtrack(start, strings):
             if start == len(s):
-                partitions.append(temp.copy())
-            else:
-                for i in range(start, len(s)):
-                    if self.is_palindrome(s, start, i):
-                        temp.append(s[start:i+1])
-                        backtrack(temp, i + 1)
-                        temp.pop()
+                partitons.append(strings.copy())
+                return
 
-        backtrack([], 0)
-        return partitions
+            for i in range(start, len(s)):
+                if is_palindrome(start, i):
+                    strings.append(s[start:i+1])
+                    backtrack(i+1, strings)
+                    strings.pop()
 
-    def is_palindrome(self, s, low, high):
-        while low < high:
-            if s[low] != s[high]:
-                return False
-            low += 1
-            high -= 1
-        return True
+        backtrack(0, [])
+
+        return partitons
+
 
 if __name__ == '__main__':
     res = Solution()

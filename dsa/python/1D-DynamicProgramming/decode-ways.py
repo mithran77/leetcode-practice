@@ -1,20 +1,14 @@
 # 91. Decode Ways
-# Medium
-# Topics
-# Companies
 # You have intercepted a secret message encoded as a string of numbers. The message is decoded via the following mapping:
 
 # "1" -> 'A'
-
 # "2" -> 'B'
-
 # ...
-
 # "25" -> 'Y'
-
 # "26" -> 'Z'
 
-# However, while decoding the message, you realize that there are many different ways you can decode the message because some codes are contained in other codes ("2" and "5" vs "25").
+# However, while decoding the message, you realize that there are many different ways you can decode the message because some codes are
+# contained in other codes ("2" and "5" vs "25").
 
 # For example, "11106" can be decoded into:
 
@@ -28,67 +22,114 @@
 # The test cases are generated so that the answer fits in a 32-bit integer.
 
 # Example 1:
-
 # Input: s = "12"
-
 # Output: 2
 
 # Explanation:
-
 # "12" could be decoded as "AB" (1 2) or "L" (12).
 
 # Example 2:
-
 # Input: s = "226"
-
 # Output: 3
 
 # Explanation:
-
 # "226" could be decoded as "BZ" (2 26), "VF" (22 6), or "BBF" (2 2 6).
 
 # Example 3:
-
 # Input: s = "06"
-
 # Output: 0
 
 # Explanation:
-
 # "06" cannot be mapped to "F" because of the leading zero ("6" is different from "06"). In this case, the string is not a valid encoding, so return 0.
 
 # Constraints:
-
 # 1 <= s.length <= 100
 # s contains only digits and may contain leading zero(s).
 
+# class Solution:
+#     def numDecodings(self, s: str) -> int:
+#         # BCs
+#         if len(s) == 0 or s[0] == '0': return 0
+#         if len(s) == 1: return 1
+
+#         upto_prev, upto_cur = 1, 1
+#         for i in range(1, len(s)):
+#             cur = ord(s[i]) - ord('0')
+#             prev = (ord(s[i - 1]) - ord('0')) * 10 + cur
+#             val = 0
+
+#             if cur > 0:
+#             # If 0, don't add ways for i
+#                 val += upto_cur
+#             if prev >= 10 and prev <= 26:
+#             # If not in range, don't add ways for prev
+#                 val += upto_prev
+
+#             upto_prev = upto_cur
+#             upto_cur = val
+
+#         return upto_cur
+
+
+# class Solution:
+#     def numDecodings(self, s: str) -> int:
+#         self.decodings, N = 0, len(s)
+#         path, dp = [], [] * N
+
+#         def rNumDecodings(start):
+#             # BCs
+#             if path:
+#                 if path[-1][0] == '0': # starts with 0
+#                     return
+#                 if int(path[-1]) not in range(1, 27):
+#                     return
+
+#             if start == N:
+#                 self.decodings += 1
+#                 return
+
+#             for i in range(start, N):
+#                 path.append(s[start:i+1])
+#                 rNumDecodings(i+1)
+#                 path.pop()
+
+#         rNumDecodings(0)
+
+#         return self.decodings
+
 class Solution:
     def numDecodings(self, s: str) -> int:
-        # BCs
-        if len(s) == 0 or s[0] == '0': return 0
-        if len(s) == 1: return 1
+        N = len(s)
+        dp = [-1] * (N+1)
 
-        upto_prev, upto_cur = 1, 1
-        for i in range(1, len(s)):
-            cur = ord(s[i]) - ord('0')
-            prev = (ord(s[i - 1]) - ord('0')) * 10 + cur
-            val = 0
+        def rNumDecodings(i):
+            
+            if dp[i] != -1:
+                return dp[i]
 
-            if cur > 0:
-            # If 0, don't add ways for i
-                val += upto_cur
-            if prev >= 10 and prev <= 26:
-            # If not in range, don't add ways for prev
-                val += upto_prev
+            if i == N: # If we reached the end, we found a way to decode
+                return 1
 
-            upto_prev = upto_cur
-            upto_cur = val
+            if s[i] == '0': # Check for last digit 0, before confirming we have a way
+                return 0
 
-        return upto_cur
+            if i == N-1:
+                return 1
+
+            ways = rNumDecodings(i+1)
+            if int(s[i:i+2]) in range(1,27):
+                ways += rNumDecodings(i+2)
+            dp[i] = ways
+
+            return ways
+
+        return rNumDecodings(0)
+
 
 if __name__ == '__main__':
     res = Solution()
     print(res.numDecodings(s = "12"))
     print(res.numDecodings(s = "226"))
     print(res.numDecodings(s = "06"))
+    print(res.numDecodings(s = "0"))
 

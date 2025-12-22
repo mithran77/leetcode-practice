@@ -1,6 +1,7 @@
 # 20. Valid Parentheses
 #
-# Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
+# Given a string s containing just the characters '(', ')', '{', '}',
+# '[' and ']', determine if the input string is valid.
 #
 # An input string is valid if:
 #
@@ -107,6 +108,7 @@ class Solution:
                 stack.append(c)
 
         return len(stack) == 0
+
 
 if __name__ == '__main__':
     res = Solution()

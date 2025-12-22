@@ -1,6 +1,7 @@
 # 206. Reverse Linked List
 
-# Given the head of a singly linked list, reverse the list, and return the reversed list.
+# Given the head of a singly linked list, reverse the list, and return the
+# reversed list.
 
 # Example 1:
 
@@ -22,7 +23,8 @@
 # -5000 <= Node.val <= 5000
  
 
-# Follow up: A linked list can be reversed either iteratively or recursively. Could you implement both?
+# Follow up: A linked list can be reversed either iteratively or recursively.
+# Could you implement both?
 
 # Definition for singly-linked list.
 # class ListNode:
@@ -105,6 +107,7 @@ class ListNode:
         self.val = val
         self.next = next
 
+
 class Solution:
     def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
         if not head:
@@ -112,13 +115,14 @@ class Solution:
 
         prev, cur = None, head
 
-        while cur != None:
+        while cur is not None:
             tmp = cur.next
             cur.next = prev
             prev = cur
             cur = tmp
 
         return prev
+
 
 if __name__ == '__main__':
     res = Solution()

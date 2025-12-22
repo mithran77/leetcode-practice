@@ -1,12 +1,11 @@
 # 287. Find the Duplicate Number
-# Medium
-# Topics
-# Companies
-# Given an array of integers nums containing n + 1 integers where each integer is in the range [1, n] inclusive.
+# Given an array of integers nums containing n + 1 integers where each integer
+# is in the range [1, n] inclusive.
 
 # There is only one repeated number in nums, return this repeated number.
 
-# You must solve the problem without modifying the array nums and using only constant extra space.
+# You must solve the problem without modifying the array nums and using only
+# constant extra space.
 
 # Example 1:
 
@@ -26,7 +25,8 @@
 # 1 <= n <= 105
 # nums.length == n + 1
 # 1 <= nums[i] <= n
-# All the integers in nums appear only once except for precisely one integer which appears two or more times.
+# All the integers in nums appear only once except for precisely one integer
+# which appears two or more times.
 
 # Follow up:
 
@@ -35,12 +35,28 @@
 
 from typing import List
 
+
 class Solution:
     def findDuplicate(self, nums: List[int]) -> int:
-        pass
+        s1, f = nums[0], nums[0]
+
+        while True:
+            s1 = nums[s1]
+            f = nums[nums[f]]
+            if s1 == f:  # Intersection point
+                break
+
+        s2 = nums[0]
+
+        while s1 != s2:
+            s1 = nums[s1]
+            s2 = nums[s2]
+
+        return s1
+
 
 if __name__ == '__main__':
     res = Solution()
-    print(res.detectCycle(head = [3, 2, 0, -4], pos = 1))
-    print(res.detectCycle(head = [1, 2], pos = 0))
-    print(res.detectCycle(head = [1], pos = -1))
+    print(res.detectCycle(head=[3, 2, 0, -4], pos=1))
+    print(res.detectCycle(head=[1, 2], pos=0))
+    print(res.detectCycle(head=[1], pos=-1))

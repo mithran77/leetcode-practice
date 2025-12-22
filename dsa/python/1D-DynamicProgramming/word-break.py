@@ -32,19 +32,42 @@
 
 from typing import List
 
+# class Solution:
+#     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
+#         dp = [False] * (len(s) + 1)
+#         dp[len(s)] = True
+
+#         for i in range(len(s) - 1, -1, -1):
+#             for w in wordDict:
+#                 if i + len(w) <= len(s) and s[i : i + len(w)] == w:
+#                     dp[i] = dp[i + len(w)]
+#                 if dp[i]:
+#                     break
+
+#         return dp[0]
+
+
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
-        dp = [False] * (len(s) + 1)
-        dp[len(s)] = True
 
-        for i in range(len(s) - 1, -1, -1):
+        memo = [-1] * len(s)
+
+        def rWordBreak(i:int)->bool:
+            if i == len(s):
+                return True
+            if memo[i] != -1:
+                return memo[i]
+
             for w in wordDict:
-                if i + len(w) <= len(s) and s[i : i + len(w)] == w:
-                    dp[i] = dp[i + len(w)]
-                if dp[i]:
-                    break
+                if s[i:i+len(w)] == w:
+                    if rWordBreak(i=(i+len(w))):
+                        memo[i] = True
+                        return True
 
-        return dp[0]
+            memo[i] = False
+            return False
+
+        return rWordBreak(i=0)
 
 
 if __name__ == '__main__':
