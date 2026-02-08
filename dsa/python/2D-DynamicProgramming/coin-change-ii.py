@@ -1,7 +1,9 @@
 # 518. Coin Change II
 
-# You are given an integer array coins representing coins of different denominations and an integer amount representing a total amount of money.
-# Return the number of combinations that make up that amount. If that amount of money cannot be made up by any combination of the coins, return 0.
+# You are given an integer array coins representing coins of different
+# denominations and an integer amount representing a total amount of money.
+# Return the number of combinations that make up that amount. If that
+# amount of money cannot be made up by any combination of the coins, return 0.
 # You may assume that you have an infinite number of each kind of coin.
 # The answer is guaranteed to fit into a signed 32-bit integer.
 
@@ -63,10 +65,7 @@ from typing import List
 
 class Solution:
     def change(self, amount: int, coins: List[int]) -> int:
-        dp = [
-            [-1] * (amount+1)
-            for _ in range(len(coins))
-        ]
+        dp = [[-1] * (amount + 1) for _ in range(len(coins))]
 
         def rChange(i: int, total: int):
 
@@ -81,8 +80,8 @@ class Solution:
             if dp[i][total] != -1:
                 return dp[i][total]
 
-            skip = rChange(i+1, total)
-            take = rChange(i, total+coins[i])
+            skip = rChange(i + 1, total)
+            take = rChange(i, total + coins[i])
 
             dp[i][total] = take + skip
 
@@ -90,9 +89,9 @@ class Solution:
 
         return rChange(i=0, total=0)
 
-if __name__ == '__main__':
-    ans = Solution()
-    print(ans.change(amount = 5, coins = [1, 2, 5]))
-    print(ans.change(amount = 3, coins = [2]))
-    print(ans.change(amount = 10, coins = [10]))
 
+if __name__ == "__main__":
+    ans = Solution()
+    print(ans.change(amount=5, coins=[1, 2, 5]))
+    print(ans.change(amount=3, coins=[2]))
+    print(ans.change(amount=10, coins=[10]))

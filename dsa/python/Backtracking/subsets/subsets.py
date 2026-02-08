@@ -1,10 +1,10 @@
 # 78. Subsets
 
-# Given an integer array nums of unique elements, return all possible 
-# subsets
-#  (the power set).
+# Given an integer array nums of unique elements, return all possible
+# subsets (the power set).
 
-# The solution set must not contain duplicate subsets. Return the solution in any order.
+# The solution set must not contain duplicate subsets. Return the solution
+# in any order.
 
 # Example 1:
 
@@ -23,48 +23,52 @@
 
 from typing import List
 
-# class Solution:
-#     def subsets(self, nums: List[int]) -> List[List[int]]:
-#         powerset = []
 
-#         def dfs(cur, i):
-#             if i >= len(nums):
-#                 powerset.append(cur.copy())
-#                 return
-#             # Pick
-#             cur.append(nums[i])
-#             dfs(cur, i + 1)
-#             # No pick
-#             cur.pop()
-#             dfs(cur, i + 1)
+class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        all_subsets = []
 
-#         dfs([], 0)
+        def backtrack(current_subset, index):
+            if index == len(nums):
+                all_subsets.append(current_subset.copy())
+                return
 
-#         return powerset
+            # Include nums[index]
+            current_subset.append(nums[index])
+            backtrack(current_subset, index + 1)
+
+            # Exclude nums[index]
+            current_subset.pop()
+            backtrack(current_subset, index + 1)
+
+        backtrack([], 0)
+        return all_subsets
+
 
 # Time: O(2^n * n)
-    # 2^n subsets
-    # In worst case, can be of length n
+#    2^n subsets
+#    In worst case, can be of length n
 # Space: O(n)
-    # cur grows to length n
-    # Auxiliary stack space also can grow to n
+#    cur grows to length n
+#    Auxiliary stack space also can grow to n
 
 # Using template
 # https://leetcode.com/problems/subsets/solutions/27281/a-general-approach-to-backtracking-questions-in-java-subsets-permutations-combination-sum-palindrome-partitioning/
 
-class Solution:
-    def subsets(self, nums: List[int]) -> List[List[int]]:
-        powerset = []
 
-        def backtrack(cur, start):
-            powerset.append(cur.copy())
-            for i in range(start, len(nums)):
-                cur.append(nums[i])
-                backtrack(cur, i + 1)
-                cur.pop()
+# class Solution:
+#     def subsets(self, nums: List[int]) -> List[List[int]]:
+#         powerset = []
 
-        backtrack([], 0)
-        return powerset
+#         def backtrack(cur, start):
+#             powerset.append(cur.copy())
+#             for i in range(start, len(nums)):
+#                 cur.append(nums[i])
+#                 backtrack(cur, i + 1)
+#                 cur.pop()
+
+#         backtrack([], 0)
+#         return powerset
 
 # RT [1,2,3]
 # backtrack([], 0)          [[]]
@@ -87,6 +91,5 @@ class Solution:
 
 if __name__ == '__main__':
     res = Solution()
-    print(res.subsets(nums = [1,2,3]))
+    print(res.subsets(nums=[1, 2, 3]))
     # print(res.subsets(nums = [0]))
-
