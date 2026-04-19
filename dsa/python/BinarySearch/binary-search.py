@@ -1,8 +1,8 @@
 # 704. Binary Search
 
-# Given an array of integers nums which is sorted in ascending order, and an integer target,
-# write a function to search target in nums. If target exists, then return its index. Otherwise,
-# return -1.
+# Given an array of integers nums which is sorted in ascending order, and an
+# integer target, write a function to search target in nums. If target exists,
+# then return its index. Otherwise, return -1.
 
 # You must write an algorithm with O(log n) runtime complexity.
 
@@ -24,7 +24,7 @@
 # All the integers in nums are unique.
 # nums is sorted in ascending order.
 from typing import List
-import math
+# import math
 
 # class Solution:
 #     def search(self, nums: List[int], target: int) -> int:
@@ -55,21 +55,40 @@ import math
 #         return -1
 
 # Using template
+
+
+# class Solution:
+#     def search(self, nums: List[int], target: int) -> int:
+#         l, r = 0, len(nums)
+
+#         while l < r:
+#             m = l + ((r - l) // 2)
+
+#             if target < nums[m]:
+#                 r = m
+#             elif nums[m] < target:
+#                 l = m + 1
+#             else:
+#                 return m
+
+#         return -1
+
 class Solution:
     def search(self, nums: List[int], target: int) -> int:
-        l, r = 0, len(nums)
+        start, end = -1, len(nums)
 
-        while l < r:
-            m = l + ((r - l) // 2)
+        while (start + 1) != end:
+            mid = start + ((end - start) // 2)
 
-            if target < nums[m]:
-                r = m
-            elif nums[m] < target:
-                l = m + 1
+            if nums[mid] == target:
+                return mid
+            elif nums[mid] < target:
+                start = mid
             else:
-                return m
+                end = mid
 
         return -1
+
 
 if __name__ == '__main__':
     res = Solution()
@@ -95,4 +114,3 @@ if __name__ == '__main__':
 # Rough
 # [ 0, 1, 2, 3, 4,  5]
 # [-1, 0, 3, 5, 9, 12]
-

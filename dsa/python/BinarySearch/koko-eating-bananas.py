@@ -1,14 +1,18 @@
 # 875. Koko Eating Bananas
 
-# Koko loves to eat bananas. There are n piles of bananas, the ith pile has piles[i] bananas.
-# The guards have gone and will come back in h hours.
+# Koko loves to eat bananas. There are n piles of bananas, the ith pile has
+# piles[i] bananas. The guards have gone and will come back in h hours.
 
-# Koko can decide her bananas-per-hour eating speed of k. Each hour, she chooses some pile of bananas and eats k bananas from that pile.
-# If the pile has less than k bananas, she eats all of them instead and will not eat any more bananas during this hour.
+# Koko can decide her bananas-per-hour eating speed of k. Each hour, she
+# chooses some pile of bananas and eats k bananas from that pile.
+# If the pile has less than k bananas, she eats all of them instead and will
+# not eat any more bananas during this hour.
 
-# Koko likes to eat slowly but still wants to finish eating all the bananas before the guards return.
+# Koko likes to eat slowly but still wants to finish eating all the bananas
+# before the guards return.
 
-# Return the minimum integer k such that she can eat all the bananas within h hours.
+# Return the minimum integer k such that she can eat all the bananas within
+# h hours.
 
 # Example 1:
 # Input: piles = [3,6,7,11], h = 8
@@ -65,29 +69,48 @@ import math
 
 #             speed += 1
 
-# Binary search
+# # Binary search
+# class Solution:
+#     def minEatingSpeed(self, piles: List[int], h: int) -> int:
+#         l, r = 1, max(piles)
+#         speed = r
+
+#         while l <= r:
+#             m = l + ((r-l) // 2)
+
+#             total_time = 0
+#             for p in piles:
+#                 total_time += math.ceil(p/m)
+#             if total_time <= h:
+#                 speed = m
+#                 r = m - 1
+#             else:
+#                 l = m + 1
+
+#         return speed
+
+
 class Solution:
     def minEatingSpeed(self, piles: List[int], h: int) -> int:
-        l, r = 1, max(piles)
-        speed = r
+        start, end = 0, max(piles)
 
-        while l <= r:
-            m = l + ((r-l) // 2)
+        while start + 1 != end:
+            mid = start + (end - start) // 2
 
-            total_time = 0
+            time = 0
             for p in piles:
-                total_time += math.ceil(p/m)
-            if total_time <= h:
-                speed = m
-                r = m - 1
+                time += math.ceil(p / mid)
+
+            if time > h:
+                start = mid
             else:
-                l = m + 1
+                end = mid
 
-        return speed
+        return end
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     res = Solution()
-    print(res.minEatingSpeed(piles = [3,6,7,11], h = 8))
-    print(res.minEatingSpeed(piles = [30,11,23,4,20], h = 5))
-    print(res.minEatingSpeed(piles = [30,11,23,4,20], h = 6))
+    print(res.minEatingSpeed(piles=[3, 6, 7, 11], h=8))
+    print(res.minEatingSpeed(piles=[30, 11, 23, 4, 20], h=5))
+    print(res.minEatingSpeed(piles=[30, 11, 23, 4, 20], h=6))

@@ -1,16 +1,18 @@
 # 153. Find Minimum in Rotated Sorted Array
 
-# Suppose an array of length n sorted in ascending order is rotated between 1 and n times. For example, the array nums = [0,1,2,4,5,6,7] might become:
+# Suppose an array of length n sorted in ascending order is rotated between 1
+# and n times. For example, the array nums = [0,1,2,4,5,6,7] might become:
 
 # [4,5,6,7,0,1,2] if it was rotated 4 times.
 # [0,1,2,4,5,6,7] if it was rotated 7 times.
-# Notice that rotating an array [a[0], a[1], a[2], ..., a[n-1]] 1 time results in the array [a[n-1], a[0], a[1], a[2], ..., a[n-2]].
+# Notice that rotating an array [a[0], a[1], a[2], ..., a[n-1]] 1 time results
+# in the array [a[n-1], a[0], a[1], a[2], ..., a[n-2]].
 
-# Given the sorted rotated array nums of unique elements, return the minimum element of this array.
+# Given the sorted rotated array nums of unique elements, return the minimum
+# element of this array.
 
 # You must write an algorithm that runs in O(log n) time.
 
- 
 
 # Example 1:
 
@@ -21,13 +23,14 @@
 
 # Input: nums = [4,5,6,7,0,1,2]
 # Output: 0
-# Explanation: The original array was [0,1,2,4,5,6,7] and it was rotated 4 times.
+# Explanation: The original array was [0,1,2,4,5,6,7] and it was rotated 4
+# times.
 # Example 3:
 
 # Input: nums = [11,13,15,17]
 # Output: 11
-# Explanation: The original array was [11,13,15,17] and it was rotated 4 times. 
- 
+# Explanation: The original array was [11,13,15,17] and it was rotated 4 times.
+
 
 # Constraints:
 
@@ -89,23 +92,41 @@ from typing import List
 
 #         return min(ans, nums[l])
 
-# Using template
+# # Using template
+# class Solution:
+#     def findMin(self, nums: List[int]) -> int:
+#         l, r = 0, len(nums) - 1
+
+#         while l < r:
+#             m = l + ((r - l) // 2)
+#             if nums[m] < nums[r]:
+#                 r = m
+#             else:
+#                 l = m + 1
+
+#         return nums[l]
+
 
 class Solution:
     def findMin(self, nums: List[int]) -> int:
-        l, r = 0, len(nums) - 1
+        start, end = -1, len(nums)
 
-        while l < r:
-            m = l + ((r - l) // 2)
-            if nums[m] < nums[r]:
-                r = m
+        while start + 1 != end:
+            mid = start + (end - start) // 2
+
+            if nums[0] > nums[mid]:  # Keep shifting the end pointer
+                end = mid
             else:
-                l = m + 1
+                start = mid
 
-        return nums[l]
+        if end == len(nums):  # When end dosen't change
+            return nums[0]
 
-if __name__ == '__main__':
+        return nums[end]
+
+
+if __name__ == "__main__":
     res = Solution()
-    print(res.findMin([3,4,5,1,2]))
-    print(res.findMin([4,5,6,7,0,1,2]))
-    print(res.findMin([11,13,15,17]))
+    print(res.findMin([3, 4, 5, 1, 2]))
+    print(res.findMin([4, 5, 6, 7, 0, 1, 2]))
+    print(res.findMin([11, 13, 15, 17]))
