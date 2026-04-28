@@ -1,3 +1,4 @@
+/*
 # 167. Two Sum II - Input Array Is Sorted
 
 # Given a 1-indexed array of integers numbers that is already sorted in
@@ -41,54 +42,29 @@
 # numbers is sorted in non-decreasing order.
 # -1000 <= target <= 1000
 # The tests are generated such that there is exactly one solution.
+*/
 
-from typing import List
+func twoSum(numbers []int, target int) []int {
+    l, r := 0, len(numbers) - 1
 
-# class Solution:
-#     def twoSum(self, numbers: List[int], target: int) -> List[int]:
-#         l, r = 0, len(numbers) - 1
+    for l < r {
+        sum := numbers[l] + numbers[r]
 
-#         while l < r:
-#             two_sum = numbers[l] + numbers[r]
-#             if two_sum > target:
-#                 r -= 1
-#             elif two_sum < target:
-#                 l += 1
-#             else:
-#                 return [l + 1, r + 1]
+        if sum < target {
+            l++
+        } else if sum > target {
+            r--
+        } else {
+            return []int{l+1, r+1}
+        }
+    }
 
-#         return []
-
-# class Solution:
-#     def twoSum(self, numbers: List[int], target: int) -> List[int]:
-#         sum = {}
-#         for i in range(len(numbers)):
-#             n = numbers[i]
-#             if n in sum:
-#                 return [sum[n], i+1]
-#             difference = target - n
-
-#             sum[difference] = i + 1
+    return []int{-1, -1}
+}
 
 
-class Solution:
-    def twoSum(self, numbers: List[int], target: int) -> List[int]:
-        l, r = 0, len(numbers) - 1
-
-        while l < r:
-            two_sum = numbers[l] + numbers[r]
-            if two_sum > target:
-                r -= 1
-            elif two_sum < target:
-                l += 1
-            else:
-                return [l + 1, r + 1]
-
-        return []
-
-
-if __name__ == "__main__":
-    res = Solution()
-    print(res.twoSum([2, 7, 11, 15], 9))
-    print(res.twoSum([2, 3, 4], 6))
-    print(res.twoSum([-1, 0], -1))
+func main() {
+    fmt.Println(twoSum([]int{2,7,11,15}, 9))
+    fmt.Println(twoSum([]int{2,3,4}, 6))
+    fmt.Println(twoSum([]int{-1,0}, -1))
+}

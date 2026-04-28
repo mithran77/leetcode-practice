@@ -1,4 +1,5 @@
-# Given an integer array nums, return true if any value appears at least twice in the array, and return
+# Given an integer array nums, return true if any value appears at least twice
+# in the array, and return
 # false if every element is distinct.
 #
 # Example 1:
@@ -42,17 +43,18 @@ from typing import List
 
 # class Solution:
 #     def containsDuplicate(self, nums: List[int]) -> bool:
-        
-#         hashset = set() # declaring hashset 
 
-#         for n in nums: # n is iterator 
+#         hashset = set() # declaring hashset
+
+#         for n in nums: # n is iterator
 #             if n in hashset: # if n exists in hashset return true
-#                 return True 
+#                 return True
 #             hashset.add(n) # else add it to hashset
 #         return False # duplicate not exist return false
 
-# Iterating through a single hash set is a little faster (not in order of magnitude though)
-# 
+# Iterating through a single hash set is a little faster (not in order of
+# magnitude though)
+#
 # class Solution:
 #     def containsDuplicate(self, nums: List[int]) -> bool:
 #         unique = set(nums)
@@ -61,16 +63,16 @@ from typing import List
 #         return True
 
 
+# class Solution:
+#     def containsDuplicate(self, nums: List[int]) -> bool:
+#         int_count = {}
 
-class Solution:
-    def containsDuplicate(self, nums: List[int]) -> bool:
-        int_count = {}
-        
-        for n in nums:
-            int_count[n] = int_count.get(n, 0) + 1
-            if int_count[n] > 1:
-                return True
-        return False
+#         for n in nums:
+#             int_count[n] = int_count.get(n, 0) + 1
+#             if int_count[n] > 1:
+#                 return True
+#         return False
+
 
 # Better to use a hash set than a dict
 class Solution:
@@ -82,7 +84,7 @@ class Solution:
             exists.add(n)
         return False
 
-if __name__ == '__main__':
-    res = Solution()
-    print(res.containsDuplicate([1,2,3,4]))
 
+if __name__ == "__main__":
+    res = Solution()
+    print(res.containsDuplicate([1, 2, 3, 4]))

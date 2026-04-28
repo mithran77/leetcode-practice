@@ -1,8 +1,11 @@
 # 49. Group Anagrams
 #
-# Given an array of strings strs, group the anagrams together. You can return the answer in any order.
+# Given an array of strings strs, group the anagrams together. You can return
+# the answer in any order.
 #
-# An Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.
+# An Anagram is a word or phrase formed by rearranging the letters of a
+# different word or phrase, typically using all the original letters exactly
+# once.
 #
 # Example 1:
 #
@@ -49,8 +52,9 @@ from typing import List
 #         return result
 
 #     @staticmethod
-#     def isAnagram(str1: List[str], str2: List[str]) -> bool: # O(n) time and space
+#     # O(n) time and space
 
+#     def isAnagram(str1: List[str], str2: List[str]) -> bool:
 #         char_count = {}
 
 #         if len(str1) != len(str2): return False
@@ -92,6 +96,7 @@ from typing import List
 
 import collections
 import array as arr
+
 # array solution
 # class Solution:
 #     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
@@ -115,7 +120,7 @@ import array as arr
 
 #             for c in word:
 #                 cnt[ord(c) - ord('a')] += 1
-    
+
 #             cnt = tuple(cnt)
 #             if cnt not in anagrams:
 #                 anagrams[cnt] = []
@@ -127,19 +132,20 @@ import array as arr
 #             res.append(anagrams[k])
 #         return res
 
+
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
         res = collections.defaultdict(list)
         for s in strs:
             count = [0] * 26
             for c in s:
-                count[ord(c) - ord('a')] += 1
+                count[ord(c) - ord("a")] += 1
             res[tuple(count)].append(s)
         return res.values()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     res = Solution()
-    print(res.groupAnagrams(strs = ["eat","tea","tan","ate","nat","bat"]))
-    print(res.groupAnagrams(strs = [""]))
-    print(res.groupAnagrams(strs = ["a"]))
+    print(res.groupAnagrams(strs=["eat", "tea", "tan", "ate", "nat", "bat"]))
+    print(res.groupAnagrams(strs=[""]))
+    print(res.groupAnagrams(strs=["a"]))
