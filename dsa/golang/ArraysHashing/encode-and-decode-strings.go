@@ -33,18 +33,18 @@ type Solution struct{}
 func (s *Solution) Encode(strs []string) string {
 	encoded := ""
 
-	for _, w := range strs {
+	for _, w := range strs {  // T: O(n)
 		encoded += fmt.Sprintf("%d#%s", len(w), w)
 	}
 
-	return encoded
+	return encoded // S: O(n)
 }
 
 func (s *Solution) Decode(encoded string) []string {
 	slow, fast := 0, 0
-	decoded := []string{}
+	decoded := []string{}  // S: O(n)
 
-	for fast < len(encoded) {
+	for fast < len(encoded) {  // T: O(n)
 		for encoded[fast] != '#' {
 			fast++
 		}

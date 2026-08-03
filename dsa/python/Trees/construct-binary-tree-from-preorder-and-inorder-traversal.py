@@ -1,12 +1,16 @@
-# 105. Construct Binary Tree from Preorder and Inorder Traversal
+# 105. Construct Binary Tree from Preorder
+# and Inorder Traversal
 
-# Given two integer arrays preorder and inorder where preorder is the preorder
-# traversal of a binary tree and inorder is the inorder traversal of the same
+# Given two integer arrays preorder and
+# inorder where preorder is the preorder
+# traversal of a binary tree and inorder
+# is the inorder traversal of the same
 # tree, construct and return the binary tree.
 
 # Example 1:
 
-# Input: preorder = [3,9,20,15,7], inorder = [9,3,15,20,7]
+# Input: preorder = [3,9,20,15,7],
+# inorder = [9,3,15,20,7]
 # Output: [3,9,20,null,null,15,7]
 # Example 2:
 
@@ -20,8 +24,9 @@
 # -3000 <= preorder[i], inorder[i] <= 3000
 # preorder and inorder consist of unique values.
 # Each value of inorder also appears in preorder.
-# preorder is guaranteed to be the preorder traversal of the tree.
-# inorder is guaranteed to be the inorder traversal of the tree.
+# preorder is guaranteed to be the preorder
+# traversal of the tree. inorder is guaranteed
+# to be the inorder traversal of the tree.
 
 
 from typing import Optional, List
@@ -63,9 +68,7 @@ class Solution:
         node = TreeNode(preorder[0])
         pivot = inorder.index(node.val)
 
-        print("node.left", pivot, preorder[1:pivot+1], inorder[:pivot])
         node.left = self.buildTree(preorder[1:pivot+1], inorder[:pivot])
-        print("node.right", pivot, preorder[pivot+1:], inorder[pivot+1:])
         node.right = self.buildTree(preorder[pivot+1:], inorder[pivot+1:])
 
         return node

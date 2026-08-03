@@ -1,0 +1,71 @@
+/*
+    143. Reorder List
+
+    You are given the head of a singly linked-list. The list can be
+    represented as:
+
+    L0 → L1 → … → Ln - 1 → Ln
+    Reorder the list to be on the following form:
+
+    L0 → Ln → L1 → Ln - 1 → L2 → Ln - 2 → …
+    You may not modify the values in the list's nodes. Only nodes
+    themselves may be changed.
+
+    Example 1:
+    Input: head = [1,2,3,4]
+    Output: [1,4,2,3]
+
+    Example 2:
+    Input: head = [1,2,3,4,5]
+    Output: [1,5,2,4,3]
+
+
+    Constraints:
+
+    The number of nodes in the list is in the range [1, 5 * 104].
+    1 <= Node.val <= 1000
+
+    # https://leetcode.com/problems/reorder-list/description/
+*/
+
+/**
+ * Definition for singly-linked list.
+ * type ListNode struct {
+ *     Val int
+ *     Next *ListNode
+ * }
+ */
+func reorderList(head *ListNode)  {
+    // 1. Go to half
+    dummy := head
+    mid, f := dummy, dummy
+
+    for f != nil && f.Next != nil {
+        mid = mid.Next
+        f = f.Next.Next
+    }
+
+    // 2. Reverse 2nd
+    cur := mid.Next
+    mid.Next = nil
+    var prev *ListNode
+
+    for cur != nil {
+        tmp := cur.Next
+        cur.Next = prev
+        prev = cur
+        cur = tmp
+    }
+
+    // 3. Merge both
+    l1, l2 := head, prev
+
+    for l1 != nil && l2 != nil {
+        tmp1, tmp2 := l1.Next, l2.Next
+        l1.Next = l2
+        l2.Next = tmp1
+        l1, l2 = tmp1, tmp2
+    }
+
+}
+
