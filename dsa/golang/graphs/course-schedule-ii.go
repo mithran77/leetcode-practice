@@ -47,49 +47,87 @@
 
 */
 
+// func findOrder(numCourses int, prerequisites [][]int) []int {
+//     // Create adjacency & inDegrees
+//     adj := make([][]int, numCourses)
+//     inDegrees := make([]int, numCourses)
+//     for _, p := range prerequisites {
+//         adj[p[0]] = append(adj[p[0]], p[1])
+//         inDegrees[p[1]]++
+//     }
+
+//     q := []int{}
+//     complete := 0
+//     for n := range inDegrees {
+//         if inDegrees[n] == 0 {
+//             complete++
+//             q = append(q, n)
+//         }
+//     }
+
+//     topoSort := []int{}
+    
+//     for len(q) > 0 {
+//         n := q[0]
+//         q = q[1:]
+
+//         for _, nei := range adj[n] {
+//             inDegrees[nei]--
+//             if inDegrees[nei] == 0 {
+//                 complete++
+//                 q = append(q, nei)
+//             }
+//         }
+//         topoSort = append(topoSort, n)
+//     }
+
+//     if complete != numCourses {
+//         return []int{}
+//     }
+
+//     // Reverse in-place
+//     tLen := len(topoSort)
+//     for i := range (tLen/2) {
+//         topoSort[i], topoSort[tLen-i-1] = topoSort[tLen-i-1], topoSort[i]
+//     }
+
+//     return topoSort
+// }
+
+
 func findOrder(numCourses int, prerequisites [][]int) []int {
-    // Create adjacency & inDegrees
-    adj := make([][]int, numCourses)
-    inDegrees := make([]int, numCourses)
+
+    adj := map[int][]int{}
+    inDegree := make([]int, numCourses)
     for _, p := range prerequisites {
-        adj[p[0]] = append(adj[p[0]], p[1])
-        inDegrees[p[1]]++
+        adj[p[1]] = append(adj[p[1]], p[0])
+        inDegree[p[0]]++
     }
 
     q := []int{}
-    complete := 0
-    for n := range inDegrees {
-        if inDegrees[n] == 0 {
-            complete++
-            q = append(q, n)
+    topOrder := []int{}
+    for i := range inDegree {
+        if inDegree[i] == 0 {
+            q = append(q, i)
+            topOrder = append(topOrder, i)
         }
     }
 
-    topoSort := []int{}
-    
     for len(q) > 0 {
         n := q[0]
         q = q[1:]
-
         for _, nei := range adj[n] {
-            inDegrees[nei]--
-            if inDegrees[nei] == 0 {
-                complete++
+            inDegree[nei]--
+            if inDegree[nei] == 0 {
                 q = append(q, nei)
+                topOrder = append(topOrder, nei)
             }
         }
-        topoSort = append(topoSort, n)
     }
 
-    if complete != numCourses {
+    if len(topOrder) < numCourses {
         return []int{}
     }
+    return topOrder
 
-    // Reverse in-place
-    tLen := len(topoSort)
-    for i := range (tLen/2) {
-        topoSort[i], topoSort[tLen-i-1] = topoSort[tLen-i-1], topoSort[i]
-    }
-
-    return topoSort
 }

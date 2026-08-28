@@ -39,39 +39,90 @@
 */
 
 
+// func solve(board [][]byte)  {
+//     rows, cols := len(board), len(board[0])
+
+//     var dfs func(r, c int)
+//     dfs = func(r, c int) {
+//         if (r < 0 || c < 0 ||
+//             r >= rows || c >= cols ||
+//             board[r][c] != 'O') {
+//             return
+//         }
+
+//         board[r][c] = 'C'
+//         dfs(r-1, c)
+//         dfs(r+1, c)
+//         dfs(r, c-1)
+//         dfs(r, c+1)
+//     }
+
+//     for c := range cols {
+//         if board[0][c] == 'O' {
+//             dfs(0,c)
+//         }
+//         if board[rows-1][c] == 'O'{
+//             dfs(rows-1,c)
+//         }
+//     }
+
+//     for r := range rows {
+//         if board[r][0] == 'O' {
+//             dfs(r,0)
+//         }
+//         if board[r][cols-1] == 'O'{
+//             dfs(r,cols-1)
+//         }
+//     }
+
+//     for r := range rows {
+//         for c := range cols {
+//             if board[r][c] == 'O' {
+//                 board[r][c] = 'X'
+//             }
+//             if board[r][c] == 'C' {
+//                 board[r][c] = 'O'
+//             }
+//         }
+//     }
+// }
+
+
 func solve(board [][]byte)  {
     rows, cols := len(board), len(board[0])
 
-    var dfs func(r, c int)
-    dfs = func(r, c int) {
-        if (r < 0 || c < 0 ||
-            r >= rows || c >= cols ||
-            board[r][c] != 'O') {
-            return
-        }
-
-        board[r][c] = 'C'
-        dfs(r-1, c)
-        dfs(r+1, c)
-        dfs(r, c-1)
-        dfs(r, c+1)
-    }
-
-    for c := range cols {
-        if board[0][c] == 'O' {
-            dfs(0,c)
-        }
-        if board[rows-1][c] == 'O'{
-            dfs(rows-1,c)
-        }
-    }
-
+    q := [][]int{}
     for r := range rows {
         if board[r][0] == 'O' {
-            dfs(r,0)
+            q = append(q, []int{r, 0})
         }
-        if board[r][cols-1] == 'O'{
-            dfs(r,cols-1)
+        if board[r][cols-1] == 'O' {
+            q = append(q, []int{r, cols-1})
+        }
+    }
+    for c := range cols {
+        if board[0][c] == 'O' {
+            q = append(q, []int{0, c})
+        }
+        if board[rows-1][c] == 'O' {
+            q = append(q, []int{rows-1, c})
+        }
+    }
+
+    nei := [][]int{{-1, 0}, {1, 0}, {0, -1}, {0, 1}}
+    for len(q) > 0 {
+        qLen := len(q)
+
+        for range qLen {
+            r, c := q[0][0], q[0][1]
+            q = q[1:]
+            board[r][c] = 'M'
+            for _, n := range nei {
+                nr, nc := r + n[0], c + n[1]
+                if (0 <= nr && nr < rows) && (0 <= nc && nc < cols) && board[nr][nc] == 'O' {
+                    q = append(q, []int{nr, nc})
+                }
+            }
         }
     }
 
@@ -80,9 +131,10 @@ func solve(board [][]byte)  {
             if board[r][c] == 'O' {
                 board[r][c] = 'X'
             }
-            if board[r][c] == 'C' {
+            if board[r][c] == 'M' {
                 board[r][c] = 'O'
             }
         }
     }
+
 }

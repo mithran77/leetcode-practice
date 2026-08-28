@@ -25,6 +25,40 @@
 
 */
 
+// QuickSelect
+
+func findKthLargest(nums []int, k int) int {
+    k = len(nums) - k
+
+    var quickSelect func(l, r int) int
+    quickSelect = func(l, r int) int {
+        pivot, pIdx := nums[r], l
+
+        for i := l; i < r; i++ {
+            if nums[i] <= pivot {
+                nums[i], nums[pIdx] = nums[pIdx], nums[i]
+                pIdx++
+            }
+        }
+
+        nums[pIdx], nums[r] = nums[r], nums[pIdx]
+
+        if k < pIdx {
+            return quickSelect(l, pIdx - 1)
+        } else if k > pIdx {
+            return quickSelect(pIdx + 1, r)
+        } else {
+            return nums[pIdx]
+        }
+
+    }
+
+    return quickSelect(0, len(nums) - 1)
+}
+
+
+
+
 import "container/heap"
 
 func findKthLargest(nums []int, k int) int {
@@ -58,3 +92,5 @@ func (h *IntHeap) Pop() interface{} {
     *h = old[0 : n-1]
     return x
 }
+
+

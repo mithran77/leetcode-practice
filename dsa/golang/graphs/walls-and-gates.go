@@ -85,39 +85,45 @@
     grid[i][j] is one of {-1, 0, 2147483647}
 */
 
-type pair struct{ r, c int}
-
 func islandsAndTreasure(grid [][]int) {
-    q := []*pair{}
-    ROWS, COLS := len(grid), len(grid[0])
-    neighbours := [][2]int{{-1,0}, {1, 0}, {0, -1}, {0,1}}
+    rows, cols := len(grid), len(grid[0])
 
-    for r := range ROWS {
-        for c := range COLS {
-            if grid[r][c]== 0 {
-                q = append(q, &pair{r, c})
+    q := [][]int{}
+    for r := range rows {
+        for c := range cols {
+            if grid[r][c] == 0 {
+                q = append(q, []int{r,c})
             }
         }
     }
 
-    level := 0
-    for len(q) > 0 {
-        level++
-        qLen := len(q) 
-        for range qLen {
+    var isValid func(r, c int) bool
+    isValid = func(r, c int) bool {
+        return (0 <= r && r < rows) &&
+           (0 <= c && c < cols) &&
+           (grid[r][c] == 2147483647)
+    }
 
-            p := q[0]
+    nei := [][]int{{-1,0}, {1,0}, {0,-1}, {0,1}}
+    level := 1
+    for len(q) > 0 {
+        qLen := len(q)
+
+        for range qLen {
+            r, c := q[0][0], q[0][1]
             q = q[1:]
 
-            for _, n := range neighbours {
-                nr, nc := p.r+n[0], p.c+n[1]
-                if nr < 0 || nc < 0 || nr >= ROWS || nc >= COLS || grid[nr][nc] != math.MaxInt32 {
-                    continue
+            for _, n := range nei {
+                nr, nc := r + n[0], c + n[1]
+                if isValid(nr, nc) {
+                    grid[nr][nc] = level
+                    q = append(q, []int{nr, nc})
                 }
-                grid[nr][nc] = level
-                q = append(q, &pair{nr, nc})
             }
+
         }
+
+        level++
     }
 
 }

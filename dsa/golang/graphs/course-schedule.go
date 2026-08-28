@@ -55,7 +55,7 @@ func canFinish(numCourses int, prerequisites [][]int) bool {
     }
 
     // topoSort := []int{}
-    
+
     for len(q) > 0 {
         n := q[0]
         q = q[1:]

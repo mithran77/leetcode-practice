@@ -40,48 +40,46 @@
 */
 
 func orangesRotting(grid [][]int) int {
-    ROWS, COLS := len(grid), len(grid[0])
-    q := [][2]int{}
-    fresh := 0
+    rows, cols := len(grid), len(grid[0])
+    q := [][]int{}
 
-    neighbours := [][2]int{{-1,0}, {1, 0}, {0, -1}, {0, 1}}
-
-    for r := range ROWS {
-        for c := range COLS {
+    for r := range rows {
+        for c := range cols {
             if grid[r][c] == 2 {
-                q = append(q, [2]int{r, c})
+                q = append(q, []int{r, c})
             }
-            if grid[r][c] == 1 {
-                fresh++
-            }
-        }   
+        }
     }
 
+    nei := [][]int{{-1, 0}, {1, 0}, {0, -1}, {0, 1}}
     level := 0
-    for len(q) > 0 && fresh > 0 {
+    for len(q) > 0 {        
         qLen := len(q)
         level++
 
         for range qLen {
             r, c := q[0][0], q[0][1]
             q = q[1:]
-
-            for _, n := range neighbours {
-                nr, nc := r+n[0], c+n[1]
-                if nr < 0 || nc < 0 || nr >= ROWS || nc >= COLS || grid[nr][nc] != 1 {
-                    continue
+            for _, n := range nei {
+                nr, nc := r + n[0], c + n[1]
+                if (0 <= nr && nr < rows) && (0 <= nc && nc < cols) && (grid[nr][nc] == 1) {
+                    q = append(q, []int{nr, nc})
+                    grid[nr][nc] = 2
                 }
-                grid[nr][nc] = 2
-                fresh--
-                q = append(q, [2]int{nr, nc})
             }
         }
-
     }
 
-    if fresh > 0 {
-        return -1
+    for r := range rows {
+        for c := range cols {
+            if grid[r][c] == 1 {
+                return -1
+            }
+        }
     }
 
+    if level > 0 {
+        return level - 1
+    }
     return level
 }

@@ -32,23 +32,42 @@ package main
 
 import "fmt"
 
-func lengthOfLongestSubstring(s string) int {
-	slow, maxWindow := 0, 0
-	window := make(map[byte]struct{})
+// func lengthOfLongestSubstring(s string) int {
+//     window := map[rune]struct{}{}
+//     longest, l := 0, 0
 
-	for fast := 0; fast < len(s); fast++ {
-		if _, exists := window[s[fast]]; exists {
-			for exists {
-				delete(window, s[slow])
-				slow++
-				_, exists = window[s[fast]]
-			}
-		}
-		window[s[fast]] = struct{}{}
-		maxWindow = max(maxWindow, (fast - slow + 1))
-	}
-	return maxWindow
+//     for r, c := range s {
+//         _, exists := window[c]
+//         for exists {
+//             delete(window, rune(s[l]))
+//             l++
+//             _, exists = window[c]
+//         }
+
+//         window[c] = struct{}{}
+//         longest = max(longest, r - l + 1)
+//     }
+
+//     return longest
+// }
+
+
+func lengthOfLongestSubstring(s string) int {
+    window := map[rune]int{}
+    longest, l := 0, 0
+
+    for r, c := range s {
+        if i, exists := window[c]; exists {
+            l = max(l, i + 1)
+        } 
+
+        window[c] = r
+        longest = max(longest, r - l + 1)
+    }
+
+    return longest
 }
+
 
 func main() {
 	fmt.Println(lengthOfLongestSubstring("abcabcbb"))

@@ -42,8 +42,7 @@ func maxProfit(prices []int) int {
         if prices[s] > prices[f] {
             s = f
         } else {
-            profit := prices[f] - prices[s]
-            best = max(best, profit)
+            best = max(best, prices[f] - prices[s])
         }
         f++
     }
