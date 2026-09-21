@@ -1,29 +1,33 @@
 # 435. Non-overlapping Intervals
 
 # Given an array of intervals intervals
-# where intervals[i] = [starti, endi], return 
-# the minimum number of intervals you need
-# to remove to make the rest of the intervals
-# non-overlapping.
+# where intervals[i] = [starti, endi],
+# return the minimum number of intervals
+# you need to remove to make the rest of
+# the intervals non-overlapping.
 
 # Example 1:
-# Input: intervals = [[1,2],[2,3],[3,4],[1,3]]
+# Input: intervals = [[1,2],[2,3],[3,4],
+# [1,3]]
 # [[1,2],[2,3],[1,3],[3,4]]
 # Output: 1
-# Explanation: [1,3] can be removed and the rest
-# of the intervals are non-overlapping.
+# Explanation: [1,3] can be removed and
+# the rest of the intervals are
+# non-overlapping.
 
 # Example 2:
 # Input: intervals = [[1,2],[1,2],[1,2]]
 # Output: 2
-# Explanation: You need to remove two [1,2] to make
-# the rest of the intervals non-overlapping.
+# Explanation: You need to remove two [1,2]
+# to make the rest of the intervals
+# non-overlapping.
 
 # Example 3:
 # Input: intervals = [[1,2],[2,3]]
 # Output: 0
-# Explanation: You don't need to remove any of the
-# intervals since they're already non-overlapping.
+# Explanation: You don't need to remove
+# any of the intervals since they're
+# already non-overlapping.
 
 # Constraints:
 # 1 <= intervals.length <= 105
@@ -31,7 +35,6 @@
 # -5 * 104 <= starti < endi <= 5 * 104
 
 from typing import List
-
 
 # class Solution:
 #     def eraseOverlapIntervals(self, intervals: List[List[int]]) -> int:
@@ -60,17 +63,18 @@ from typing import List
 #                     sp += 1
 
 #             fp += 1
-        
+
 #         return count
+
 
 class Solution:
     def eraseOverlapIntervals(self, intervals: List[List[int]]) -> int:
 
         intervals.sort()
         res, prevEnd = 0, intervals[0][1]
-        
+
         for start, end in intervals[1:]:
-            if start < prevEnd: # overlapping
+            if start < prevEnd:  # overlapping
                 prevEnd = min(prevEnd, end)
                 res += 1
             else:
@@ -78,9 +82,10 @@ class Solution:
 
         return res
 
-if __name__ == '__main__':
-    ans = Solution()
-    print(ans.eraseOverlapIntervals(intervals = [[1,2],[2,3],[3,4],[1,3]]))
-    print(ans.eraseOverlapIntervals(intervals = [[1,2],[1,2],[1,2]]))
-    print(ans.eraseOverlapIntervals(intervals = [[1,2],[2,3]]))
 
+if __name__ == "__main__":
+    ans = Solution()
+    print(ans.eraseOverlapIntervals(
+        intervals=[[1, 2], [2, 3], [3, 4], [1, 3]]))
+    print(ans.eraseOverlapIntervals(intervals=[[1, 2], [1, 2], [1, 2]]))
+    print(ans.eraseOverlapIntervals(intervals=[[1, 2], [2, 3]]))
