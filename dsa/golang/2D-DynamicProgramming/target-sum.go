@@ -44,32 +44,31 @@
 
 */
 
-func findTargetSumWays(nums []int, target int) int {
-    n := len(nums)
-    dp := map[[2]int]int{}
-
-    var rTargetSumWays func(i, total int) int
-    rTargetSumWays = func(i, total int) int {
-        if total == target && i == n  {
-            return 1
-        }
-        if i >= n {
-            return 0
-        }
-
-        key := [2]int{i, total}
-        if val, exists := dp[key]; exists {
-            return val
-        }
-
-        plus := rTargetSumWays(i + 1, total - nums[i])
-        minus := rTargetSumWays(i + 1, total + nums[i])
-
-        dp[key] = plus + minus
-
-        return dp[key]
+func isInterleave(s1 string, s2 string, s3 string) bool {
+    if len(s1) + len(s2) != len(s3) {
+        return false
     }
 
-    return rTargetSumWays(0, 0)
+    var rIsInterleave func(i, j int) bool
+    rIsInterleave = func(i, j int) bool {
+        if i + j == len(s3) {
+            return true
+        }
+
+        if i < len(s1) && s1[i] == s3[i+j] {
+            if rIsInterleave(i+1, j) {
+                return true
+            }
+        }
+        if j < len(s2) && s2[j] == s3[i + j] {
+            if rIsInterleave(i, j+1) {
+                return true
+            }
+        }
+
+        return false
+    }
+
+    return rIsInterleave(0, 0)
 }
 
