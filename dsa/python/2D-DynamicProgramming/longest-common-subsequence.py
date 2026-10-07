@@ -17,8 +17,8 @@
 # to both strings.
 
 # Example 1:
-# Input: text1 = "abcde", text2 = "ace" 
-# Output: 3  
+# Input: text1 = "abcde", text2 = "ace"
+# Output: 3
 # Explanation: The longest common subsequence
 # is "ace" and its length is 3.
 
@@ -39,16 +39,12 @@
 # text1 and text2 consist of only lowercase
 # English characters.
 
-from typing import List
 
 # Memo
 class Solution:
     def longestCommonSubsequence(self, text1: str, text2: str) -> int:
 
-        dp = [
-            [-1] * (len(text2))
-            for _ in range(len(text1))
-        ]
+        dp = [[-1] * (len(text2)) for _ in range(len(text1))]
 
         def rLCS(idx1, idx2):
 
@@ -60,13 +56,13 @@ class Solution:
                 return 0
 
             if text1[idx1] == text2[idx2]:
-                dp[idx1][idx2] = 1 + rLCS(idx1-1, idx2-1)
+                dp[idx1][idx2] = 1 + rLCS(idx1 - 1, idx2 - 1)
             else:
-                dp[idx1][idx2] = max(rLCS(idx1-1, idx2), rLCS(idx1, idx2-1))
+                dp[idx1][idx2] = max(rLCS(idx1 - 1, idx2), rLCS(idx1, idx2 - 1))
 
             return dp[idx1][idx2]
 
-        return rLCS(len(text1)-1, len(text2)-1)
+        return rLCS(len(text1) - 1, len(text2) - 1)
 
 
 # # Tabulation
@@ -89,9 +85,8 @@ class Solution:
 #         return dp[len(text1)][len(text2)]
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     ans = Solution()
-    print(ans.longestCommonSubsequence(text1 = "abcde", text2 = "ace"))
-    print(ans.longestCommonSubsequence(text1 = "abc", text2 = "abc"))
-    print(ans.longestCommonSubsequence(text1 = "abc", text2 = "def"))
-
+    print(ans.longestCommonSubsequence(text1="abcde", text2="ace"))
+    print(ans.longestCommonSubsequence(text1="abc", text2="abc"))
+    print(ans.longestCommonSubsequence(text1="abc", text2="def"))

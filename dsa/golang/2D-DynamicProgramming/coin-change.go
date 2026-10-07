@@ -34,38 +34,41 @@
 
 */
 
-
-// 1D DP
+// 2D DP
 func coinChange(coins []int, amount int) int {
-    
-    dp := make([]int, amount + 1)
+    dp := make([][]int, len(coins))
+    for i := range len(coins) {
+        dp[i] = slices.Repeat([]int{-1}, amount + 1)
+    }
 
-    var rCoinChange func(remain int) int
-    rCoinChange = func(remain int) int {
-        if remain < 0 {
+    var rCoinChange func(i, cur int) int
+    rCoinChange = func(i, cur int) int {
+        if i >= len(coins) || cur > amount {
             return math.MaxInt
         }
-        if dp[remain] != 0 {
-            return dp[remain]
+        if dp[i][cur] != -1 {
+            return dp[i][cur]
         }
-        if remain == 0 {
+        if cur == amount {
             return 0
         }
 
-        minCoins := math.MaxInt
-        for _, c := range coins {
-            take := rCoinChange(remain - c)
-            if take < math.MaxInt {
-                minCoins = min(minCoins, 1 + take)
-            }
+        // Take
+        take := rCoinChange(i, cur + coins[i])
+        if take < math.MaxInt {
+            take++
         }
-        dp[remain] = minCoins
-        return dp[remain]
+        // No Take
+        skip := rCoinChange(i + 1, cur)
+
+        dp[i][cur] = min(take, skip)
+        return dp[i][cur]
     }
 
-    minCoins := rCoinChange(amount)
-    if minCoins < math.MaxInt {
-        return minCoins
+    minCoins := rCoinChange(0, 0)
+    if minCoins == math.MaxInt {
+        return -1
     }
-    return -1
+    return minCoins
 }
+

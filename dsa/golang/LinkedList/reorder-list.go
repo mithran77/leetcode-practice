@@ -36,20 +36,16 @@
  * }
  */
 func reorderList(head *ListNode)  {
-    // 1. Go to half
-    dummy := head
-    mid, f := dummy, dummy
-
+    // 1. Move to half
+    s, f := head, head
     for f != nil && f.Next != nil {
-        mid = mid.Next
+        s = s.Next
         f = f.Next.Next
     }
 
-    // 2. Reverse 2nd
-    cur := mid.Next
-    mid.Next = nil
-    var prev *ListNode
-
+    // 2. Reverse 2nd half
+    cur, prev := s.Next, (*ListNode)(nil)
+    s.Next = nil
     for cur != nil {
         tmp := cur.Next
         cur.Next = prev
@@ -57,15 +53,13 @@ func reorderList(head *ListNode)  {
         cur = tmp
     }
 
-    // 3. Merge both
+    // 3. Merge 1st & 2nd
     l1, l2 := head, prev
-
     for l1 != nil && l2 != nil {
         tmp1, tmp2 := l1.Next, l2.Next
         l1.Next = l2
         l2.Next = tmp1
         l1, l2 = tmp1, tmp2
     }
-
 }
 

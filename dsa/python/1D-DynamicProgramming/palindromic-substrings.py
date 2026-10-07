@@ -44,6 +44,7 @@ class Solution:
 
         return count
 
+
 if __name__ == '__main__':
     ans = Solution()
     print(ans.countSubstrings("abc"))

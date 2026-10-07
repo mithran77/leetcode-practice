@@ -61,15 +61,15 @@ class Solution:
 
         memo = [-1] * len(s)
 
-        def rWordBreak(i:int)->bool:
+        def rWordBreak(i: int) -> bool:
             if i == len(s):
                 return True
             if memo[i] != -1:
                 return memo[i]
 
             for w in wordDict:
-                if s[i:i+len(w)] == w:
-                    if rWordBreak(i=(i+len(w))):
+                if s[i: i + len(w)] == w:
+                    if rWordBreak(i=(i + len(w))):
                         memo[i] = True
                         return True
 
@@ -79,9 +79,10 @@ class Solution:
         return rWordBreak(i=0)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     ans = Solution()
-    print(ans.wordBreak(s = "leetcode", wordDict = ["leet","code"]))
-    print(ans.wordBreak(s = "applepenapple", wordDict = ["apple","pen"]))
-    print(ans.wordBreak(s = "catsandog", wordDict = ["cats","dog","sand","and","cat"]))
-
+    print(ans.wordBreak(s="leetcode", wordDict=["leet", "code"]))
+    print(ans.wordBreak(s="applepenapple", wordDict=["apple", "pen"]))
+    print(ans.wordBreak(
+        s="catsandog", wordDict=["cats", "dog", "sand", "and", "cat"]
+    ))

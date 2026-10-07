@@ -19,7 +19,7 @@
 # letters.
 
 
-from typing import List
+# from typing import List
 
 # # Expand from possible centers
 # class Solution:
@@ -48,31 +48,28 @@ from typing import List
 
 #         return res
 
+
 # Memoization
 class Solution:
     def longestPalindrome(self, s: str) -> str:
         N = len(s)
         start, length = 0, 0
 
-        dp = [
-            [-1] * N
-            for _ in range(N)
-        ]
+        dp = [[-1] * N for _ in range(N)]
 
         def isPalindrome(i, j):
             if i >= j:
                 return 1
 
             if dp[i][j] != -1:
-                return dp[i][j]            
+                return dp[i][j]
 
             if s[i] == s[j]:
-                dp[i][j] = isPalindrome(i+1, j-1)
+                dp[i][j] = isPalindrome(i + 1, j - 1)
             else:
                 dp[i][j] = 0
 
             return dp[i][j]
-
 
         for i in range(N):
             for j in range(i, N):
@@ -81,10 +78,10 @@ class Solution:
                         start = i
                         length = j - i + 1
 
-        return s[start:start+length]
+        return s[start: start + length]
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     res = Solution()
-    print(res.longestPalindrome(s = "babad"))
-    print(res.longestPalindrome(s = "cbbd"))
-
+    print(res.longestPalindrome(s="babad"))
+    print(res.longestPalindrome(s="cbbd"))

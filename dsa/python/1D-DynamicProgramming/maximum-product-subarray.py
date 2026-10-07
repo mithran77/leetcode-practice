@@ -30,7 +30,6 @@
 
 from typing import List
 
-
 # # Brute force
 # class Solution:
 #     def maxProduct(self, nums: List[int]) -> int:
@@ -70,7 +69,7 @@ from typing import List
 #             for i in range(len(nums))
 #         ]
 #         max_product = nums[0]
-        
+
 #         def maxMinProduct(n:int, prev_min:int, prev_max:int):
 #             old_min = prev_min
 #             cur_min = min(n, prev_min * n, prev_max * n)
@@ -88,12 +87,10 @@ from typing import List
 
 #         return max_product
 
+
 class Solution:
     def maxProduct(self, nums: List[int]) -> int:
-        memo = [
-            (-11, -11)
-            for _ in range(len(nums))
-        ]
+        memo = [(-11, -11) for _ in range(len(nums))]
         max_prod = nums[0]
 
         def rMaxProduct(i) -> tuple[int, int]:
@@ -103,7 +100,7 @@ class Solution:
             if (memo[i][0], memo[i][1]) != (-11, -11):
                 return memo[i]
 
-            prev_min, prev_max = rMaxProduct(i-1)
+            prev_min, prev_max = rMaxProduct(i - 1)
             tmp_min = prev_min
             cur_min = min(nums[i], prev_min * nums[i], prev_max * nums[i])
             cur_max = max(nums[i], tmp_min * nums[i], prev_max * nums[i])
@@ -117,9 +114,9 @@ class Solution:
 
         return max_prod
 
-if __name__ == '__main__':
-    res = Solution()
-    print(res.maxProduct([2,3,-2,4]))
-    print(res.maxProduct([-2,0,-1]))
-    print(res.maxProduct([0,2]))
 
+if __name__ == "__main__":
+    res = Solution()
+    print(res.maxProduct([2, 3, -2, 4]))
+    print(res.maxProduct([-2, 0, -1]))
+    print(res.maxProduct([0, 2]))

@@ -108,28 +108,29 @@
 
 #         return self.decodings
 
+
 class Solution:
     def numDecodings(self, s: str) -> int:
         N = len(s)
-        dp = [-1] * (N+1)
+        dp = [-1] * (N + 1)
 
         def rNumDecodings(i):
-            
+
             if dp[i] != -1:
                 return dp[i]
 
-            if i == N: # If we reached the end, we found a way to decode
+            if i == N:  # If we reached the end, we found a way to decode
                 return 1
 
-            if s[i] == '0': # Check for last digit 0, before confirming we have a way
+            if s[i] == "0":  # Check for last digit 0, before confirming we have a way
                 return 0
 
-            if i == N-1:
+            if i == N - 1:
                 return 1
 
-            ways = rNumDecodings(i+1)
-            if int(s[i:i+2]) in range(1,27):
-                ways += rNumDecodings(i+2)
+            ways = rNumDecodings(i + 1)
+            if int(s[i: i + 2]) in range(1, 27):
+                ways += rNumDecodings(i + 2)
             dp[i] = ways
 
             return ways
@@ -137,10 +138,9 @@ class Solution:
         return rNumDecodings(0)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     res = Solution()
-    print(res.numDecodings(s = "12"))
-    print(res.numDecodings(s = "226"))
-    print(res.numDecodings(s = "06"))
-    print(res.numDecodings(s = "0"))
-
+    print(res.numDecodings(s="12"))
+    print(res.numDecodings(s="226"))
+    print(res.numDecodings(s="06"))
+    print(res.numDecodings(s="0"))

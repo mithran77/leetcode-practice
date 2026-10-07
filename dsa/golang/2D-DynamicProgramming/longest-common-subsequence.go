@@ -68,3 +68,4 @@ func longestCommonSubsequence(text1 string, text2 string) int {
 
     return rLCS(0, 0)
 }
+
